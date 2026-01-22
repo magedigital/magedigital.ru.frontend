@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "stylelint-config-rational-order",
+        "stylelint-config-standard-scss",
+        "stylelint-config-prettier-scss",
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-order",
+        "stylelint-scss"
+    ],
+    "rules": {
+        "max-nesting-depth": 10,
+        "selector-class-pattern": null,
+        "no-descending-specificity": null,
+        "at-rule-no-unknown": null,
+        "scss/dollar-variable-pattern": null,
+        "scss/at-extend-no-missing-placeholder": null,
+        "keyframes-name-pattern": null,
+        "import-notation": null,
+        "property-no-vendor-prefix": null,
+        "custom-property-pattern": null,
+        "font-family-no-missing-generic-family-keyword": null
+    }
+}

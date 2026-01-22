@@ -1,0 +1,24 @@
+{
+    "parser": "typescript",
+    "useTabs": false,
+    "printWidth": 100,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": true,
+    "importOrder": [
+        "^react(.*)$",
+        "^@(.*)$",
+        "^(.*)components(.*)$",
+        "^(.*)functions(.*)$",
+        "^(.*)global(.*)$",
+        "^(.*)methods(.*)$",
+        "^(.*)types.ts$",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ]
+}

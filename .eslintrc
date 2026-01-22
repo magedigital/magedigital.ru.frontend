@@ -1,0 +1,65 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "browser": true
+    },
+    "extends": [
+        "airbnb-base",
+        "airbnb/hooks",
+        "plugin:react/recommended",
+        "prettier",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "import/no-cycle": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off",
+        "no-underscore-dangle": "off",
+        "no-restricted-syntax": "off",
+        "class-methods-use-this": "off",
+        "no-plusplus": "off",
+        "no-loop-func": "off",
+        "prefer-destructuring": "off",
+        "no-param-reassign": "off",
+        "no-prototype-builtins": "off",
+        "no-cond-assign": "off",
+        "no-nested-ternary": "off",
+        "no-restricted-properties": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/prop-types": "off",
+        "no-use-before-define": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "react/require-default-props": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        "lines-between-class-members": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/ban-types": [
+            "error",
+            {
+                "extendDefaults": true,
+                "types": {
+                    "{}": false
+                }
+            }
+        ],
+        "func-names": "off",
+        "import/resolver": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "import/no-unresolved": "off",
+        "no-useless-return": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "import/extensions": "off",
+        "new-cap": "off",
+        "prefer-template": "off",
+        "no-empty": "off",
+        "import/prefer-default-export": "off",
+        "consistent-return": "off",
+        "prefer-promise-reject-errors": "off",
+        "camelcase": "off",
+        "no-return-await": "off"
+    }
+}

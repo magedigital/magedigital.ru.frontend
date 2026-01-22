@@ -1,0 +1,194 @@
+﻿html {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    font-size: calc(100vw / 1512);
+
+    @include mob {
+        font-size: calc(100vw / 414);
+    }
+}
+
+._ROW {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    &._ROW_V_CENTER {
+        align-items: center;
+    }
+
+    &._ROW_H_CENTER {
+        justify-content: center;
+    }
+}
+
+._COL {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    &._COL_CENTER {
+        align-items: center;
+        justify-content: center;
+    }
+
+    &._COL_V_CENTER {
+        justify-content: center;
+    }
+
+    &._COL_H_CENTER {
+        align-items: center;
+    }
+}
+
+._INNER {
+    width: var(--content-width);
+
+    @include mob {
+        width: var(--content-mob-width);
+    }
+}
+
+._CLICK {
+    @include mediaMin($mediaM + 1px) {
+        cursor: pointer;
+    }
+
+    user-select: none;
+}
+
+._FULL {
+    width: 100%;
+    height: 100%;
+}
+
+._FULL_W {
+    width: 100%;
+}
+
+._FULL_H {
+    height: 100%;
+}
+
+._NOSCROLL {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+}
+
+._LOADER {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    transition: $trans;
+    pointer-events: none;
+
+    &._SCROLL {
+        top: auto;
+        bottom: 0;
+        height: 30%;
+        min-height: 150rem;
+        padding-top: 64rem;
+        background: linear-gradient(to top, #fff, rgba(#fff, 0));
+
+        &._grey {
+            background: linear-gradient(to top, #f3f7f9, rgba(#f3f7f9, 0));
+        }
+
+        &._reverse {
+            top: auto;
+            bottom: auto;
+            padding-top: 0;
+            padding-bottom: 64rem;
+            background: linear-gradient(to bottom, #fff, rgba(#fff, 0));
+        }
+
+        &._grey._reverse {
+            background: linear-gradient(to bottom, #f3f7f9, rgba(#f3f7f9, 0));
+        }
+    }
+
+    &:not([data-show]) {
+        opacity: 0;
+    }
+}
+
+._POPUPBACK {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    background: rgba(#d9e0e2, 0.2);
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: rgba(#fff, 0.32);
+        content: "";
+    }
+
+    @include blur(54rem);
+}
+
+._LOADERITEM {
+    width: 28px;
+    height: 28px;
+    margin: auto;
+}
+
+._FULL_ABS {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+._ANIMATE {
+    transition: $trans;
+
+    &:not(._show) {
+        opacity: 0;
+    }
+}
+
+._NOWRAP {
+    white-space: nowrap;
+}
+
+._WRAP {
+    word-break: break-all;
+}
+
+._DESKTOP {
+    @include mob {
+        display: none;
+    }
+}
+
+._MOBILE {
+    @include mediaMin($mediaM + 1px) {
+        display: none;
+    }
+}

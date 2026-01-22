@@ -1,0 +1,68 @@
+{
+    "ts-node": {
+        "compilerOptions": {
+            "module": "commonjs",
+            "jsx": "react"
+        }
+    },
+    "compilerOptions": {
+        "sourceMap": true,
+        "incremental": true,
+        "target": "es5",
+        "module": "esnext",
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react",
+        "allowImportingTsExtensions": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@classes/*": [
+                "./src/classes/*"
+            ],
+            "@static/*": [
+                "./src/static/*"
+            ],
+            "@utils/*": [
+                "./src/utils/*"
+            ],
+            "@components/*": [
+                "./src/components/*"
+            ],
+            "@global/*": [
+                "./src/global/*"
+            ],
+            "@requests/*": [
+                "./src/requests/*"
+            ],
+            "@services/*": [
+                "./src/services/*"
+            ],
+            "@media/*": [
+                "./src/media/*"
+            ],
+            "@store/*": [
+                "./src/store/*"
+            ],
+            "@views/*": [
+                "./src/views/*"
+            ]
+        }
+    }
+}

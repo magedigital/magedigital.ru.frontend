@@ -1,0 +1,60 @@
+@mixin bg($url, $size, $pos) {
+    background: url($url) no-repeat;
+    background-position: $pos;
+    background-size: $size;
+}
+
+@mixin mediaMin($w) {
+    @media screen and (min-width: $w) {
+        @content;
+    }
+}
+
+@mixin media($w1, $w2) {
+    @media screen and (min-width: $w1) and (max-width: $w2) {
+        @content;
+    }
+}
+
+@mixin mob() {
+    @include media(0, $mediaM) {
+        @content;
+    }
+}
+
+@mixin icon($color) {
+    & .icon__fill {
+        fill: $color;
+    }
+
+    & .icon__stroke {
+        stroke: $color;
+    }
+}
+
+@mixin blur($val) {
+    & {
+        backdrop-filter: saturate(180%) blur($val);
+
+        //
+        -webkit-backdrop-filter: saturate(180%) blur($val);
+    }
+}
+
+@mixin button($value: 0.96) {
+    will-change: transform;
+
+    & {
+        transition: $trans;
+    }
+
+    &:active {
+        transform: scale(#{$value});
+    }
+}
+
+@mixin hover() {
+    @media (hover: hover) {
+        @content;
+    }
+}
