@@ -5,6 +5,7 @@
     height: var(--wheight);
     overflow: hidden;
     overflow-y: auto;
+    background: #e6f5ff;
 
     &._showPopup {
         overflow: hidden;
@@ -91,6 +92,11 @@
                 border-radius: 12rem;
 
                 @include button(0.95);
+
+                &:hover {
+                    color: #fff;
+                    background: var(--text-main-color);
+                }
             }
         }
 
@@ -154,11 +160,17 @@
         }
     }
 
+    &._showPopup &__foot {
+        opacity: 0;
+        pointer-events: none;
+    }
+
     &__foot {
         margin-top: auto;
         padding: 23rem 0 21rem;
         background: #bc22f1;
         border-radius: 36rem 36rem 0 0;
+        transition: $trans;
 
         @include mob {
             padding: 16rem 0;
