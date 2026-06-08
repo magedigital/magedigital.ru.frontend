@@ -25,14 +25,17 @@ class Icon extends Default<IconI['props'], IconI['state']> implements IconI {
 
     render() {
         const { Component } = this.state;
-        const { className } = this.props;
+        const { className, onClick } = this.props;
 
         if (s()) {
             return null;
         }
 
         return (
-            <i className={this.getClass('icon', '_COL', Component ? '_show' : '', className)}>
+            <i
+                className={this.getClass('icon', '_COL', Component ? '_show' : '', className)}
+                onClick={onClick}
+            >
                 <>{Component || null}</>
             </i>
         );

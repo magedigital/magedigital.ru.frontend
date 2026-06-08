@@ -4,6 +4,7 @@ import icons from './static/icons.ts';
 
 type PropsT = {
     name: (typeof icons)[number];
+    onClick?: () => void;
 };
 
 type StateT = {

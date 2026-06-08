@@ -1,3 +1,3 @@
-const icons = ['next-arrow'] as const;
+const icons = ['next-arrow', 'popup-close', 'link-phone', 'link-mail'] as const;
 
 export default icons;

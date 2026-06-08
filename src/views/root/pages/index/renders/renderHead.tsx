@@ -10,6 +10,24 @@ const renderHead: I['renderHead'] = function () {
                 alt=""
                 className="index__headLogo"
             />
+            <div className="index__headNav _ROW">
+                <div
+                    className="index__headNavButton _ROW _ROW_CENTER _CLICK"
+                    onClick={() => {
+                        this.setPopupState({ name: 'services', isShow: true });
+                    }}
+                >
+                    Услуги
+                </div>
+                <div
+                    className="index__headNavButton _ROW _ROW_CENTER _CLICK"
+                    onClick={() => {
+                        this.setPopupState({ name: 'contacts', isShow: true });
+                    }}
+                >
+                    Контакты
+                </div>
+            </div>
             <a href={this.email} className="index__headLink" target="_blank" rel="noreferrer">
                 {this.email}
             </a>
