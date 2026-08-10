@@ -1,16 +1,18 @@
 import { v4 } from 'uuid';
 
-import React, { KeyboardEvent, WheelEvent } from 'react';
+import React from 'react';
 
-import { appStore } from '@store/store.tsx';
-
+import addStack from './methods/addStack.ts';
+import addThrottle from './methods/addThrottle.ts';
 import asyncSetState from './methods/asyncSetState.ts';
 import checkCalcSize from './methods/checkCalcSize.ts';
 import checkChangeProps from './methods/checkChangeProps.ts';
+import doStack from './methods/doStack.ts';
 import getClass from './methods/getClass.ts';
 import keysHandler from './methods/keysHandler.ts';
 import onlineHandler from './methods/onlineHandler.ts';
 import setClass from './methods/setClass.ts';
+import throttleHandler from './methods/throttleHandler.ts';
 import visibilityHandler from './methods/visibilityHandler.ts';
 import wheelScrollHandler from './methods/wheelScrollHandler.ts';
 
@@ -26,19 +28,19 @@ class Default<P = ObjT, S = ObjT>
     isDocFocus: DefaultI['isDocFocus'];
     visibilityCb: DefaultI['visibilityCb'];
     init: DefaultI['init'];
-    checkAuthCb: DefaultI['checkAuthCb'];
+    defaultInit: DefaultI['defaultInit'];
     onlineCb: DefaultI['onlineCb'];
     isOnline: DefaultI['isOnline'];
     visibillityChangeHandler: DefaultI['visibillityChangeHandler'];
     keysCallback: DefaultI['keysCallback'];
     wheelScrollNodeClass: DefaultI['wheelScrollNodeClass'];
+    updatedStateCallback: DefaultI['updatedStateCallback'];
 
     constructor(props: DefaultI<P, S>['props']) {
         super(props);
         this.state = {} as DefaultI<P, S>['state'];
 
         this.id = 'id' + v4();
-        this.savedPrevPageUrl = appStore.getState().prevPageUrl;
         this.isOnline = true;
 
         this.visibilityHandler = this.visibilityHandler.bind(this);
@@ -58,6 +60,7 @@ class Default<P = ObjT, S = ObjT>
     timers: DefaultI['timers'] = {};
     intervals: DefaultI['intervals'] = {};
     changedProps: DefaultI['changedProps'] = {};
+    stack = [];
 
     asyncSetState = asyncSetState;
     getClass = getClass;
@@ -71,20 +74,38 @@ class Default<P = ObjT, S = ObjT>
 
     wheelScrollHandler = wheelScrollHandler;
 
+    addStack = addStack;
+    doStack = doStack;
+
+    throttles = {} as DefaultI['throttles'];
+    throttlesData = {};
+    throttleHandler = throttleHandler;
+    addThrottle = addThrottle;
+
     componentDidMount() {
         this.checkCalcSize();
         this.checkChangeProps();
 
-        if (!this.checkAuthCb) {
-            if (this.props.authUser) {
-                (this as DefaultI).asyncSetState({ authUser: this.props.authUser }).then(() => {
-                    if (this.init) {
-                        this.init();
-                    }
-                });
-            } else if (this.init) {
-                this.init();
-            }
+        if (this.defaultInit) {
+            this.defaultInit();
+        }
+
+        const init = this.init?.bind(this);
+
+        if (init) {
+            init();
+        }
+
+        const reconnectInit = async () => {
+            this.componentWillUnmount();
+            await init!();
+        };
+
+        if (init) {
+            document.addEventListener('reconnect', reconnectInit);
+            this.unmountHandlers.reconnect = () => {
+                document.removeEventListener('reconnect', reconnectInit);
+            };
         }
 
         if (this.visibilityCb) {
@@ -125,13 +146,10 @@ class Default<P = ObjT, S = ObjT>
         }
 
         if (this.keysCallback) {
-            (document.addEventListener as ListenerT<KeyboardEvent>)('keydown', this.keysHandler);
+            document.addEventListener('keydown', this.keysHandler);
 
             this.unmountHandlers.keys = () =>
-                (document.removeEventListener as ListenerT<KeyboardEvent>)(
-                    'keydown',
-                    this.keysHandler,
-                );
+                document.removeEventListener('keydown', this.keysHandler);
         }
 
         if (this.wheelScrollNodeClass) {
@@ -140,25 +158,25 @@ class Default<P = ObjT, S = ObjT>
             ) as HTMLElement;
 
             if (wheelNode) {
-                (wheelNode.addEventListener as ListenerT<WheelEvent>)(
-                    'wheel',
-                    this.wheelScrollHandler,
-                    { passive: false },
-                );
+                wheelNode.addEventListener('wheel', this.wheelScrollHandler, { passive: false });
 
                 this.unmountHandlers.wheel = () =>
-                    (wheelNode.removeEventListener as ListenerT<WheelEvent>)(
-                        'wheel',
-                        this.wheelScrollHandler,
-                        { passive: false },
-                    );
+                    wheelNode.removeEventListener('wheel', this.wheelScrollHandler);
             }
+        }
+
+        if (this.updatedStateCallback) {
+            this.updatedStateCallback();
         }
     }
 
     componentDidUpdate() {
         this.checkCalcSize();
         this.checkChangeProps();
+
+        if (this.updatedStateCallback) {
+            this.updatedStateCallback();
+        }
     }
 
     componentWillUnmount(): void {
@@ -172,6 +190,13 @@ class Default<P = ObjT, S = ObjT>
 
         Object.keys(this.intervals).forEach((key) => {
             clearInterval(this.intervals[key]);
+        });
+
+        Object.keys(this.throttles).forEach((k) => {
+            const timerId = this.throttles[k].getTimerId();
+            if (timerId) {
+                clearTimeout(timerId);
+            }
         });
     }
 }

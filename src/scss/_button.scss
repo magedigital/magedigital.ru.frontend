@@ -1,0 +1,116 @@
+.button {
+    position: relative;
+    padding-right: 60rem;
+    transition: $trans;
+
+    &._minSize {
+        padding-right: 40rem;
+    }
+
+    &__inner {
+        height: 60rem;
+        padding: 0 24rem;
+        font-size: 20rem;
+        border-radius: 20rem;
+        transition: $trans;
+    }
+
+    &._minSize &__inner {
+        height: 40rem;
+        padding: 0 16rem;
+        font-size: 16rem;
+        border-radius: 14rem;
+    }
+
+    &__arrow {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        z-index: 2;
+        aspect-ratio: 1;
+        height: 60rem;
+        border-radius: 20rem;
+        transform: translate(-100%, 0);
+        transition: $trans;
+
+        & i {
+            display: block;
+            width: 17rem;
+            aspect-ratio: 1;
+            margin: auto;
+        }
+    }
+
+    &._minSize &__arrow {
+        height: 40rem;
+        border-radius: 14rem;
+
+        & i {
+            width: 15rem;
+        }
+    }
+
+    &._white &__inner,
+    &._white &__arrow {
+        color: rgb(var(--main-c));
+        background: #fff;
+    }
+
+    &._white._whiteDark &__inner,
+    &._white._whiteDark &__arrow {
+        color: rgb(var(--dark-c));
+
+        @include icon(rgb(var(--dark-c)));
+    }
+
+    &._dark &__inner,
+    &._dark &__arrow {
+        color: #fff;
+        background: rgb(var(--dark-c));
+
+        @include icon(#fff);
+    }
+
+    &._purple &__inner,
+    &._purple &__arrow {
+        color: #fff;
+        background: #bc22f1;
+
+        @include icon(#fff);
+    }
+
+    @include hover {
+        &:hover {
+            padding: 0 0 0 60rem;
+        }
+
+        &._minSize:hover {
+            padding: 0 0 0 40rem;
+        }
+
+        &:hover &__arrow {
+            left: 0;
+            transform: translate(0, 0);
+        }
+
+        &:hover &__inner,
+        &:hover &__arrow {
+            color: #fff;
+            background: rgb(var(--main-c));
+
+            @include icon(#fff);
+        }
+
+        &._white._whiteDark:hover &__inner,
+        &._white._whiteDark:hover &__arrow {
+            color: #fff;
+
+            @include icon(#fff);
+        }
+
+        &._purple:hover &__inner,
+        &._purple:hover &__arrow {
+            background: rgb(var(--main-c));
+        }
+    }
+}

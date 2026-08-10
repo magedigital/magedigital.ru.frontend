@@ -1,13 +1,13 @@
-import I from '../types.ts';
+import I, { KeysT } from '../types.ts';
 
-const keysHandler: I['keysHandler'] = async function (e) {
-    if (!this.keysCallback || !this.keys) {
+const keysHandler: I['keysHandler'] = async function (this: I, e) {
+    if (typeof this.keysCallback !== 'function') {
         return;
     }
 
-    const code = e.code as (typeof this.keys)[number];
+    const code = e.code as KeysT;
 
-    if (!this.keys.includes(code)) {
+    if (code === 'Enter' && e.shiftKey === true) {
         return;
     }
 

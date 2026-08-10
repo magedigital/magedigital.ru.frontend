@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Default from '@components/default/Default.tsx';
-import Fade from '@components/fade/Fade.tsx';
-import Loader from '@components/loader/Loader.tsx';
+import Default from '@/src/components/default/Default.tsx';
+import Fade from '@/src/components/fade/Fade.tsx';
+import Loader from '@/src/components/loader/Loader.tsx';
 
 import LoaderBlockI from './types.ts';
 

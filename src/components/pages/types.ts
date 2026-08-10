@@ -1,5 +1,5 @@
-import DefaultI from '@components/default/types';
-import ListI from '@components/list/types';
+import DefaultI from '@/src/components/default/types';
+import ListI from '@/src/components/list/types';
 
 import { PageNamesT } from '../../services/router/static/pages';
 import { StoreT } from '../../store/store';

@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 
-import DefaultI from '@components/default/types';
+import DefaultI from '@/src/components/default/types';
 
 import { PageNamesT } from '../../services/router/static/pages';
 import { StoreT } from '../../store/store';

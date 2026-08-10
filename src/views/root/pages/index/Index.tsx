@@ -1,72 +1,61 @@
 import React from 'react';
 
-import Editor from '@components/editor/Editor.tsx';
+import Page from '@/src/components/page/Page.tsx';
 
-import init from './methods/init.ts';
-import setPopupState from './methods/setPopupState.ts';
-import startProjectsAnimate from './methods/startProjectsAnimate.ts';
+import Footer from '../../components/footer/Footer.tsx';
+import Advantages from './components/advantages/Advantages.tsx';
+import Best from './components/best/Best.tsx';
+import Brands from './components/brands/Brands.tsx';
+import Header from './components/header/Header.tsx';
+import Projects from './components/projects/Projects.tsx';
+import Services from './components/services/Services.tsx';
+import Stats from './components/stats/Stats.tsx';
 
 import IndexI from './types.ts';
 
-import renderBackVideo from './renders/renderBackVideo.tsx';
-import renderContent from './renders/renderContent.tsx';
-import renderFoot from './renders/renderFoot.tsx';
-import renderHead from './renders/renderHead.tsx';
-import renderPopups from './renders/renderPopups.tsx';
-import renderProjects from './renders/renderProjects.tsx';
-
-class Index extends Editor<IndexI['props'], IndexI['state']> implements IndexI {
+class Index extends Page<IndexI['props'], IndexI['state']> implements IndexI {
     parent: IndexI['parent'];
 
     constructor(props: IndexI['props']) {
         super(props);
-        this.state = {
-            projectCurrentIndex: 0,
-        };
+        this.state = {};
 
         this.parent = React.createRef();
     }
 
-    email = 'hello@magedigital.ru';
-    projects = [
-        'image1.jpg',
-        'image2.jpg',
-        'image3.jpg',
-        'image4.jpg',
-        'image5.jpg',
-        'image6.jpg',
-        'image7.jpg',
-    ];
-
-    init = init;
-
-    startProjectsAnimate = startProjectsAnimate;
-    setPopupState = setPopupState;
-
-    renderBackVideo = renderBackVideo;
-    renderHead = renderHead;
-    renderContent = renderContent;
-    renderFoot = renderFoot;
-    renderProjects = renderProjects;
-    renderPopups = renderPopups;
+    name = 'index';
 
     render() {
-        const { popup } = this.state;
-
-        return (
-            <div ref={this.parent} className={this.getClass('index', popup && '_showPopup')}>
-                {this.renderPopups()}
-                <div className="index__wrapper _FULL_W _COL _COL_H_CENTER">
-                    {this.renderBackVideo()}
-
-                    <div className="index__inner _INNER _COL">
-                        {this.renderHead()}
-                        {this.renderContent()}
+        return this.renderPage({
+            render: () => (
+                <>
+                    <div className="page__section _FULL_W">
+                        <Header />
                     </div>
-                    {this.renderFoot()}
-                </div>
-            </div>
-        );
+                    <div className="page__section _FULL_W">
+                        <Brands />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Stats />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Services />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Projects />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Advantages />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Best />
+                    </div>
+                    <div className="page__section _FULL_W">
+                        <Footer />
+                    </div>
+                </>
+            ),
+        });
     }
 }
 

@@ -8,7 +8,7 @@ interface StringsI {
         (this: StringsI, n: any, items: [string, string, string]): undefined;
     };
 
-    setSpaces(this: StringsI, s: string): string;
+    setSpaces(this: StringsI, s: string, t?: boolean): string;
 
     validate(this: StringsI, s: unknown, type: 'domen'): boolean;
     validateDomen(this: StringsI, s: string): boolean;

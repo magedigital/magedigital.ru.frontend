@@ -4,6 +4,26 @@ const pages = {
     index: {
         links: ['', undefined],
     },
+    cases: {
+        links: ['cases'],
+        content: 'Кейсы',
+    },
+    services: {
+        links: ['services'],
+        content: 'Услуги',
+    },
+    about: {
+        links: ['about'],
+        content: 'О нас',
+    },
+    blog: {
+        links: ['blog'],
+        content: 'Блог',
+    },
+    contacts: {
+        links: ['contacts'],
+        content: 'Контакты',
+    },
 };
 
 type PageT = {

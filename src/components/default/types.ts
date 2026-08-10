@@ -1,15 +1,14 @@
-import { KeyboardEvent, MouseEvent, WheelEvent } from 'react';
+import { MouseEvent } from 'react';
 
-import { StoreT } from '@store/store';
+import { ThrottleSettingsT } from '@/src/utils/throttle';
 
 type PropsT = Partial<{
     className: string;
     id: string;
     children: React.ReactNode;
-    getParent?: () => HTMLElement | undefined | null;
-    authUser?: StoreT['user'];
-    isCheckAuth?: StoreT['isCheckAuth'];
-    onClick?: (e: MouseEvent) => void;
+    getParent: () => HTMLElement | undefined | null;
+    onClick: (e: MouseEvent) => void;
+    disabled: boolean;
 }>;
 
 type StateT = {
@@ -17,7 +16,18 @@ type StateT = {
     isInit?: boolean;
 };
 
-type KeysT = 'Enter' | 'Escape' | 'ArrowRight' | 'ArrowLeft' | 'Backspace' | 'KeyC' | 'KeyV';
+type KeysT =
+    | 'Enter'
+    | 'Escape'
+    | 'ArrowRight'
+    | 'ArrowLeft'
+    | 'Backspace'
+    | 'KeyC'
+    | 'KeyV'
+    | 'MetaLeft'
+    | 'MetaRight'
+    | 'ControlLeft'
+    | 'ControlRight';
 
 type FnDataT<I extends DefaultI, T extends ObjT> = T & { otherState?: Partial<I['state']> };
 
@@ -35,13 +45,16 @@ interface DefaultI<P = ObjT, S = ObjT> extends React.Component<PropsT & P, State
     isSetStartCalcSize?: boolean;
     isSetEndCalcSize?: boolean;
     savedPrevPageUrl?: string;
-    isCheckAuth?: boolean;
     isDocFocus?: boolean;
     isOnline?: boolean;
-    keys?: readonly KeysT[];
     wheelScrollNodeClass?: string;
 
+    isStackProcess?: boolean;
+    stack: (() => Promise<void>)[];
+
     init?: () => Promise<void>;
+    defaultInit?: () => Promise<void>;
+    updatedStateCallback?: () => Promise<void>;
 
     asyncSetState(this: DefaultI, data: Partial<StateT & S>): Promise<void>;
     getClass(this: DefaultI, ...classes: any[]): string;
@@ -49,7 +62,6 @@ interface DefaultI<P = ObjT, S = ObjT> extends React.Component<PropsT & P, State
 
     checkChangeProps: (this: DefaultI) => Promise<void>;
     changePropsCb?: (prop: keyof (PropsT & P)) => Promise<void>;
-    checkAuthCb?: () => Promise<void>;
 
     checkCalcSize: (this: DefaultI) => void;
     getCalcSizeParams?: () => {
@@ -66,7 +78,7 @@ interface DefaultI<P = ObjT, S = ObjT> extends React.Component<PropsT & P, State
 
     visibillityChangeHandler?(this: DefaultI): Promise<void>;
 
-    keysHandler(this: DefaultI, e: KeyboardEvent): Promise<void>;
+    keysHandler(e: KeyboardEvent): Promise<void>;
     keysCallback?(
         this: DefaultI,
         data: {
@@ -78,8 +90,29 @@ interface DefaultI<P = ObjT, S = ObjT> extends React.Component<PropsT & P, State
         },
     ): Promise<void>;
 
-    wheelScrollHandler(this: DefaultI, e: WheelEvent): void;
+    wheelScrollHandler(e: WheelEvent): void;
+
+    addStack(this: DefaultI, d: () => Promise<void>): void;
+    doStack(this: DefaultI): Promise<void>;
+
+    throttles: Record<
+        string,
+        {
+            fn: (n: string, fn: (d: any[]) => Promise<void>, s?: ThrottleSettingsT) => void;
+            getTimerId: () => ReturnType<typeof setTimeout> | undefined;
+        }
+    >;
+    throttlesData: Record<string, any[]>;
+    addThrottle<N extends any>(
+        this: DefaultI,
+        n: string,
+        dur: number,
+        d: N[],
+        fn: (d: N[]) => Promise<void>,
+        s?: ThrottleSettingsT,
+    ): void;
+    throttleHandler(this: DefaultI, n: string, fn: (d: any[]) => Promise<void>): Promise<void>;
 }
 
 export default DefaultI;
-export type { FnDataT };
+export type { FnDataT, KeysT };

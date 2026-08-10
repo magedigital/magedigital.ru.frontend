@@ -1,0 +1,81 @@
+.indexProjects {
+    padding: 165rem 0 168rem;
+
+    &__title {
+        margin-bottom: 50rem;
+        padding-left: 8rem;
+        color: rgb(var(--dark-c));
+        font-weight: 200;
+        font-size: 96rem;
+    }
+
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% + 56rem);
+        margin-left: -28rem;
+    }
+
+    &__card {
+        width: 50%;
+        margin-bottom: 76rem;
+        padding: 0 16rem;
+        transition: $trans;
+        will-change: transform;
+
+        &:nth-child(2n + 1) {
+            transform-origin: left top;
+        }
+
+        &:nth-child(2n) {
+            transform-origin: right top;
+        }
+
+        &:not([data-animate]):nth-child(2n + 1) {
+            transform: translate(-150rem, -50rem) rotate(5deg);
+        }
+
+        &:not([data-animate]):nth-child(2n) {
+            transform: translate(150rem, -50rem) rotate(-5deg);
+        }
+
+        &:not([data-animate]) {
+            opacity: 0;
+        }
+    }
+
+    &__project {
+        &Head {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 430rem;
+            margin-bottom: 20rem;
+            overflow: hidden;
+            border-radius: 16rem;
+        }
+
+        &Thumb {
+            display: block;
+            object-fit: cover;
+        }
+
+        &Title {
+            margin-bottom: 8rem;
+            color: rgb(var(--dark-c));
+            font-weight: 500;
+            font-size: 28rem;
+            line-height: 1.3;
+        }
+
+        &Text {
+            color: rgb(var(--dark-c));
+            font-size: 16rem;
+            line-height: 1.4;
+        }
+    }
+
+    &__button {
+        margin: 0 auto;
+    }
+}

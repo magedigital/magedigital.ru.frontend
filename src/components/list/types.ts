@@ -1,4 +1,4 @@
-import DefaultI from '@components/default/types';
+import DefaultI from '@/src/components/default/types';
 
 import { StoreT } from '../../store/store';
 

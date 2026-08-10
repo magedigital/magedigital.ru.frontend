@@ -1,0 +1,175 @@
+.topBar {
+    position: relative;
+    z-index: 1;
+    padding: 27rem 0;
+
+    &__inner {
+        flex-direction: row;
+        padding: 0 6rem;
+    }
+
+    &__logo {
+        width: 94rem;
+    }
+
+    &[data-light] &__logo {
+        @include icon(#fff);
+    }
+
+    &__menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        padding: 8rem 12rem;
+        color: rgb(var(--main-c));
+        font-size: 16rem;
+        line-height: 1.4;
+        background: #fff;
+        border-radius: 12rem;
+        transform: translate(-50%, -50%);
+        transition: $trans;
+        will-change: transform;
+
+        &._hide {
+            transform: translate(-50%, -50%) scale(0.7);
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &__nav {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        transform: translate(-50%, -50%);
+        transition: $trans;
+
+        &._hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        &Back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            opacity: 0;
+            transition: 0.35s cubic-bezier(0.152, 0.888, 0.046, 1.2);
+            pointer-events: none;
+            will-change: transform;
+
+            &._active {
+                opacity: 1;
+            }
+
+            &::before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: -1;
+                width: calc(100% + 1rem);
+                height: calc(100% + 1rem);
+                background: rgb(var(--main-c));
+                border-radius: 12rem;
+                transform: translate(-50%, -50%);
+                content: "";
+            }
+        }
+
+        &._hide &LinkInner {
+            transform: translate(0, 0) scaleX(0.5) scaleY(0.9);
+        }
+
+        &Link {
+            position: relative;
+
+            &Inner {
+                position: relative;
+                z-index: 1;
+                padding: 8rem 12rem;
+                background: #fff;
+                border-radius: 12rem;
+                transition: 0.2s ease-in-out;
+                will-change: transform;
+
+                &:last-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    color: #fff;
+                    text-align: center;
+                    background: none;
+                    opacity: 0;
+                }
+            }
+
+            & span {
+                position: relative;
+                z-index: 1;
+                display: block;
+                color: rgb(var(--main-c));
+                font-size: 16rem;
+                line-height: 1.4;
+                white-space: nowrap;
+                transition: 0.2s ease-out;
+                pointer-events: none;
+                will-change: transform;
+            }
+
+            &Inner:last-child span {
+                color: #fff;
+                font-weight: 500;
+                transform: translate(0, 16rem);
+            }
+
+            &._active &Inner span {
+                transform: translate(0, -16rem);
+                opacity: 0;
+            }
+
+            &._active &Inner:last-child {
+                opacity: 1;
+            }
+
+            &._active &Inner:last-child span {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+        }
+    }
+
+    &__contacts {
+        width: 28rem;
+        height: 28rem;
+        margin-left: auto;
+
+        &Button {
+            position: relative;
+            width: 28rem;
+            height: 28rem;
+        }
+
+        &Icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 28rem;
+            height: 28rem;
+
+            @include icon(rgb(var(--dark-c)));
+        }
+    }
+
+    &[data-light] &__contactsIcon {
+        @include icon(#fff);
+    }
+}

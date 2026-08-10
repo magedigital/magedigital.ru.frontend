@@ -1,0 +1,26 @@
+.page {
+    position: relative;
+    width: 100%;
+    height: var(--wheight);
+    background: #e6f7ff;
+
+    &__topBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+
+        &._fix:not(._show) {
+            transform: translate(0, -100%);
+        }
+    }
+
+    &__scroll {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        overflow-y: auto;
+        will-change: scroll-position;
+        scroll-behavior: auto;
+    }
+}

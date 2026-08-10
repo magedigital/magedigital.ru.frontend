@@ -1,6 +1,6 @@
 import I from '../types.ts';
 
-const wheelScrollHandler: I['wheelScrollHandler'] = function (e) {
+const wheelScrollHandler: I['wheelScrollHandler'] = function (this: I, e) {
     if (!this.wheelScrollNodeClass || e.ctrlKey) {
         return;
     }

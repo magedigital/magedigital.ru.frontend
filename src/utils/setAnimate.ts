@@ -3,6 +3,8 @@ type TimingT = (data: number) => number;
 const makeEaseInOut: TimingT = (timeFraction) =>
     timeFraction > 0.5 ? 4 * Math.pow(timeFraction - 1, 3) + 1 : 4 * Math.pow(timeFraction, 3);
 
+export const makeEaseOut: TimingT = (t) => 1 - Math.pow(1 - t, 3);
+
 export default function setAnimate({
     progress: startProgress = 0,
     timing = makeEaseInOut,
@@ -24,9 +26,7 @@ export default function setAnimate({
 
     const start = performance.now();
 
-    let idAnimate;
-
-    requestAnimationFrame(function animate(time) {
+    let idAnimate = requestAnimationFrame(function animate(time) {
         let timeFraction = (time - start) / duration + startProgress;
 
         if (timeFraction > 1) {
@@ -53,4 +53,8 @@ export default function setAnimate({
             callback();
         }
     });
+
+    if (getId) {
+        getId(idAnimate);
+    }
 }

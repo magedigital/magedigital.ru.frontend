@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/shallow';
 
 import React from 'react';
 
-import UserT from '@global/models/User';
+import UserT from '@/src/global/models/User';
 
 import { PageNamesT } from '../services/router/static/pages';
 

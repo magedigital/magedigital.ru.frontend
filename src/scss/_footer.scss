@@ -1,0 +1,129 @@
+.footer {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &__glass {
+        position: absolute;
+        right: 28rem;
+        bottom: -33rem;
+        z-index: 2;
+        width: 800rem;
+        height: 800rem;
+        mix-blend-mode: color-burn;
+        pointer-events: none;
+        will-change: transform;
+
+        @include bg("/media/footer-glass.png", contain, center);
+    }
+
+    &__banner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 78rem 84rem;
+        overflow: hidden;
+        background: #5227ff;
+        border-radius: 36rem;
+
+        &Content {
+            max-width: 650rem;
+        }
+
+        &Title {
+            margin-bottom: 40rem;
+            color: #fff;
+            font-weight: 200;
+            font-size: 64rem;
+            line-height: 1.3;
+        }
+
+        &Text {
+            margin-bottom: 90rem;
+            color: #fff;
+            font-size: 20rem;
+            line-height: 1.4;
+        }
+
+        &Bubble {
+            position: absolute;
+            right: -70rem;
+            bottom: -195rem;
+            z-index: 2;
+            width: 720rem;
+            height: 560rem;
+            object-fit: contain;
+        }
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        margin-top: -36rem;
+        padding: 190rem 0 108rem;
+        background: linear-gradient(69deg, #e6f7ff, #e0d9fb);
+    }
+
+    &__blocks {
+        display: flex;
+        align-items: flex-start;
+
+        & + & {
+            margin-top: 100rem;
+        }
+    }
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 280rem;
+
+        & + & {
+            margin-left: 90rem;
+        }
+    }
+
+    &__nav {
+        &Link {
+            color: rgb(var(--dark-c));
+            font-weight: 400;
+            font-size: 32rem;
+            line-height: 1.3;
+
+            & + & {
+                margin-top: 16rem;
+            }
+        }
+    }
+
+    &__logo {
+        width: 151rem;
+        margin-bottom: 80rem;
+    }
+
+    &__link {
+        color: rgb(var(--dark-c));
+        font-size: 24rem;
+        line-height: 1.25;
+
+        & + & {
+            margin-top: 28rem;
+        }
+    }
+
+    &__doc {
+        display: inline-block;
+        color: rgb(var(--dark-c));
+        font-size: 16rem;
+        line-height: 1;
+        border-bottom: 1rem solid rgba(var(--dark-c), 0.72);
+    }
+
+    &__copyright {
+        margin-top: 95rem;
+        color: rgb(var(--dark-c));
+        font-size: 16rem;
+        line-height: 1.4;
+    }
+}

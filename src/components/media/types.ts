@@ -1,4 +1,4 @@
-import { StoreT } from '@store/store';
+import { StoreT } from '@/src/store/store';
 
 type PropsT = {
     device: StoreT['device'];

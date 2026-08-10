@@ -8,8 +8,8 @@
     "compilerOptions": {
         "sourceMap": true,
         "incremental": true,
-        "target": "es5",
-        "module": "esnext",
+        "target": "es6",
+        "module": "CommonJS",
         "strict": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
@@ -20,11 +20,13 @@
             "dom.iterable",
             "esnext"
         ],
+        "types": [
+            "node"
+        ],
         "allowJs": true,
         "skipLibCheck": true,
         "allowSyntheticDefaultImports": true,
         "noFallthroughCasesInSwitch": true,
-        "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
@@ -33,35 +35,8 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "paths": {
-            "@classes/*": [
-                "./src/classes/*"
-            ],
-            "@static/*": [
-                "./src/static/*"
-            ],
-            "@utils/*": [
-                "./src/utils/*"
-            ],
-            "@components/*": [
-                "./src/components/*"
-            ],
-            "@global/*": [
-                "./src/global/*"
-            ],
-            "@requests/*": [
-                "./src/requests/*"
-            ],
-            "@services/*": [
-                "./src/services/*"
-            ],
-            "@media/*": [
-                "./src/media/*"
-            ],
-            "@store/*": [
-                "./src/store/*"
-            ],
-            "@views/*": [
-                "./src/views/*"
+            "@/*": [
+                "./*"
             ]
         }
     }

@@ -1,4 +1,4 @@
-import scrollToTop from '@utils/scrollToTop.ts';
+import scrollToTop from '@/src/utils/scrollToTop.ts';
 
 import I from '../types.ts';
 

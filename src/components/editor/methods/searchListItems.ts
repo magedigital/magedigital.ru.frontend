@@ -1,4 +1,4 @@
-import removeTransition from '@utils/removeTransition.ts';
+import removeTransition from '@/src/utils/removeTransition.ts';
 
 import I from '../types.ts';
 

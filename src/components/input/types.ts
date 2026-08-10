@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import DefaultI from '@components/default/types';
+import DefaultI from '@/src/components/default/types';
 
 import regs, { RegsT } from './static/regs';
 

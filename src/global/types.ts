@@ -5,6 +5,7 @@ declare global {
         widthValue: number;
         heightValue: number;
         mediaM: number;
+        sizeK: number;
         widthPrevValue: number;
         heightPrevValue: number;
         visibilityEvents: Record<string, () => void>;

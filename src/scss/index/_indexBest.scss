@@ -1,0 +1,34 @@
+.indexBest {
+    padding: 196rem 0 208rem;
+
+    &__banner {
+        position: relative;
+        z-index: 1;
+        width: 1248rem;
+        height: 702rem;
+        margin-bottom: 60rem;
+        overflow: hidden;
+        border-radius: 32rem;
+
+        &Back {
+            z-index: -1;
+        }
+
+        &Title {
+            margin-bottom: 32rem;
+            color: #fff;
+            font-weight: 300;
+            font-size: 64rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        &Text {
+            max-width: 735rem;
+            color: #36c0f7;
+            font-size: 20rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+    }
+}

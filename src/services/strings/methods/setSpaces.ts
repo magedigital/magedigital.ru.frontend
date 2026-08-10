@@ -29,14 +29,18 @@ const chars = [
     'до',
 ];
 
-const setSpaces: I['setSpaces'] = function (s) {
+const setSpaces: I['setSpaces'] = function (s, t) {
     const arrText = s.split(' ');
 
     let result = '';
 
     for (let i = 0; i < arrText.length; i++) {
         if (chars.indexOf(arrText[i].toLowerCase().replace(/[^а-я]/gi, '')) !== -1) {
-            result += `${arrText[i]}&nbsp;`;
+            if (t) {
+                result += `${arrText[i]}\xa0`;
+            } else {
+                result += `${arrText[i]}&nbsp;`;
+            }
         } else {
             result += `${arrText[i]} `;
         }

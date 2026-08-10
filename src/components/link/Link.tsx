@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Default from '@components/default/Default.tsx';
-import { StoreT, WithStore } from '@store/store.tsx';
+import Default from '@/src/components/default/Default.tsx';
+import { StoreT, WithStore } from '@/src/store/store.tsx';
 
 import checkChange from './methods/checkChange.ts';
 import checkCurrent from './methods/checkCurrent.ts';

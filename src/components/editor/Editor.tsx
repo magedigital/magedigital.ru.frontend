@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Default from '@components/default/Default.tsx';
+import Default from '@/src/components/default/Default.tsx';
 
 import addArrayItems from './methods/addArrayItems.ts';
 import addListItems from './methods/addListItems.ts';

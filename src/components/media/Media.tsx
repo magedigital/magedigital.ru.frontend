@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoreT, WithStore } from '@store/store.tsx';
+import { StoreT, WithStore } from '@/src/store/store.tsx';
 
 import MediaI from './types.ts';
 

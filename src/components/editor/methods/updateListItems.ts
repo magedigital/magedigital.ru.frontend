@@ -1,4 +1,4 @@
-import { ItemT } from '@components/list/types.ts';
+import { ItemT } from '@/src/components/list/types.ts';
 
 import I from '../types.ts';
 

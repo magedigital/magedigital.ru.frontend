@@ -1,0 +1,80 @@
+.indexAdvantages {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &__top {
+        height: 800rem;
+
+        &Back {
+            padding-bottom: 50rem;
+            background: #000;
+            border-radius: 48rem 48rem 0 0;
+        }
+
+        &Title {
+            color: #fff;
+            font-weight: 300;
+            font-size: 64rem;
+            line-height: 1.3;
+            text-align: center;
+            will-change: transform;
+        }
+
+        &Button {
+            margin-top: 32rem;
+        }
+    }
+
+    &__content {
+        position: relative;
+        height: 490rem * 3 + 376rem;
+
+        &Card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: center top;
+            will-change: transform;
+        }
+    }
+
+    &__contentCard:last-child &__card {
+        height: 376rem;
+    }
+
+    &__card {
+        position: relative;
+        height: 490rem;
+        padding: 86rem 116rem 86rem 218rem;
+        border-radius: 32rem;
+
+        &Count {
+            position: absolute;
+            top: 52rem;
+            left: 56rem;
+            width: 100rem;
+            color: rgb(var(--dark-c));
+            font-weight: 100;
+            font-size: 200rem;
+            text-align: center;
+            transform-origin: right bottom;
+            will-change: transform;
+        }
+
+        &Title {
+            margin-bottom: 28rem;
+            color: rgb(var(--dark-c));
+            font-weight: 300;
+            font-size: 64rem;
+
+           
+        }
+
+        &Text {
+            color: rgb(var(--dark-c));
+            font-size: 20rem;
+            line-height: 1.4;
+        }
+    }
+}

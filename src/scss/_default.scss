@@ -16,6 +16,11 @@
     align-items: flex-start;
     justify-content: flex-start;
 
+    &._ROW_CENTER {
+        align-items: center;
+        justify-content: center;
+    }
+
     &._ROW_V_CENTER {
         align-items: center;
     }
@@ -45,7 +50,17 @@
     }
 }
 
+._SECTION {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 ._INNER {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: var(--content-width);
 
     @include mob {
@@ -190,5 +205,25 @@
 ._MOBILE {
     @include mediaMin($mediaM + 1px) {
         display: none;
+    }
+}
+
+._TEXT_ANIM {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    line-height: inherit;
+
+    & span {
+        display: inline-block;
+        line-height: inherit;
+        transition: 0.3s ease-out;
+        will-change: transform;
+    }
+
+    &:not([data-animate]) span {
+        transform: translate(0, 100%) rotateX(50deg);
+
+        // opacity: 0;
     }
 }

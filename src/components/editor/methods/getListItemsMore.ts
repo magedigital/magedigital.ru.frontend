@@ -1,4 +1,4 @@
-import setAsyncTimer from '@utils/setAsyncTimer.ts';
+import setAsyncTimer from '@/src/utils/setAsyncTimer.ts';
 
 import I from '../types.ts';
 

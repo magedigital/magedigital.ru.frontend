@@ -1,4 +1,4 @@
-import DefaultI from '@components/default/types.ts';
+import DefaultI from '@/src/components/default/types.ts';
 
 import icons from './static/icons.ts';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Pages from '@components/pages/Pages.tsx';
+import Pages from '@/src/components/pages/Pages.tsx';
 
 import init from './methods/init.ts';
 import resizeHandler from './methods/resizeHandler.ts';

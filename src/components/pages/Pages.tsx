@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Default from '@components/default/Default.tsx';
-import List from '@components/list/List.tsx';
+import Default from '@/src/components/default/Default.tsx';
+import List from '@/src/components/list/List.tsx';
 
 import getPages from './methods/getPages.ts';
 import init from './methods/init.ts';

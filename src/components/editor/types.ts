@@ -1,4 +1,4 @@
-import DefaultI from '@components/default/types';
+import DefaultI from '@/src/components/default/types';
 
 type PropsT = {
     setCount?: (c: number) => Promise<void>;
