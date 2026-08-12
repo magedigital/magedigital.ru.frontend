@@ -5,6 +5,8 @@ const focusHandler: I['focusHandler'] = async function (isFocus) {
 
     await this.asyncSetState({ isFocus });
 
+    // appStore.getState().setInputFocus(isFocus);
+
     if (regName) {
         const reg = this.getReg();
         const { template, emptyChar } = reg;

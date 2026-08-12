@@ -1,6 +1,10 @@
 import DefaultI from '@/src/components/default/types';
 
-type PropsT = {};
+import { IconT } from '../icon/types';
+
+type PropsT = {
+    icon?: IconT;
+};
 
 type StateT = {};
 

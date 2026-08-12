@@ -25,6 +25,16 @@
         line-height: 1.2;
     }
 
+    &__button {
+        transition: $trans;
+
+        &:not(._animate) {
+            transform: translate(0, 16rem);
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
     &__box {
         position: relative;
         width: 100%;
@@ -49,11 +59,21 @@
             z-index: 2;
             width: calc(100% - 40rem);
             height: 660rem;
-            overflow: hidden;
-            background: #ccc;
-            border-radius: 80rem;
             transform-origin: right top;
             will-change: transform;
+
+            &Inner {
+                position: relative;
+                z-index: 2;
+                overflow: hidden;
+                border-radius: 80rem;
+                transition: $trans;
+            }
+        }
+
+        &:not(._animate) &FrameInner {
+            transform: translate(0, 64rem);
+            opacity: 0;
         }
     }
 

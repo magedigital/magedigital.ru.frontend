@@ -22,8 +22,6 @@ const init: I['init'] = async function (this: I) {
             bannerNode.offsetHeight;
 
         bubbleNode.style.transform = `translate(0,${-200 * percent}px)`;
-
-        console.log(percent);
     };
 
     pageNode.addEventListener('scroll', onScroll);
@@ -32,12 +30,10 @@ const init: I['init'] = async function (this: I) {
         pageNode.removeEventListener('scroll', onScroll);
     };
 
-    const contentBound = contentNode.getBoundingClientRect();
-    const glassBound = glassNode.getBoundingClientRect();
-    const glassTop = glassBound.y - contentBound.y;
-    const glassRight = contentBound.x + contentBound.width - (glassBound.x + glassBound.width);
-    const glassBottom = contentBound.y + contentBound.height - (glassBound.y + glassBound.height);
-    const glassLeft = glassBound.x - contentBound.x;
+    const glassTop = -100;
+    const glassRight = 100;
+    const glassBottom = 100;
+    const glassLeft = -300;
 
     let gravitation = 1.03;
     let bound = 0;
@@ -73,9 +69,9 @@ const init: I['init'] = async function (this: I) {
 
             if (scale >= 1) {
                 scale = 1;
-                gravitation = 1.05 + Math.random() * 0.25;
-                bound = 2 + Math.random() * 1;
-                boundGravitation = 0.98 + ((3 - bound) * 0.01) / 1;
+                gravitation = 1.02 + Math.random() * 0.25;
+                bound = 1.5 + Math.random() * 1.5;
+                boundGravitation = 0.984 + ((3 - bound) * 0.01) / 1.5;
 
                 rotateDir = Math.random() > 0.5 ? 1 : -1;
                 rotateK = 0.2 * bound;
@@ -83,20 +79,20 @@ const init: I['init'] = async function (this: I) {
                 translateXDir = Math.random() > 0.5 ? 1 : -1;
                 translateYDir = Math.random() > 0.5 ? 1 : -1;
 
-                if (-translateY > glassTop) {
+                if (translateY < glassTop) {
                     translateYDir = 1;
                 }
                 if (translateY > glassBottom) {
                     translateYDir = -1;
                 }
-                if (-translateX > glassLeft) {
+                if (translateX < glassLeft) {
                     translateXDir = 1;
                 }
                 if (translateX > glassRight) {
                     translateXDir = -1;
                 }
 
-                translateXK = 0.1 * bound;
+                translateXK = 0.2 * bound;
                 translateYK = 0.2 * bound;
             }
         };

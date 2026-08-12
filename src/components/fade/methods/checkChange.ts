@@ -1,7 +1,7 @@
 import I from '../types.ts';
 
 const checkChange: I['checkChange'] = async function (start) {
-    const { isShow, initCb } = this.props;
+    const { isShow, initCb, duration = 300 } = this.props;
 
     if (isShow !== this.isShow) {
         this.isShow = isShow;
@@ -46,7 +46,7 @@ const checkChange: I['checkChange'] = async function (start) {
 
         this.timerId = setTimeout(async () => {
             await this.asyncSetState.call(this, { isShow: false });
-        }, 300);
+        }, duration);
     }
 };
 

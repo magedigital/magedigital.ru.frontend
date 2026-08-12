@@ -1,4 +1,4 @@
-import { ddChar } from '../../../services/dates/types';
+import { ddChar } from '@/src/services/dates/types';
 
 const regs = {
     any: {
@@ -6,19 +6,13 @@ const regs = {
         emptyChar: '_',
         regExp: /\D/gi,
     },
-    phone: {
-        template: '+7 (___) ___-__-__',
-        emptyChar: '_',
-        regExp: /\D/gi,
-        notAddChars: {
-            start: 0,
-            end: 6,
-            chars: ['7', '8'],
-            wasLen: 11,
-        },
-    },
     date: {
         template: `__${ddChar}__${ddChar}____`,
+        emptyChar: '_',
+        regExp: /\D/gi,
+    },
+    monthDate: {
+        template: `__${ddChar}____`,
         emptyChar: '_',
         regExp: /\D/gi,
     },
@@ -41,7 +35,7 @@ type RegsT = {
     notAddChars?: {
         start: number;
         end: number;
-        wasLen: number;
+        startChar: string;
         chars: readonly string[];
     };
 };

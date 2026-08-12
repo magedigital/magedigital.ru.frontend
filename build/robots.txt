@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /$
+Allow: /blog*
+Allow: /tariffs
+Allow: /order
+Allow: /contacts
+Allow: /
+Sitemap: https://livecargo.ru/sitemap.xml

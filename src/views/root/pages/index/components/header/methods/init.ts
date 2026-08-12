@@ -30,7 +30,7 @@ const init: I['init'] = async function (this: I) {
         colorNode.style.height = `${height}px`;
 
         const frameScale = 0.285 + percent * (1 - 0.285);
-        const frameLeft = (-18 + percent * 18) * window.sizeK;
+        const frameLeft = (-22 + percent * 22) * window.sizeK;
         const frameTop = (-356 + percent * 356) * window.sizeK;
         const frameHeight = (660 + 250 - 250 * percent) * window.sizeK;
         const frameRadius = (24 + 60 - 60 * percent) * window.sizeK;
@@ -48,10 +48,16 @@ const init: I['init'] = async function (this: I) {
 
     onScroll();
 
-    this.timers.title = setTimeout(async () => {
+    this.timers.animate = setTimeout(async () => {
         await this.asyncSetState({ titleIsAnimated: true });
-        this.timers.text = setTimeout(async () => {
+        this.timers.animate = setTimeout(async () => {
             await this.asyncSetState({ textIsAnimated: true });
+            this.timers.animate = setTimeout(async () => {
+                await this.asyncSetState({ buttonIsAnimated: true });
+                this.timers.animate = setTimeout(async () => {
+                    await this.asyncSetState({ frameIsAnimated: true });
+                }, 100);
+            }, 100);
         }, 100);
     }, 300);
 };

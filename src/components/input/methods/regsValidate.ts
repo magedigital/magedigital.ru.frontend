@@ -7,6 +7,10 @@ const regsValidate: I['regsValidate'] = function ({ value }) {
         return this.regsDateValidate({ value });
     }
 
+    if (regName === 'monthDate') {
+        return this.regsMonthDateValidate({ value });
+    }
+
     if (regName === 'time') {
         return this.regsTimeValidate({ value });
     }

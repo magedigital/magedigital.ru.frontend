@@ -5,6 +5,7 @@ type PropsT = {
     initCb?: () => void;
     onClick?: () => void;
     style?: ObjT;
+    duration?: number;
 };
 
 type StateT = {

@@ -1,7 +1,7 @@
 .button {
     position: relative;
     padding-right: 60rem;
-    transition: $trans;
+    transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
 
     &._minSize {
         padding-right: 40rem;
@@ -12,7 +12,7 @@
         padding: 0 24rem;
         font-size: 20rem;
         border-radius: 20rem;
-        transition: $trans;
+        transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
     }
 
     &._minSize &__inner {
@@ -22,7 +22,7 @@
         border-radius: 14rem;
     }
 
-    &__arrow {
+    &__icon {
         position: absolute;
         top: 0;
         left: 100%;
@@ -31,17 +31,25 @@
         height: 60rem;
         border-radius: 20rem;
         transform: translate(-100%, 0);
-        transition: $trans;
+        transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+
+        &._smile i {
+            width: 26rem;
+        }
 
         & i {
             display: block;
             width: 17rem;
             aspect-ratio: 1;
             margin: auto;
+
+            & .icon__fill {
+                transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+            }
         }
     }
 
-    &._minSize &__arrow {
+    &._minSize &__icon {
         height: 40rem;
         border-radius: 14rem;
 
@@ -51,20 +59,20 @@
     }
 
     &._white &__inner,
-    &._white &__arrow {
+    &._white &__icon {
         color: rgb(var(--main-c));
         background: #fff;
     }
 
     &._white._whiteDark &__inner,
-    &._white._whiteDark &__arrow {
+    &._white._whiteDark &__icon {
         color: rgb(var(--dark-c));
 
         @include icon(rgb(var(--dark-c)));
     }
 
     &._dark &__inner,
-    &._dark &__arrow {
+    &._dark &__icon {
         color: #fff;
         background: rgb(var(--dark-c));
 
@@ -72,7 +80,7 @@
     }
 
     &._purple &__inner,
-    &._purple &__arrow {
+    &._purple &__icon {
         color: #fff;
         background: #bc22f1;
 
@@ -88,13 +96,13 @@
             padding: 0 0 0 40rem;
         }
 
-        &:hover &__arrow {
+        &:hover &__icon {
             left: 0;
             transform: translate(0, 0);
         }
 
         &:hover &__inner,
-        &:hover &__arrow {
+        &:hover &__icon {
             color: #fff;
             background: rgb(var(--main-c));
 
@@ -102,14 +110,14 @@
         }
 
         &._white._whiteDark:hover &__inner,
-        &._white._whiteDark:hover &__arrow {
+        &._white._whiteDark:hover &__icon {
             color: #fff;
 
             @include icon(#fff);
         }
 
         &._purple:hover &__inner,
-        &._purple:hover &__arrow {
+        &._purple:hover &__icon {
             background: rgb(var(--main-c));
         }
     }

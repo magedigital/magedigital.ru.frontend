@@ -10,6 +10,7 @@
 
     &__logo {
         width: 94rem;
+        pointer-events: visible;
     }
 
     &[data-light] &__logo {
@@ -29,6 +30,7 @@
         border-radius: 12rem;
         transform: translate(-50%, -50%);
         transition: $trans;
+        pointer-events: visible;
         will-change: transform;
 
         &._hide {
@@ -45,6 +47,7 @@
         z-index: 2;
         transform: translate(-50%, -50%);
         transition: $trans;
+        pointer-events: visible;
 
         &._hide {
             opacity: 0;
@@ -148,25 +151,74 @@
     }
 
     &__contacts {
-        width: 28rem;
-        height: 28rem;
+        position: relative;
+        width: 124rem;
+        height: 36rem;
         margin-left: auto;
+        pointer-events: visible;
+
+        &:not(._active) {
+            pointer-events: none;
+        }
 
         &Button {
             position: relative;
-            width: 28rem;
-            height: 28rem;
+            z-index: 2;
+            color: #fff;
+            font-size: 16rem;
+            line-height: 1.3;
+            background: #d049ff;
+            border-radius: 12rem;
+            transform-origin: right center;
+            transition: 0.35s cubic-bezier(0.152, 0.888, 0.046, 1.2);
+            will-change: transform;
+
+            &:not(._active) {
+                transform: scaleX(0.2);
+                opacity: 0;
+                pointer-events: visible;
+            }
         }
 
         &Icon {
             position: absolute;
-            top: 0;
+            top: 50%;
             right: 0;
+            z-index: 1;
             width: 28rem;
             height: 28rem;
+            transform: translate(0, -50%);
+            transition: 0.2s ease-in-out;
+            will-change: transform;
+
+            &._start {
+                right: 130rem;
+                z-index: 3;
+
+                @include icon(#d049ff);
+
+                &:not(._active) {
+                    transform: translate(32rem, -50%) scale(0);
+                    opacity: 0;
+                }
+            }
+
+            &._end {
+                pointer-events: visible;
+
+                &._hide {
+                    transform: translate(-32rem, -50%) scale(0);
+                    opacity: 0;
+                }
+            }
 
             @include icon(rgb(var(--dark-c)));
         }
+    }
+
+    &[data-light] &__contactsButton {
+        color: rgb(var(--dark-c));
+        background: #fff;
     }
 
     &[data-light] &__contactsIcon {

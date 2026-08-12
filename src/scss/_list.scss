@@ -30,16 +30,18 @@
         position: absolute;
         top: 0;
         left: 0;
-        transition: $trans;
 
-        &Box {
-            width: 100%;
-            height: 100%;
+        & > div {
             transition: $trans;
         }
 
-        &:not([data-show]) &Box {
-            opacity: 0;
+        &[data-show],
+        &[data-hide] {
+            transition: $trans;
+        }
+
+        &:not([data-show]) > div {
+            opacity: 0 !important;
         }
     }
 
@@ -57,10 +59,10 @@
         &:not([data-show]) {
             height: 0;
         }
+    }
 
-        &Box {
-            height: auto;
-        }
+    &._relative &__item > div {
+        height: auto;
     }
 
     ._parentForce &__item,

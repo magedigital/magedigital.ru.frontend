@@ -2,9 +2,9 @@ import DefaultI from '@/src/components/default/types';
 
 import { StoreT } from '../../store/store';
 
-type RenderPropsT<ItemT = any> = {
-    item: ItemT;
-    items: ItemT[];
+type RenderPropsT<T = any> = {
+    item: T;
+    items: T[];
     prevItem?: any;
     nextItem?: any;
     isHide?: boolean;

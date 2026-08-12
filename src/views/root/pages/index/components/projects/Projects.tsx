@@ -29,7 +29,7 @@ class Projects extends Default<ProjectsI['props'], ProjectsI['state']> implement
                     <div className="indexProjects__cards">
                         {projects.map((p, i) => (
                             <div className="indexProjects__card" key={i}>
-                                <div className="indexProjects__project _FULL_W">
+                                <div className="indexProjects__project _FULL_W _CLICK">
                                     <div className="indexProjects__projectHead _FULL_W">
                                         <img
                                             src={require(`@/src/media/index/${p.thumb}`)}

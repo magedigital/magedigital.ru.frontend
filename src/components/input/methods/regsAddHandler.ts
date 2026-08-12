@@ -13,23 +13,31 @@ const regsAddHandler: I['regsAddHandler'] = function ({ value, diff }) {
     }
 
     let charDiff = 0;
-    let isDeleteChar = false;
+
+    if (notAddChars) {
+        const thisV = value
+            .slice(startPos, endPos)
+            .replace(regExp, '')
+            .slice(notAddChars.start, notAddChars.end);
+
+        if (thisV.length > 1) {
+            const startChar = thisV.slice(0, notAddChars.startChar.length);
+
+            notAddChars.chars.forEach((char) => {
+                if (
+                    startChar === char &&
+                    startPos >= notAddChars.start &&
+                    startPos < notAddChars.end
+                ) {
+                    charDiff -= char.length + startPos;
+                }
+            });
+        }
+    }
 
     for (let i = startPos; i < endPos; i++) {
         while (template[i + charDiff] && template[i + charDiff] !== emptyChar) {
             charDiff += 1;
-        }
-
-        if (
-            !isDeleteChar &&
-            notAddChars &&
-            i >= notAddChars.start &&
-            i < notAddChars.end &&
-            notAddChars.chars.includes(value[i]) &&
-            value.slice(startPos, endPos).replace(regExp, '').length === notAddChars.wasLen
-        ) {
-            charDiff -= 1;
-            isDeleteChar = true;
         }
 
         if (!value[i].replace(regExp, '')) {

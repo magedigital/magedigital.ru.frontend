@@ -9,6 +9,8 @@
     }
 
     &__pages {
+        position: relative;
+        z-index: 1;
         width: 100%;
         height: 100%;
     }
@@ -20,6 +22,88 @@
         &Inner {
             width: 100%;
             height: 100%;
+        }
+    }
+
+    &__cookies {
+        position: absolute;
+        bottom: 48rem;
+        left: 50%;
+        z-index: 10;
+        align-items: center;
+        padding: 16rem;
+        background: #5227ff;
+        border-radius: 24rem;
+        transform: translate(-50%, 0);
+        will-change: transform;
+
+        &:not([data-show]) {
+            transform: translate(-50%, 0) scale(1.1);
+            opacity: 0;
+        }
+
+        &Title {
+            padding-left: 12rem;
+            color: #fff;
+            font-size: 24rem;
+            white-space: nowrap;
+
+            & a {
+                position: relative;
+                display: inline-block;
+                color: #fff;
+                line-height: 1;
+
+                &::after {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 1rem;
+                    background: #fff;
+                    transition: $trans;
+                    content: "";
+                }
+
+                @include hover {
+                    &:hover::after {
+                        width: 0;
+                    }
+                }
+            }
+        }
+
+        &Button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48rem;
+            height: 48rem;
+            margin-left: 36rem;
+            color: rgb(var(--dark-c));
+            font-size: 20rem;
+            line-height: 1.2;
+            background: #fff;
+            border-radius: 16rem;
+            transition: $trans;
+
+            @include hover {
+                &:hover {
+                    background: #36c0f7;
+                }
+            }
+        }
+    }
+
+    &__contactForm {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 9;
+        opacity: 1 !important;
+
+        &:not([data-show]) {
+            pointer-events: none;
         }
     }
 }

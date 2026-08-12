@@ -1,7 +1,7 @@
-import { ddChar } from '../../../services/dates/types.ts';
-import I from '../types.ts';
+import Dates from '@/src/services/dates/Dates.service.ts';
+import { ddChar } from '@/src/services/dates/types.ts';
 
-import Dates from '../../../services/dates/Dates.service.ts';
+import I from '../types.ts';
 
 const regsDateValidate: I['regsDateValidate'] = function ({ value }) {
     const { datePast, dateFuture } = this.props;

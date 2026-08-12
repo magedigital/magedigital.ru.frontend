@@ -9,6 +9,8 @@ import RootI from './types.ts';
 
 import { AppRouter } from '../../index.tsx';
 import { StoreT, WithStore } from '../../store/store.tsx';
+import renderContactForm from './renders/renderContactForm.tsx';
+import renderCookies from './renders/renderCookies.tsx';
 import pages from './static/pages.tsx';
 
 const Styles = typeof window !== 'undefined' && require('./components/Styles.tsx').default;
@@ -29,6 +31,9 @@ class Root extends React.Component<RootI['props'], RootI['state']> implements Ro
 
     init = init;
 
+    renderCookies = renderCookies;
+    renderContactForm = renderContactForm;
+
     componentDidMount(): void {
         this.init();
     }
@@ -39,6 +44,8 @@ class Root extends React.Component<RootI['props'], RootI['state']> implements Ro
         return (
             <>
                 {Styles && <Styles />}
+                {this.renderCookies()}
+                {this.renderContactForm()}
                 <div className="body__content">
                     {isRootInit && (
                         <Pages
@@ -53,8 +60,10 @@ class Root extends React.Component<RootI['props'], RootI['state']> implements Ro
     }
 }
 
-const mapStore = (store: StoreT) => ({
-    isRootInit: store.isRootInit,
+const mapStore = (s: StoreT) => ({
+    isRootInit: s.isRootInit,
+    isAcceptCookies: s.isAcceptCookies,
+    isContactFormShow: s.isContactFormShow,
 });
 
 export default WithStore(Root, mapStore);

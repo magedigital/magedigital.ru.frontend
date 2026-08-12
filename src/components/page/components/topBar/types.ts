@@ -11,6 +11,8 @@ type StateT = {
 
 interface TopBarI extends DefaultI<PropsT, StateT> {
     setActive(this: TopBarI, name: string | undefined): Promise<void>;
+
+    onContactsHover(this: TopBarI, a: 'enter' | 'leave'): Promise<void>;
 }
 
 export default TopBarI;

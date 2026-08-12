@@ -5,6 +5,8 @@ import React from 'react';
 
 import UserT from '@/src/global/models/User';
 
+import { enums } from '../global/enums';
+
 import { PageNamesT } from '../services/router/static/pages';
 
 type StorePagesT = {
@@ -23,6 +25,8 @@ type StoreT = {
     isWindowLoad: boolean;
     isCheckAuth?: boolean;
     prevPageUrl?: string;
+    isAcceptCookies: boolean;
+    isContactFormShow?: boolean;
 };
 
 type ReducersT = {
@@ -32,6 +36,9 @@ type ReducersT = {
     setPagesIds: (pagesIds: StoreT['pagesIds']) => void;
     rootInit: () => void;
     windowLoad: () => void;
+    showCookies: () => void;
+    acceptCookies: () => void;
+    showContactForm: (s: boolean) => void;
 };
 
 const appStore = create<StoreT & ReducersT>((set) => ({
@@ -47,6 +54,20 @@ const appStore = create<StoreT & ReducersT>((set) => ({
     rootInit: () => set({ isRootInit: true }),
     isWindowLoad: false,
     windowLoad: () => set({ isWindowLoad: true }),
+    isAcceptCookies: true,
+    showCookies: () => {
+        const isAcceptCookies = localStorage.getItem(enums.ACCEPT_COOKIES);
+        if (isAcceptCookies) {
+            return;
+        }
+        set({ isAcceptCookies: false });
+    },
+    acceptCookies: () => {
+        localStorage.setItem(enums.ACCEPT_COOKIES, 't');
+        set({ isAcceptCookies: true });
+    },
+    isContactFormShow: false,
+    showContactForm: (s) => set({ isContactFormShow: s }),
 }));
 
 const WithStore = function <

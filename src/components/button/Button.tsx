@@ -17,16 +17,17 @@ class Button extends Default<ButtonI['props'], ButtonI['state']> implements Butt
     }
 
     render() {
-        const { className, children } = this.props;
+        const { className, children, icon, onClick } = this.props;
 
         return (
             <div
                 ref={this.parent}
                 className={this.getClass('button _CLICK _ROW _ROW_CENTER', className)}
+                onClick={onClick}
             >
                 <div className="button__inner _ROW _ROW_CENTER">{children}</div>
-                <div className="button__arrow _COL">
-                    <Icon name="next-arrow" />
+                <div className={this.getClass('button__icon _COL', this.setClass(icon))}>
+                    <Icon name={icon ?? 'next-arrow'} />
                 </div>
             </div>
         );

@@ -3,9 +3,11 @@ import React from 'react';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
 import { AppRouter } from '@/src/index.tsx';
+import { appStore } from '@/src/store/store.tsx';
 import { navPages } from '@/src/views/root/components/footer/static/pages.ts';
 
 import init from './methods/init.ts';
+import onContactsHover from './methods/onContactsHover.ts';
 import setActive from './methods/setActive.ts';
 
 import TopBarI from './types.ts';
@@ -23,6 +25,8 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
     init = init;
 
     setActive = setActive;
+
+    onContactsHover = onContactsHover;
 
     render() {
         const { activeLink, isMenuActive } = this.state;
@@ -83,10 +87,23 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
                             </li>
                         ))}
                     </nav>
-                    <div className="topBar__contacts">
-                        <div className="topBar__contactsButton _CLICK">
-                            <Icon name="smile" className="topBar__contactsIcon" />
+                    <div
+                        className="topBar__contacts _CLICK"
+                        onMouseEnter={() => {
+                            this.addStack(this.onContactsHover.bind(this, 'enter'));
+                        }}
+                        onMouseLeave={() => {
+                            this.addStack(this.onContactsHover.bind(this, 'leave'));
+                        }}
+                        onClick={() => {
+                            appStore.getState().showContactForm(true);
+                        }}
+                    >
+                        <Icon name="smile" className="topBar__contactsIcon _start" />
+                        <div className="topBar__contactsButton _FULL _ROW _ROW_CENTER">
+                            Пообщаемся
                         </div>
+                        <Icon name="smile" className="topBar__contactsIcon _end" />
                     </div>
                 </div>
             </div>

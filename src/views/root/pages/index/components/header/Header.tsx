@@ -7,6 +7,7 @@ import Default from '@/src/components/default/Default.tsx';
 import init from './methods/init.ts';
 
 import HeaderI from './types.ts';
+import { appStore } from '@/src/store/store.tsx';
 
 class Header extends Default<HeaderI['props'], HeaderI['state']> implements HeaderI {
     parent: HeaderI['parent'];
@@ -21,7 +22,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
     init = init;
 
     render() {
-        const { titleIsAnimated, textIsAnimated } = this.state;
+        const { titleIsAnimated, textIsAnimated, buttonIsAnimated, frameIsAnimated } = this.state;
 
         return (
             <div ref={this.parent} className="indexHeader _SECTION">
@@ -49,18 +50,32 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     >
                         Превращаем идеи в масштабные диджитал-активации
                     </AnimateText>
-                    <div className="indexHeader__button">
-                        <Button className="_white">Обсудить проект</Button>
+                    <div
+                        className={this.getClass(
+                            'indexHeader__button',
+                            buttonIsAnimated && '_animate',
+                        )}
+                    >
+                        <Button
+                            className="_white"
+                            onClick={() => {
+                                appStore.getState().showContactForm(true);
+                            }}
+                        >
+                            Обсудить проект
+                        </Button>
                     </div>
                 </div>
-                <div className="indexHeader__box">
+                <div className={this.getClass('indexHeader__box', frameIsAnimated && '_animate')}>
                     <div className="indexHeader__boxColor"></div>
                     <div className="indexHeader__boxFrame">
-                        <img
-                            src={require('@/src/media/index/header.jpg')}
-                            className="_FULL"
-                            style={{ objectFit: 'cover' }}
-                        />
+                        <div className="indexHeader__boxFrameInner _FULL">
+                            <img
+                                src={require('@/src/media/index/header.jpg')}
+                                className="_FULL"
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="indexHeader__about _COL _COL_CENTER">

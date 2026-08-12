@@ -4,7 +4,7 @@ import icons from './static/icons.ts';
 
 type PropsT = {
     name: (typeof icons)[number];
-    onClick?: () => void;
+    onClick?: (e: MouseEvent) => void;
 };
 
 type StateT = {

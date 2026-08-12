@@ -5,6 +5,8 @@ type PropsT = {};
 type StateT = {
     titleIsAnimated?: boolean;
     textIsAnimated?: boolean;
+    buttonIsAnimated?: boolean;
+    frameIsAnimated?: boolean;
 };
 
 interface HeaderI extends DefaultI<PropsT, StateT> {}

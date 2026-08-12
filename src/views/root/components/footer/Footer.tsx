@@ -11,6 +11,7 @@ import init from './methods/init.ts';
 import FooterI from './types.ts';
 
 import { navPages } from './static/pages.ts';
+import { appStore } from '@/src/store/store.tsx';
 
 class Footer extends Default<FooterI['props'], FooterI['state']> implements FooterI {
     parent: FooterI['parent'];
@@ -39,7 +40,15 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                             проекта.
                         </AnimateText>
                         <div className="footer__button">
-                            <Button className="_dark">Написать нам</Button>
+                            <Button
+                                className="_dark"
+                                icon="smile"
+                                onClick={() => {
+                                    appStore.getState().showContactForm(true);
+                                }}
+                            >
+                                Написать нам
+                            </Button>
                         </div>
                     </div>
                     <img

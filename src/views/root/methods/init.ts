@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function () {
@@ -8,6 +10,10 @@ const init: I['init'] = async function () {
     window.addEventListener('resize', () => {
         this.resizeHandler();
     });
+
+    setTimeout(() => {
+        appStore.getState().showCookies();
+    }, 1_000);
 };
 
 export default init;
