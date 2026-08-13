@@ -2,6 +2,8 @@ import React from 'react';
 
 import Default from '@/src/components/default/Default.tsx';
 
+import onHover from './methods/onHover.ts';
+
 import ButtonI from './types.ts';
 
 import Icon from '../icon/Icon.tsx';
@@ -16,6 +18,8 @@ class Button extends Default<ButtonI['props'], ButtonI['state']> implements Butt
         this.parent = React.createRef();
     }
 
+    onHover = onHover;
+
     render() {
         const { className, children, icon, onClick } = this.props;
 
@@ -24,6 +28,12 @@ class Button extends Default<ButtonI['props'], ButtonI['state']> implements Butt
                 ref={this.parent}
                 className={this.getClass('button _CLICK _ROW _ROW_CENTER', className)}
                 onClick={onClick}
+                onMouseEnter={() => {
+                    this.addStack(this.onHover.bind(this, 'enter'));
+                }}
+                onMouseLeave={() => {
+                    this.addStack(this.onHover.bind(this, 'leave'));
+                }}
             >
                 <div className="button__inner _ROW _ROW_CENTER">{children}</div>
                 <div className={this.getClass('button__icon _COL', this.setClass(icon))}>

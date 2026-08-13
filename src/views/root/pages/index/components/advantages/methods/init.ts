@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -38,6 +40,15 @@ const init: I['init'] = async function (this: I) {
             backHeight = 800;
         }
 
+        if (appStore.getState().device === 'mobile') {
+            if (backHeight < 150) {
+                backHeight = 150;
+            }
+            if (backHeight > 578) {
+                backHeight = 578;
+            }
+        }
+
         backHeight *= window.sizeK;
 
         topBackNode.style.height = `${backHeight}px`;
@@ -46,71 +57,57 @@ const init: I['init'] = async function (this: I) {
             '.indexAdvantages__contentCard',
         );
 
+        let offset = 120 * window.sizeK;
+        let cardContentTop = 68;
+        let contentOffset = 168 * window.sizeK;
+
+        if (appStore.getState().device === 'mobile') {
+            offset = 64 * window.sizeK;
+            cardContentTop = 19;
+            contentOffset = -60 * window.sizeK;
+        }
+
         let contentTop = contentNode.getBoundingClientRect().y;
 
         if (contentTop < -(contentNode.offsetHeight - window.heightValue)) {
             contentTop = -(contentNode.offsetHeight - window.heightValue);
         }
 
-        const offset = 42;
-        const servicesH = window.heightValue / 7;
+        let contentDiff = window.heightValue - contentTop;
 
-        let contentDiff = window.heightValue - servicesH - contentTop;
+        const min = 300 * window.sizeK;
 
-        const min = 150;
-
-        if (contentDiff < -min) {
-            contentDiff = -min;
+        if (contentDiff < min) {
+            contentDiff = min;
         }
 
-        let totalTop = 0;
-
-        const step = 1 / cards.length;
-
         cards.forEach((s, i) => {
-            const tMin = i * step;
-            const percent =
-                (contentDiff + (60 * window.sizeK + offset) * i) /
-                (contentNode.offsetHeight - servicesH);
-            const countNode = s.querySelector<HTMLElement>('.indexAdvantages__cardCount');
+            const cardContentNode = s.querySelector<HTMLElement>('.indexAdvantages__cardContent');
 
-            let tPercent = (percent - tMin) / step;
+            const thisOffset = offset * (cards.length - i);
 
-            if (tPercent < 0) {
-                tPercent = 0;
+            let cardTop = s.offsetTop - contentDiff + thisOffset;
+
+            // if (i === 1) {
+            //     cardTop = (s.offsetTop - contentDiff) * 1 + thisOffset;
+            // }
+
+            let contentTopPercent = cardTop >= contentOffset ? 0 : -(cardTop - contentOffset) / 100;
+
+            if (contentTopPercent > 1) {
+                contentTopPercent = 1;
             }
 
-            let countPercent = tPercent;
+            contentTopPercent = 1 - contentTopPercent;
 
-            if (countPercent > 1) {
-                countPercent = 1;
+            if (cardTop < contentOffset) {
+                cardTop = contentOffset;
             }
 
-            countPercent = 1 - countPercent;
+            cardContentNode!.style.transform = `translate(0,${-contentTopPercent * cardContentTop * window.sizeK}px)`;
 
-            if (countNode && !countNode.getAttribute('data-end')) {
-                countNode.style.transform = `translate(${-50 * countPercent}px,0) rotate(${-10 * countPercent}deg) scale(${1 + 0.3 * countPercent})`;
-                countNode.style.opacity = `${1 - countPercent}`;
-
-                if (countPercent === 0) {
-                    countNode.setAttribute('data-end', 't');
-                }
-            }
-
-            let thisTop = contentDiff + i * offset;
-
-            if (tPercent) {
-                thisTop -= (contentNode.offsetHeight / cards.length) * tPercent;
-            }
-
-            thisTop -= offset * window.sizeK;
-
-            s.style.transform = `translate(0,${thisTop}px)`;
-
-            totalTop = thisTop + s.offsetHeight;
+            s.style.transform = `translate(0,${-cardTop}px)`;
         });
-
-        this.parent.current!.style.height = `${totalTop + topNode.offsetHeight}px`;
     };
 
     pageNode.addEventListener('scroll', onScroll);
@@ -119,9 +116,9 @@ const init: I['init'] = async function (this: I) {
         pageNode.removeEventListener('scroll', onScroll);
     };
 
-    setTimeout(()=>{
+    setTimeout(() => {
         onScroll();
-    },10)
+    }, 10);
 };
 
 export default init;

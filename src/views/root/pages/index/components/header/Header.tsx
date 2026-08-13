@@ -3,11 +3,12 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Media from '@/src/components/media/Media.tsx';
+import { appStore } from '@/src/store/store.tsx';
 
 import init from './methods/init.ts';
 
 import HeaderI from './types.ts';
-import { appStore } from '@/src/store/store.tsx';
 
 class Header extends Default<HeaderI['props'], HeaderI['state']> implements HeaderI {
     parent: HeaderI['parent'];
@@ -79,9 +80,16 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     </div>
                 </div>
                 <div className="indexHeader__about _COL _COL_CENTER">
-                    <AnimateText className="indexHeader__aboutText" delay={50}>
-                        {`Помогаем агентствам и брендам<br/>запускать digital-промо<br/>федерального масштаба с 2010`}
-                    </AnimateText>
+                    <Media media="desktop">
+                        <AnimateText className="indexHeader__aboutText" delay={50}>
+                            {`Помогаем агентствам и брендам<br/>запускать digital-промо<br/>федерального масштаба с 2010`}
+                        </AnimateText>
+                    </Media>
+                    <Media media='mobile'>
+                        <AnimateText className="indexHeader__aboutText" delay={50}>
+                            {`Помогаем агентствам и брендам запускать digital-промо федерального масштаба с 2010`}
+                        </AnimateText>
+                    </Media>
                     <div className="indexHeader__aboutButton">
                         <Button className="_dark _minSize">О нас</Button>
                     </div>

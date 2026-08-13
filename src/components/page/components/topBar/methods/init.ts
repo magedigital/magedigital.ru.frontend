@@ -1,6 +1,12 @@
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
+    const { device } = this.props;
+
+    if (device === 'mobile') {
+        return;
+    }
+
     const navNode = this.parent.current!.querySelector<HTMLElement>('.topBar__nav');
     const navBackNode = this.parent.current!.querySelector<HTMLElement>('.topBar__navBack');
 
@@ -9,11 +15,7 @@ const init: I['init'] = async function (this: I) {
     }
 
     navBackNode.style.height = `${navNode.getBoundingClientRect().height}px`;
-
-    if (0) {
-        return;
-    }
-
+    
     const links = this.parent.current!.querySelectorAll<HTMLElement>('.topBar__navLink');
 
     links.forEach((link) => {

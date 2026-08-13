@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -17,9 +19,14 @@ const init: I['init'] = async function (this: I) {
     }
 
     const onScroll = () => {
+        if (appStore.getState().device === 'mobile') {
+            return;
+        }
+
         const percent =
             (window.heightValue / 2 - bannerNode.getBoundingClientRect().y) /
-            bannerNode.offsetHeight;
+            bannerNode.offsetHeight /
+            2;
 
         bubbleNode.style.transform = `translate(0,${-200 * percent}px)`;
     };
@@ -30,36 +37,26 @@ const init: I['init'] = async function (this: I) {
         pageNode.removeEventListener('scroll', onScroll);
     };
 
-    const glassTop = -100;
-    const glassRight = 100;
-    const glassBottom = 100;
-    const glassLeft = -300;
-
     let gravitation = 1.03;
     let bound = 0;
     let boundGravitation = 0.99;
     let scale = 0.2;
-    let rotate = 0;
-    let rotateDir = 1;
-    let rotateK = 1;
-    let translateX = 0;
-    let translateXK = 1;
-    let translateXDir = 1;
-    let translateY = 0;
-    let translateYK = 1;
-    let translateYDir = 1;
     let tick = performance.now();
 
     const glassAnimate = () => {
+        if (appStore.getState().device === 'mobile') {
+            glassNode.style.transform = `scale(1)`;
+            glassNode.style.filter = `blur(4px)`;
+
+            return;
+        }
+
         let tickDiff = Math.round((performance.now() - tick) / 8);
 
         const tickAnimate = () => {
             scale += 0.01 * gravitation;
             scale -= 0.01 * bound;
             gravitation *= 1.0025;
-            rotate += rotateDir * rotateK;
-            translateX += translateXDir * translateXK;
-            translateY += translateYDir * translateYK;
 
             if (bound > 0) {
                 bound *= boundGravitation;
@@ -72,28 +69,6 @@ const init: I['init'] = async function (this: I) {
                 gravitation = 1.02 + Math.random() * 0.25;
                 bound = 1.5 + Math.random() * 1.5;
                 boundGravitation = 0.984 + ((3 - bound) * 0.01) / 1.5;
-
-                rotateDir = Math.random() > 0.5 ? 1 : -1;
-                rotateK = 0.2 * bound;
-
-                translateXDir = Math.random() > 0.5 ? 1 : -1;
-                translateYDir = Math.random() > 0.5 ? 1 : -1;
-
-                if (translateY < glassTop) {
-                    translateYDir = 1;
-                }
-                if (translateY > glassBottom) {
-                    translateYDir = -1;
-                }
-                if (translateX < glassLeft) {
-                    translateXDir = 1;
-                }
-                if (translateX > glassRight) {
-                    translateXDir = -1;
-                }
-
-                translateXK = 0.2 * bound;
-                translateYK = 0.2 * bound;
             }
         };
 
@@ -106,8 +81,8 @@ const init: I['init'] = async function (this: I) {
             tickDiff -= 1;
         }
 
-        glassNode.style.transform = `translate(${translateX}px,${translateY}px) rotate(${rotate}deg) scale(${scale})`;
-        glassNode.style.filter = `blur(${(1 - scale) * 15}px)`;
+        glassNode.style.transform = `scale(${scale})`;
+        glassNode.style.filter = `blur(${(1 - scale) * 23}px)`;
 
         tick = performance.now();
 

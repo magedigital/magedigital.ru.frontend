@@ -15,6 +15,14 @@
         will-change: transform;
 
         @include bg("/media/footer-glass.png", contain, center);
+
+        @include mob {
+            top: 130rem;
+            right: -175rem;
+            bottom: auto;
+            width: 450rem;
+            height: 450rem;
+        }
     }
 
     &__banner {
@@ -26,8 +34,17 @@
         background: #5227ff;
         border-radius: 36rem;
 
+        @include mob {
+            padding: 32rem 20rem 340rem;
+            border-radius: 28rem;
+        }
+
         &Content {
             max-width: 650rem;
+
+            @include mob {
+                max-width: 100%;
+            }
         }
 
         &Title {
@@ -36,6 +53,12 @@
             font-weight: 200;
             font-size: 64rem;
             line-height: 1.3;
+
+            @include mob {
+                margin-bottom: 12rem;
+                font-weight: 300;
+                font-size: 32rem;
+            }
         }
 
         &Text {
@@ -43,16 +66,28 @@
             color: #fff;
             font-size: 20rem;
             line-height: 1.4;
+
+            @include mob {
+                margin-bottom: 28rem;
+                font-size: 18rem;
+            }
         }
 
         &Bubble {
             position: absolute;
             right: -70rem;
-            bottom: -195rem;
+            bottom: -95rem;
             z-index: 2;
             width: 720rem;
             height: 560rem;
             object-fit: contain;
+
+            @include mob {
+                right: -72rem;
+                bottom: 14rem;
+                width: 380rem;
+                height: 250rem;
+            }
         }
     }
 
@@ -62,14 +97,35 @@
         margin-top: -36rem;
         padding: 190rem 0 108rem;
         background: linear-gradient(69deg, #e6f7ff, #e0d9fb);
+
+        @include mob {
+            padding: 190rem 0 64rem;
+            background: linear-gradient(150deg, #e6f7ff, #e0d9fb);
+        }
+    }
+
+    &__inner {
+        @include mob {
+            padding: 0 12rem;
+        }
     }
 
     &__blocks {
         display: flex;
         align-items: flex-start;
 
+        @include mob {
+            flex-direction: column;
+        }
+
         & + & {
             margin-top: 100rem;
+        }
+
+        &._docs {
+            @include mob {
+                margin-top: 80rem !important;
+            }
         }
     }
 
@@ -79,8 +135,23 @@
         align-items: flex-start;
         width: 280rem;
 
+        @include mob {
+            width: 100%;
+        }
+
         & + & {
             margin-left: 90rem;
+
+            @include mob {
+                margin-top: 76rem;
+                margin-left: 0;
+            }
+        }
+    }
+
+    &__blocks._docs &__block + &__block {
+        @include mob {
+            margin-top: 26rem;
         }
     }
 
@@ -107,6 +178,11 @@
     &__logo {
         width: 151rem;
         margin-bottom: 80rem;
+
+        @include mob {
+            width: 132rem;
+            margin-bottom: 62rem;
+        }
     }
 
     &__link {
@@ -116,6 +192,10 @@
         font-size: 24rem;
         line-height: 1;
         transition: $trans;
+
+        @include mob {
+            font-size: 22rem;
+        }
 
         &::after {
             position: absolute;
@@ -140,6 +220,10 @@
 
         & + & {
             margin-top: 30rem;
+
+            @include mob {
+                margin-top: 22rem;
+            }
         }
     }
 

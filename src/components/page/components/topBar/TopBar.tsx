@@ -17,7 +17,9 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
 
     constructor(props: TopBarI['props']) {
         super(props);
-        this.state = {};
+        this.state = {
+            isMenuReadyLinks: this.props.mode === 'default',
+        };
 
         this.parent = React.createRef();
     }
@@ -29,64 +31,87 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
     onContactsHover = onContactsHover;
 
     render() {
-        const { activeLink, isMenuActive } = this.state;
-        const { mode } = this.props;
+        const { activeLink, isMenuActive, isMenuReadyLinks } = this.state;
+        const { mode, device } = this.props;
 
         return (
             <div ref={this.parent} className={this.getClass('topBar _SECTION')}>
                 <div className="topBar__inner _INNER">
                     <Icon name="logo" className="topBar__logo" />
-                    {mode === 'fix' && (
-                        <div
-                            className={this.getClass(
-                                'topBar__menu _CLICK',
-                                isMenuActive && '_hide',
+                    {device === 'desktop' && (
+                        <>
+                            {mode === 'fix' && (
+                                <div
+                                    className={this.getClass(
+                                        'topBar__menu _CLICK',
+                                        isMenuActive && '_hide',
+                                    )}
+                                    onMouseEnter={() => {
+                                        this.addStack(async () => {
+                                            await this.asyncSetState({ isMenuActive: true });
+
+                                            this.timers.isMenuReadyLinks = setTimeout(async () => {
+                                                await this.asyncSetState({
+                                                    isMenuReadyLinks: true,
+                                                });
+                                            }, 500);
+                                        });
+                                    }}
+                                >
+                                    Меню
+                                </div>
                             )}
-                            onMouseEnter={() => {
-                                this.addStack(
-                                    async () => await this.asyncSetState({ isMenuActive: true }),
-                                );
-                            }}
-                        >
-                            Меню
-                        </div>
-                    )}
-                    <nav
-                        className={this.getClass(
-                            'topBar__nav _ROW',
-                            mode === 'fix' && !isMenuActive && '_hide',
-                        )}
-                        onMouseLeave={() => {
-                            this.addStack(
-                                async () => await this.asyncSetState({ isMenuActive: false }),
-                            );
-                        }}
-                    >
-                        <div className="topBar__navBack" />
-                        {navPages.map((p) => (
-                            <li
+                            <nav
                                 className={this.getClass(
-                                    'topBar__navLink _CLICK',
-                                    activeLink === p && '_active',
+                                    'topBar__nav _ROW',
+                                    mode === 'fix' && !isMenuActive && '_hide',
                                 )}
-                                key={p}
-                                data-key={p}
-                                onMouseEnter={() => {
-                                    this.addStack(async () => await this.setActive(p));
-                                }}
                                 onMouseLeave={() => {
-                                    this.addStack(async () => await this.setActive(undefined));
+                                    this.addStack(
+                                        async () =>
+                                            await this.asyncSetState({
+                                                isMenuActive: false,
+                                                isMenuReadyLinks: this.props.mode === 'default',
+                                            }),
+                                    );
                                 }}
                             >
-                                <div className="topBar__navLinkInner">
-                                    <span>{AppRouter.pages[p].content}</span>
-                                </div>
-                                <div className="topBar__navLinkInner">
-                                    <span>{AppRouter.pages[p].content}</span>
-                                </div>
-                            </li>
-                        ))}
-                    </nav>
+                                <div className="topBar__navBack" />
+                                {navPages.map((p) => (
+                                    <li
+                                        className={this.getClass(
+                                            'topBar__navLink _CLICK',
+                                            activeLink === p && '_active',
+                                        )}
+                                        key={p}
+                                        data-key={p}
+                                    >
+                                        <div className="topBar__navLinkInner">
+                                            <span>{AppRouter.pages[p].content}</span>
+                                        </div>
+                                        <div
+                                            className="topBar__navLinkInner"
+                                            onMouseMove={() => {
+                                                if (isMenuReadyLinks && activeLink !== p) {
+                                                    this.addStack(
+                                                        async () => await this.setActive(p),
+                                                    );
+                                                }
+                                            }}
+                                            onMouseLeave={() => {
+                                                this.addStack(
+                                                    async () => await this.setActive(undefined),
+                                                );
+                                            }}
+                                        >
+                                            <span>{AppRouter.pages[p].content}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </nav>
+                        </>
+                    )}
+
                     <div
                         className="topBar__contacts _CLICK"
                         onMouseEnter={() => {

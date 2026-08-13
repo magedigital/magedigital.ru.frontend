@@ -1,21 +1,43 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
+
+function cubicBezier(t: number, x1: number, y1: number, x2: number, y2: number): [number, number] {
+    t = Math.max(0, Math.min(1, t));
+    const x = cubicInterpolate(t, 0, x1, x2, 1);
+    const y = cubicInterpolate(t, 0, y1, y2, 1);
+    return [x, y];
+}
+
+function cubicInterpolate(t: number, p0: number, p1: number, p2: number, p3: number) {
+    const t2 = t * t;
+    const t3 = t2 * t;
+    const oneMinusT = 1 - t;
+    const oneMinusT2 = oneMinusT * oneMinusT;
+    const oneMinusT3 = oneMinusT2 * oneMinusT;
+
+    return p0 * oneMinusT3 + p1 * 3 * t * oneMinusT2 + p2 * 3 * t2 * oneMinusT + p3 * t3;
+}
 
 const init: I['init'] = async function (this: I) {
     const pageNode = this.parent.current!.closest<HTMLElement>('.page__scroll');
     const boxNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__box');
     const colorNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__boxColor');
     const frameNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__boxFrame');
+    const frameInnerNode = this.parent.current!.querySelector<HTMLElement>(
+        '.indexHeader__boxFrameInner',
+    );
 
-    if (!pageNode || !boxNode || !colorNode || !frameNode) {
+    if (!pageNode || !boxNode || !colorNode || !frameNode || !frameInnerNode) {
         return;
     }
 
     const onScroll = () => {
-        let percent = (boxNode.offsetTop - boxNode.getBoundingClientRect().y) / boxNode.offsetTop;
-        const maxHeight = 950;
-        const minHeight = 150;
+        if (appStore.getState().device === 'mobile') {
+            return;
+        }
 
-        percent -= 0.05;
+        let percent = (boxNode.offsetTop - boxNode.getBoundingClientRect().y) / boxNode.offsetTop;
 
         if (percent < 0) {
             percent = 0;
@@ -24,18 +46,43 @@ const init: I['init'] = async function (this: I) {
             percent = 1;
         }
 
-        // console.log(percent);
+        const c = cubicBezier(percent, 0.84, -0.7, 0.2, 1.59);
 
-        const height = +((minHeight + (maxHeight - minHeight) * percent) * window.sizeK).toFixed(0);
-        colorNode.style.height = `${height}px`;
+        let colorTop = boxNode.offsetTop - boxNode.getBoundingClientRect().y;
+        const colorHeight = 160 * window.sizeK;
+        const colorMaxTop =
+            this.parent.current!.offsetHeight -
+            boxNode.offsetHeight -
+            boxNode.offsetTop -
+            colorHeight;
+
+        if (colorTop > colorMaxTop) {
+            colorTop = colorMaxTop;
+        }
+
+        let colorPercent = (pageNode.scrollTop - colorMaxTop) / 100;
+
+        if (colorPercent < 0) {
+            colorPercent = 0;
+        }
+
+        if (colorPercent > 1) {
+            colorPercent = 1;
+        }
+
+        colorTop += colorHeight * colorPercent * 0.5;
+
+        // colorNode.style.opacity = `${1 - colorPercent}`;
+        colorNode.style.height = `${colorHeight * (1 - colorPercent)}px`;
+        colorNode.style.transform = `translate(0px,${colorTop}px)`;
 
         const frameScale = 0.285 + percent * (1 - 0.285);
-        const frameLeft = (-22 + percent * 22) * window.sizeK;
-        const frameTop = (-356 + percent * 356) * window.sizeK;
+        const frameLeft = (-10 + percent * 10) * window.sizeK;
+        const frameTop = (-356 + c[1] * 356) * window.sizeK;
         const frameHeight = (660 + 250 - 250 * percent) * window.sizeK;
         const frameRadius = (24 + 60 - 60 * percent) * window.sizeK;
 
-        frameNode.style.borderRadius = `${frameRadius}px`;
+        frameInnerNode.style.borderRadius = `${frameRadius}px`;
         frameNode.style.height = `${frameHeight}px`;
         frameNode.style.transform = `translate(${frameLeft}px,${frameTop}px) scale(${frameScale})`;
     };

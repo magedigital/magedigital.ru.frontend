@@ -3,6 +3,7 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Media from '@/src/components/media/Media.tsx';
 
 import init from './methods/init.ts';
 
@@ -27,9 +28,16 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
             <div ref={this.parent} className="indexServices">
                 <div className="indexServices__top _FULL_W">
                     <div className="indexServices__topBack _FULL_W _COL _COL_CENTER">
-                        <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
-                            {`Объединяем все слои промо<br/>в едином digital-решении`}
-                        </AnimateText>
+                        <Media media="desktop">
+                            <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
+                                {`Объединяем все слои промо<br/>в едином digital-решении`}
+                            </AnimateText>
+                        </Media>
+                        <Media media="mobile">
+                            <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
+                                {`Объединяем все слои\xa0промо в едином digital-решении`}
+                            </AnimateText>
+                        </Media>
                     </div>
                 </div>
                 <div className="indexServices__content _FULL_W">
@@ -55,7 +63,7 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                         {s.text}
                                     </AnimateText>
                                     <div className="indexServices__serviceButton">
-                                        <Button className="_dark _minSize">Подробнее</Button>
+                                        <Button className="_dark _blueHover _minSize">Подробнее</Button>
                                     </div>
                                 </div>
                                 <img

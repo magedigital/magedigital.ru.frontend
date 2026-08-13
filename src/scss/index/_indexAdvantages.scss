@@ -1,15 +1,28 @@
 .indexAdvantages {
     position: relative;
     z-index: 1;
-    overflow: hidden;
+
+    @include mob {
+        padding-bottom: 120rem;
+    }
 
     &__top {
         height: 800rem;
 
+        @include mob {
+            height: 578rem;
+        }
+
         &Back {
-            padding-bottom: 50rem;
+            padding-bottom: 210rem;
             background: #000;
             border-radius: 48rem 48rem 0 0;
+
+            @include mob {
+                height: 100%;
+                padding: 24rem 32rem 50rem;
+                border-radius: 28rem 28rem 0 0;
+            }
         }
 
         &Title {
@@ -19,6 +32,11 @@
             line-height: 1.3;
             text-align: center;
             will-change: transform;
+
+            @include mob {
+                font-size: 32rem;
+                line-height: 1.1;
+            }
         }
 
         &Button {
@@ -28,31 +46,48 @@
 
     &__content {
         position: relative;
-        height: 490rem * 3 + 376rem;
+        margin-top: -48rem;
+
+        @include mob {
+            margin-top: -122rem;
+        }
 
         &Card {
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             transform-origin: center top;
             will-change: transform;
+
+            & + & {
+                margin-top: -64rem;
+            }
         }
     }
 
-    &__contentCard:last-child &__card {
-        height: 376rem;
+    &__contentCard:not(:last-child) &__card {
+        padding-bottom: 126rem;
     }
 
     &__card {
         position: relative;
-        height: 490rem;
         padding: 86rem 116rem 86rem 218rem;
         border-radius: 32rem;
 
+        @include mob {
+            padding: 35rem 16rem 32rem 82rem;
+            border-radius: 28rem;
+        }
+
+        &Content {
+            position: relative;
+            will-change: transform;
+        }
+
         &Count {
             position: absolute;
-            top: 52rem;
-            left: 56rem;
+            top: -40rem;
+            left: -160rem;
             width: 100rem;
             color: rgb(var(--dark-c));
             font-weight: 100;
@@ -60,6 +95,13 @@
             text-align: center;
             transform-origin: right bottom;
             will-change: transform;
+
+            @include mob {
+                top: -14rem;
+                left: -70rem;
+                width: 60rem;
+                font-size: 88rem;
+            }
         }
 
         &Title {
@@ -68,13 +110,21 @@
             font-weight: 300;
             font-size: 64rem;
 
-           
+            @include mob {
+                margin-bottom: 16rem;
+                font-size: 30rem;
+                line-height: 1.35;
+            }
         }
 
         &Text {
             color: rgb(var(--dark-c));
             font-size: 20rem;
             line-height: 1.4;
+
+            @include mob {
+                font-size: 18rem;
+            }
         }
     }
 }

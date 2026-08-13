@@ -4,8 +4,23 @@
     width: 100%;
     padding: 80rem 0 40rem;
 
-    &__back {
+    &::after {
+        position: absolute;
+        top: 740rem;
+        left: 0;
         z-index: -1;
+        width: 100%;
+        height: 40rem;
+        background: linear-gradient(to bottom, rgba(#e6f7ff, 0), #e6f7ff 50%);
+        content: "";
+    }
+
+    @include mob {
+        padding: 84rem 0 46rem;
+    }
+
+    &__back {
+        z-index: -2;
         height: 760rem;
         object-fit: cover;
     }
@@ -16,6 +31,18 @@
         font-weight: 200;
         font-size: 160rem;
         line-height: 1.3;
+
+        @include mob {
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 16rem -5rem;
+            font-size: 90rem;
+            line-height: 1.3;
+
+            & ._TEXT_ANIM:last-child {
+                margin-top: -18rem;
+            }
+        }
     }
 
     &__text {
@@ -23,6 +50,11 @@
         color: rgb(var(--dark-c));
         font-size: 36rem;
         line-height: 1.2;
+
+        @include mob {
+            margin-bottom: 42rem;
+            font-size: 20.5rem;
+        }
     }
 
     &__button {
@@ -41,44 +73,68 @@
         height: 950rem;
         margin: 264rem 0 0;
 
+        @include mob {
+            height: 300rem;
+            margin: 102rem 0 0;
+        }
+
         &Color {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 90rem;
+            height: 160rem;
             background: #d049ff;
             border-radius: 36rem;
-            will-change: height;
+            will-change: transform;
+
+            @include mob {
+                height: 258rem;
+                border-radius: 32rem;
+            }
         }
 
         &Frame {
             position: absolute;
             top: calc(calc(950rem - 660rem) / 2);
-            left: 20rem;
+            left: 40rem;
             z-index: 2;
-            width: calc(100% - 40rem);
+            width: calc(100% - 80rem);
             height: 660rem;
             transform-origin: right top;
             will-change: transform;
+
+            @include mob {
+                top: -38rem;
+                left: 16rem;
+                width: calc(100% - 32rem);
+                height: 236rem;
+            }
 
             &Inner {
                 position: relative;
                 z-index: 2;
                 overflow: hidden;
                 border-radius: 80rem;
-                transition: $trans;
+
+                @include mob {
+                    border-radius: 28rem;
+                }
             }
         }
 
         &:not(._animate) &FrameInner {
-            transform: translate(0, 64rem);
-            opacity: 0;
+            // transform: translate(0, 64rem);
+            // opacity: 0;
         }
     }
 
     &__about {
         padding: 240rem 0;
+
+        @include mob {
+            padding: 82rem 0;
+        }
 
         &Text {
             margin-bottom: 48rem;
@@ -87,6 +143,12 @@
             font-size: 64rem;
             line-height: 1.3;
             text-align: center;
+
+            @include mob {
+                margin-bottom: 36rem;
+                font-size: 31rem;
+                line-height: 1.08;
+            }
         }
     }
 }

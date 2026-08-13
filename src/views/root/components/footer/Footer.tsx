@@ -4,14 +4,15 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
+import Media from '@/src/components/media/Media.tsx';
 import { AppRouter } from '@/src/index.tsx';
+import { appStore } from '@/src/store/store.tsx';
 
 import init from './methods/init.ts';
 
 import FooterI from './types.ts';
 
 import { navPages } from './static/pages.ts';
-import { appStore } from '@/src/store/store.tsx';
 
 class Footer extends Default<FooterI['props'], FooterI['state']> implements FooterI {
     parent: FooterI['parent'];
@@ -28,7 +29,6 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
     render() {
         return (
             <div ref={this.parent} className="footer">
-                <div className="footer__glass" />
                 <div className="footer__banner">
                     <div className="footer__bannerContent _COL">
                         <AnimateText className="footer__bannerTitle" tag="h3" delay={50}>
@@ -57,8 +57,12 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                     />
                 </div>
                 <div className="footer__content _SECTION">
+                    <div className="footer__glass" />
                     <div className="footer__inner _INNER">
                         <div className="footer__blocks">
+                            <Media media="mobile">
+                                <Icon name="logo" className="footer__logo" />
+                            </Media>
                             <div className="footer__block">
                                 <nav className="footer__nav _COL">
                                     {navPages.map((p) => (
@@ -69,7 +73,9 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 </nav>
                             </div>
                             <div className="footer__block">
-                                <Icon name="logo" className="footer__logo" />
+                                <Media media="desktop">
+                                    <Icon name="logo" className="footer__logo" />
+                                </Media>
                                 <div className="footer__links _COL">
                                     <a href="#" className="footer__link">
                                         hello@magedigital.ru
@@ -83,7 +89,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 </div>
                             </div>
                         </div>
-                        <div className="footer__blocks">
+                        <div className="footer__blocks _docs">
                             <div className="footer__block">
                                 <a href="#" className="footer__doc">
                                     Аккредитованная ИТ-компания

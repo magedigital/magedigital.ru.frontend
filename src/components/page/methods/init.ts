@@ -35,12 +35,14 @@ const init: I['init'] = async function (this: I) {
     };
 
     const checkTopBar = () => {
-        if (scrollNode.scrollTop >= window.heightValue && !this.fixTopBarIsShow) {
+        const topBarTop = 200 * window.sizeK;
+
+        if (scrollNode.scrollTop >= topBarTop && !this.fixTopBarIsShow) {
             fixTopBarWrapper.style.transition = '.2s ease-out';
             fixTopBarWrapper.classList.add('_show');
             this.fixTopBarIsShow = true;
         }
-        if (scrollNode.scrollTop < window.heightValue && this.fixTopBarIsShow) {
+        if (scrollNode.scrollTop < topBarTop && this.fixTopBarIsShow) {
             fixTopBarWrapper.style.transition = '.2s ease-in';
             fixTopBarWrapper.classList.remove('_show');
             this.fixTopBarIsShow = false;
@@ -48,7 +50,7 @@ const init: I['init'] = async function (this: I) {
     };
 
     const themeBlocks = document.querySelectorAll<HTMLElement>(
-        '.indexHeader__box,.indexServices,.indexAdvantages,.footer__banner',
+        '.indexHeader__boxFrame,.indexServices,.indexAdvantages,.footer__banner',
     );
 
     const checkTheme = () => {

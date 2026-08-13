@@ -1,10 +1,18 @@
 .indexStats {
     padding: 254rem 0;
 
+    @include mob {
+        padding: 120rem 0 154rem;
+    }
+
     &__content {
         position: relative;
         width: 100%;
         height: 300rem;
+
+        @include mob {
+            height: 210rem;
+        }
     }
 
     &__stat {
@@ -17,6 +25,10 @@
         user-select: none;
         pointer-events: none;
 
+        @include mob {
+            padding-bottom: 37rem;
+        }
+
         &Title {
             white-space: nowrap;
             text-align: center;
@@ -27,6 +39,11 @@
                 font-weight: 100;
                 font-size: 240rem;
                 transition: $trans;
+
+                @include mob {
+                    font-weight: 200;
+                    font-size: 82rem;
+                }
 
                 &._next {
                     transform: translate(0, -50%);
@@ -48,6 +65,12 @@
             white-space: nowrap;
             text-align: center;
             transition: $trans;
+
+            @include mob {
+                margin-top: 0;
+                font-weight: 500;
+                font-size: 18rem;
+            }
 
             &._next {
                 transform: translate(0, -100%);
@@ -73,6 +96,12 @@
         height: 40rem;
         transform: translate(-50%, 0) rotate(-90deg) rotateX(-180deg);
 
+        @include mob {
+            bottom: 0;
+            width: 22rem;
+            height: 22rem;
+        }
+
         &[data-reverse] {
             transform: translate(-50%, 0) rotate(-90deg) rotateX(0deg);
         }
@@ -91,6 +120,11 @@
             fill: none;
             stroke: #212121;
             stroke-width: 8rem;
+
+            @include mob {
+                r: calc(50% - 2.5rem);
+                stroke-width: 5rem;
+            }
         }
     }
 }

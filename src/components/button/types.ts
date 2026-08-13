@@ -8,6 +8,8 @@ type PropsT = {
 
 type StateT = {};
 
-interface ButtonI extends DefaultI<PropsT, StateT> {}
+interface ButtonI extends DefaultI<PropsT, StateT> {
+    onHover(this: ButtonI, a: 'enter' | 'leave'): Promise<void>;
+}
 
 export default ButtonI;

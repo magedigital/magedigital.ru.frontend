@@ -1,12 +1,21 @@
 .indexProjects {
     padding: 165rem 0 168rem;
 
+    @include mob {
+        padding: 114rem 0 124rem;
+    }
+
     &__title {
         margin-bottom: 50rem;
         padding-left: 8rem;
         color: rgb(var(--dark-c));
         font-weight: 200;
         font-size: 96rem;
+
+        @include mob {
+            padding-left: 0;
+            font-size: 56rem;
+        }
     }
 
     &__cards {
@@ -14,6 +23,12 @@
         flex-wrap: wrap;
         width: calc(100% + 56rem);
         margin-left: -28rem;
+
+        @include mob {
+            flex-direction: column;
+            width: 100%;
+            margin-left: 0;
+        }
     }
 
     &__card {
@@ -22,6 +37,12 @@
         padding: 0 16rem;
         transition: $trans;
         will-change: transform;
+
+        @include mob {
+            width: 100%;
+            margin-bottom: 48rem;
+            padding: 0;
+        }
 
         &:nth-child(2n + 1) {
             transform-origin: left top;
@@ -53,6 +74,12 @@
             margin-bottom: 20rem;
             overflow: hidden;
             border-radius: 16rem;
+
+            @include mob {
+                height: 284rem;
+                margin-bottom: 26rem;
+                border-radius: 18rem;
+            }
         }
 
         &Thumb {
@@ -77,6 +104,11 @@
             font-size: 28rem;
             line-height: 1;
 
+            @include mob {
+                margin-bottom: 14rem;
+                font-size: 26rem;
+            }
+
             &::after {
                 position: absolute;
                 bottom: 0;
@@ -99,10 +131,18 @@
             color: rgb(var(--dark-c));
             font-size: 16rem;
             line-height: 1.4;
+
+            @include mob {
+                font-size: 18rem;
+            }
         }
     }
 
     &__button {
         margin: 0 auto;
+
+        @include mob {
+            margin-top: 3rem;
+        }
     }
 }

@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -32,6 +34,15 @@ const init: I['init'] = async function (this: I) {
             backHeight = 800;
         }
 
+        if (appStore.getState().device === 'mobile') {
+            if (backHeight < 150) {
+                backHeight = 150;
+            }
+            if (backHeight > 530) {
+                backHeight = 530;
+            }
+        }
+
         backHeight *= window.sizeK;
 
         topBackNode.style.height = `${backHeight}px`;
@@ -46,12 +57,19 @@ const init: I['init'] = async function (this: I) {
             contentTop = -(contentNode.offsetHeight - window.heightValue);
         }
 
-        const offset = 42;
-        const servicesH = window.heightValue / 10;
+        let offset = 60 * window.sizeK;
+        let servicesH = 130 * window.sizeK;
+        let br = 150;
+
+        if (appStore.getState().device === 'mobile') {
+            offset = 24 * window.sizeK;
+            servicesH = 64 * window.sizeK;
+            br = 220;
+        }
 
         let contentDiff = window.heightValue - servicesH - contentTop;
 
-        const min = 150;
+        const min = 150 * window.sizeK;
         let totalTop = 0;
 
         if (contentDiff < -min) {
@@ -59,6 +77,7 @@ const init: I['init'] = async function (this: I) {
         }
 
         const step = 1 / services.length;
+        // let firstPercent = 0;
 
         services.forEach((s, i) => {
             const tMin = i * step;
@@ -67,6 +86,16 @@ const init: I['init'] = async function (this: I) {
                 (contentNode.offsetHeight - servicesH);
 
             let tPercent = (percent - tMin) / step;
+            let thisTop = contentDiff + i * offset;
+
+            if (i === 1) {
+                if (tPercent > -0.75 && tPercent < 0) {
+                    thisTop -= -(-0.75 - tPercent) * br;
+                }
+                if (tPercent >= 0 && tPercent < 0.75) {
+                    thisTop -= br * 2 * 0.75 + (-0.75 - tPercent) * br;
+                }
+            }
 
             if (tPercent < 0) {
                 tPercent = 0;
@@ -81,8 +110,6 @@ const init: I['init'] = async function (this: I) {
             if (scale > 1) {
                 scale = 1;
             }
-
-            let thisTop = contentDiff + i * offset;
 
             if (tPercent) {
                 thisTop -= s.offsetHeight * tPercent;

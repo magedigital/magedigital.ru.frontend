@@ -3,6 +3,7 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Media from '@/src/components/media/Media.tsx';
 
 import BestI from './types.ts';
 
@@ -29,13 +30,18 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
                             Наши лучшие кейсы скрыты NDA
                         </AnimateText>
                         <AnimateText className="indexBest__bannerText" delay={15}>
-                            Мы не можем показать здесь наши самые масштабные высоконагруженные
-                            платформы для FMCG-гигантов. Но мы можем показать их на закрытой
-                            презентации и разобрать механику под ваши задачи
+                            {
+                                'Мы не можем показать здесь наши\xa0самые масштабные высоконагруженные платформы для\xa0FMCG-гигантов. Но мы можем показать их на закрытой презентации и разобрать механику под ваши задачи'
+                            }
                         </AnimateText>
                     </div>
                     <div className="indexBest__button">
-                        <Button className="_purple">Увидеть всё на закрытой презентации</Button>
+                        <Media media="desktop">
+                            <Button className="_purple">Увидеть всё на закрытой презентации</Button>
+                        </Media>
+                        <Media media="mobile">
+                            <Button className="_purple _minSize">Увидеть всё на презентации</Button>
+                        </Media>
                     </div>
                 </div>
             </div>

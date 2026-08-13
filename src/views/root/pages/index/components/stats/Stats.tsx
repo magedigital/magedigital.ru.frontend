@@ -44,7 +44,6 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
                             <p className="indexStats__statText _prev">{s.text}</p>
                         </div>
                     ))}
-
                     <div className="indexStats__progress">
                         <svg>
                             <circle />

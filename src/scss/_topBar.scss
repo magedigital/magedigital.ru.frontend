@@ -59,12 +59,11 @@
             top: 0;
             left: 0;
             z-index: 2;
-            opacity: 0;
             transition: 0.35s cubic-bezier(0.152, 0.888, 0.046, 1.2);
             pointer-events: none;
             will-change: transform;
 
-            &._active {
+            &._active::before {
                 opacity: 1;
             }
 
@@ -78,6 +77,8 @@
                 background: rgb(var(--main-c));
                 border-radius: 12rem;
                 transform: translate(-50%, -50%);
+                opacity: 0;
+                transition: $trans;
                 content: "";
             }
         }

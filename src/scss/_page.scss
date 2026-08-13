@@ -24,4 +24,8 @@
         will-change: scroll-position;
         scroll-behavior: auto;
     }
+
+    &__inner {
+        // transform: translate(0, -7900px);
+    }
 }

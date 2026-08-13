@@ -7,8 +7,16 @@
         position: relative;
         height: 164rem + 16rem;
 
+        @include mob {
+            height: 116rem + 12rem;
+        }
+
         &:nth-child(2n) {
             margin-left: -(300rem + 16rem) * 7;
+
+            @include mob {
+                margin-left: -(190rem + 12rem) * 7;
+            }
         }
 
         &Move {
@@ -17,9 +25,16 @@
 
         &Item {
             padding: 8rem;
+
+            @include mob {
+                padding: 6rem;
+            }
         }
 
         &Brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 300rem;
             height: 164rem;
             background: #dcf0ff;
@@ -27,11 +42,22 @@
             user-select: none;
             pointer-events: none;
 
+            @include mob {
+                width: 190rem;
+                height: 116rem;
+                border-radius: 14rem;
+            }
+
             & img {
                 display: block;
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
+
+                @include mob {
+                    width: 125%;
+                    height: 125%;
+                }
             }
         }
     }

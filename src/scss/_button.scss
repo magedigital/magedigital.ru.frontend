@@ -1,10 +1,14 @@
 .button {
     position: relative;
     padding-right: 60rem;
-    transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+    transition: 0.4s ease-in-out;
 
     &._minSize {
         padding-right: 40rem;
+
+        @include mob {
+            padding-right: 44rem;
+        }
     }
 
     &__inner {
@@ -12,7 +16,11 @@
         padding: 0 24rem;
         font-size: 20rem;
         border-radius: 20rem;
-        transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+        transition: 0.4s ease-in-out;
+
+        @include mob {
+            font-size: 18rem;
+        }
     }
 
     &._minSize &__inner {
@@ -20,6 +28,12 @@
         padding: 0 16rem;
         font-size: 16rem;
         border-radius: 14rem;
+
+        @include mob {
+            height: 44rem;
+            padding: 0 14rem;
+            border-radius: 16rem;
+        }
     }
 
     &__icon {
@@ -31,7 +45,7 @@
         height: 60rem;
         border-radius: 20rem;
         transform: translate(-100%, 0);
-        transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+        transition: 0.4s ease-in-out;
 
         &._smile i {
             width: 26rem;
@@ -42,9 +56,18 @@
             width: 17rem;
             aspect-ratio: 1;
             margin: auto;
+            transition: 0.4s ease-in-out;
 
             & .icon__fill {
-                transition: 0.5s cubic-bezier(0.88, -0.4, 0.28, 1.46);
+                transition: 0.4s ease-in-out;
+            }
+
+            &._first {
+                transform: translate(-10rem, 0);
+            }
+
+            &._last {
+                transform: translate(0, 0) !important;
             }
         }
     }
@@ -55,6 +78,15 @@
 
         & i {
             width: 15rem;
+
+            &._first {
+                transform: translate(-8rem, 0);
+            }
+        }
+
+        @include mob {
+            height: 44rem;
+            border-radius: 16rem;
         }
     }
 
@@ -94,6 +126,10 @@
 
         &._minSize:hover {
             padding: 0 0 0 40rem;
+
+            @include mob {
+                padding-left: 44rem;
+            }
         }
 
         &:hover &__icon {
@@ -101,24 +137,14 @@
             transform: translate(0, 0);
         }
 
-        &:hover &__inner,
-        &:hover &__icon {
+        &._white:not(._whiteDark):hover &__inner,
+        &._white:not(._whiteDark):hover &__icon,
+        &._blueHover:hover &__inner,
+        &._blueHover:hover &__icon {
             color: #fff;
             background: rgb(var(--main-c));
 
             @include icon(#fff);
-        }
-
-        &._white._whiteDark:hover &__inner,
-        &._white._whiteDark:hover &__icon {
-            color: #fff;
-
-            @include icon(#fff);
-        }
-
-        &._purple:hover &__inner,
-        &._purple:hover &__icon {
-            background: rgb(var(--main-c));
         }
     }
 }
