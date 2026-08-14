@@ -28,7 +28,7 @@
     },
     "scripts": {
         "start": "PORT=3042 dotenv -e .env.local craco start",
-        "build": "dotenv -e .env.prod craco build",
+        "build": "GENERATE_SOURCEMAP=false dotenv -e .env.prod craco build",
         "format": "prettier --write \"{,!(node_modules)/**/}*.{ts,tsx}\""
     },
     "browserslist": {
