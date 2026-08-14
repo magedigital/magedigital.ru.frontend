@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -77,11 +79,19 @@ const init: I['init'] = async function (this: I) {
     };
 
     scrollNode.addEventListener('wheel', (e) => {
+        if (appStore.getState().device === 'mobile') {
+            return;
+        }
         e.preventDefault();
         velocity += e.deltaY * 0.04;
     });
 
     const scroll = () => {
+        if (appStore.getState().device === 'mobile') {
+            this.animateId = requestAnimationFrame(scroll);
+            return;
+        }
+
         const maxScroll = scrollNode.scrollHeight - scrollNode.clientHeight;
         const shouldStopAtTop = current < edgeDistance && velocity < -2;
         const shouldStopAtBottom = current > maxScroll - edgeDistance && velocity > 2;
@@ -140,9 +150,9 @@ const init: I['init'] = async function (this: I) {
         checkTopBar();
         checkTheme();
 
-        requestAnimationFrame(scroll);
+        this.animateId = requestAnimationFrame(scroll);
     };
-    requestAnimationFrame(scroll);
+    this.animateId = requestAnimationFrame(scroll);
 };
 
 export default init;

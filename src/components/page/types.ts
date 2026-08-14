@@ -9,6 +9,7 @@ type StateT = {
 interface PageI<P = {}, S = {}> extends DefaultI<PropsT & P, StateT & S> {
     name: string;
     fixTopBarIsShow?: boolean;
+    animateId?: number;
 
     renderPage(
         this: PageI,
