@@ -88,6 +88,12 @@ const init: I['init'] = async function (this: I) {
 
     const scroll = () => {
         if (appStore.getState().device === 'mobile') {
+            localStorage.setItem(localScrollName, current.toString());
+
+            checkAnimate();
+            checkTopBar();
+            checkTheme();
+
             this.animateId = requestAnimationFrame(scroll);
             return;
         }
