@@ -33,6 +33,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     loop
                     muted
                     autoPlay
+                    playsInline
                 />
                 <div className="indexHeader__inner _INNER">
                     <AnimateText
