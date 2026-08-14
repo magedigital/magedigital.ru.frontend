@@ -1,0 +1,46 @@
+.mobMenu {
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+
+    &__inner {
+        margin: 0 auto;
+        padding: 32rem 0;
+    }
+
+    &__nav {
+        margin-bottom: 54rem;
+
+        &Link {
+            color: rgb(var(--main-c));
+            font-weight: 300;
+            font-size: 36rem;
+
+            & + & {
+                margin-top: 32rem;
+            }
+        }
+    }
+
+    &__link {
+        color: rgb(var(--dark-c));
+        font-size: 21rem;
+        line-height: 1.2;
+
+        & + & {
+            margin-top: 18rem;
+        }
+
+        &._doc {
+            margin-top: 50rem;
+            font-size: 15.5rem;
+            line-height: 1.3;
+        }
+
+        &._copy {
+            margin-top: 48rem;
+            font-size: 15.5rem;
+            line-height: 1.3;
+        }
+    }
+}

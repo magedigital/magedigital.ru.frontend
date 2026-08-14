@@ -63,7 +63,7 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                         {s.text}
                                     </AnimateText>
                                     <div className="indexServices__serviceButton">
-                                        <Button className="_dark _blueHover _minSize">Подробнее</Button>
+                                        <Button className="_dark _whiteHover _minSize">Подробнее</Button>
                                     </div>
                                 </div>
                                 <img

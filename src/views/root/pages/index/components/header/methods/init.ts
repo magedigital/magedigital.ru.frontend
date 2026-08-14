@@ -34,6 +34,12 @@ const init: I['init'] = async function (this: I) {
 
     const onScroll = () => {
         if (appStore.getState().device === 'mobile') {
+            colorNode.style.height = '';
+            colorNode.style.transform = '';
+            frameInnerNode.style.borderRadius = '';
+            frameNode.style.height = '';
+            frameNode.style.transform = '';
+
             return;
         }
 
@@ -72,7 +78,6 @@ const init: I['init'] = async function (this: I) {
 
         colorTop += colorHeight * colorPercent * 0.5;
 
-        // colorNode.style.opacity = `${1 - colorPercent}`;
         colorNode.style.height = `${colorHeight * (1 - colorPercent)}px`;
         colorNode.style.transform = `translate(0px,${colorTop}px)`;
 
@@ -87,13 +92,13 @@ const init: I['init'] = async function (this: I) {
         frameNode.style.transform = `translate(${frameLeft}px,${frameTop}px) scale(${frameScale})`;
     };
 
+    document.addEventListener('customResize', onScroll);
     pageNode.addEventListener('scroll', onScroll);
 
     this.unmountHandlers.all = () => {
+        document.removeEventListener('customResize', onScroll);
         pageNode.removeEventListener('scroll', onScroll);
     };
-
-    onScroll();
 
     this.timers.animate = setTimeout(async () => {
         await this.asyncSetState({ titleIsAnimated: true });
@@ -103,9 +108,10 @@ const init: I['init'] = async function (this: I) {
                 await this.asyncSetState({ buttonIsAnimated: true });
                 this.timers.animate = setTimeout(async () => {
                     await this.asyncSetState({ frameIsAnimated: true });
-                }, 100);
-            }, 100);
-        }, 100);
+                    onScroll();
+                }, 50);
+            }, 50);
+        }, 50);
     }, 300);
 };
 

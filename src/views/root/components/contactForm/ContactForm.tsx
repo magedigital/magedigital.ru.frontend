@@ -6,6 +6,7 @@ import Editor from '@/src/components/editor/Editor.tsx';
 import FileField from '@/src/components/fileField/FileField.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
 import Input from '@/src/components/input/Input.tsx';
+import Media from '@/src/components/media/Media.tsx';
 import { appStore } from '@/src/store/store.tsx';
 import { converFileSize } from '@/src/utils/convertFileSize.ts';
 
@@ -28,6 +29,21 @@ class ContactForm
     }
 
     init = init;
+
+    renderLinks() {
+        return (
+            <div className="contactForm__links _COL">
+                <a href="#" className="contactForm__link">
+                    <Icon name="mail" />
+                    hello@magedigital.ru
+                </a>
+                <a href="#" className="contactForm__link">
+                    <Icon name="phone" />
+                    +7 499 638-24-69
+                </a>
+            </div>
+        );
+    }
 
     render() {
         const { form } = this.state;
@@ -52,18 +68,10 @@ class ContactForm
                                 </h2>
                                 <p className="contactForm__text">
                                     Расскажите немного о предстоящем проекте и оставьте свои
-                                    координаты в удобной для вас форме - мы скоро свяжемся с вами
+                                    координаты в&nbsp;удобной для вас форме - мы скоро свяжемся с
+                                    вами
                                 </p>
-                                <div className="contactForm__links _COL">
-                                    <a href="#" className="contactForm__link">
-                                        <Icon name="mail" />
-                                        hello@magedigital.ru
-                                    </a>
-                                    <a href="#" className="contactForm__link">
-                                        <Icon name="phone" />
-                                        +7 499 638-24-69
-                                    </a>
-                                </div>
+                                <Media media="desktop">{this.renderLinks()}</Media>
                             </div>
                             <div className="contactForm__block _form">
                                 <div className="contactForm__form _COL">
@@ -144,7 +152,7 @@ class ContactForm
                                                 </div>
                                                 <div className="contactForm__formField _auto">
                                                     <FileField
-                                                        support="Приложить брифчик (файл, не более 20 мб)"
+                                                        support="Приложить брифчик <br class='_MOBILE' />(файл, не более 20 мб)"
                                                         value={form?.filename}
                                                         onChange={async (d) => {
                                                             await this.setValue({

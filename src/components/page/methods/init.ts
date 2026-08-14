@@ -54,6 +54,7 @@ const init: I['init'] = async function (this: I) {
     );
 
     const checkTheme = () => {
+        const { isMobMenuShow } = this.state;
         let isLight = false;
         const topBarBound = fixTopBar.getBoundingClientRect();
 
@@ -68,7 +69,7 @@ const init: I['init'] = async function (this: I) {
             }
         });
 
-        if (isLight) {
+        if (isLight && !isMobMenuShow) {
             fixTopBar.setAttribute('data-light', 't');
         } else {
             fixTopBar.removeAttribute('data-light');

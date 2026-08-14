@@ -4,6 +4,8 @@ import { StoreT } from '@/src/store/store';
 type PropsT = {
     mode: 'default' | 'fix';
     device: StoreT['device'];
+    onMobMenu?: (s?: boolean) => Promise<void>;
+    isMobMenuShow?: boolean;
 };
 
 type StateT = {
@@ -13,6 +15,8 @@ type StateT = {
 };
 
 interface TopBarI extends DefaultI<PropsT, StateT> {
+    isMobMenuShow?: boolean;
+
     setActive(this: TopBarI, name: string | undefined): Promise<void>;
 
     onContactsHover(this: TopBarI, a: 'enter' | 'leave'): Promise<void>;

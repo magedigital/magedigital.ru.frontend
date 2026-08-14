@@ -34,6 +34,8 @@ class Input extends Default<InputI['props'], InputI['state']> implements InputI 
         super(props);
         this.state = {};
 
+        this.setAreaSize = this.setAreaSize.bind(this);
+
         this.parent = React.createRef();
         this.input = React.createRef();
     }

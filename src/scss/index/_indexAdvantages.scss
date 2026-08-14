@@ -1,6 +1,7 @@
 .indexAdvantages {
     position: relative;
     z-index: 1;
+    overflow: hidden;
 
     @include mob {
         padding-bottom: 120rem;

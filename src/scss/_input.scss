@@ -5,6 +5,10 @@
     border-radius: 12rem;
     transition: $trans;
 
+    @include mob {
+        border-radius: 18rem;
+    }
+
     &._focus {
         border-color: rgb(var(--dark-c));
     }
@@ -12,7 +16,7 @@
     &__field,
     &__support {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         width: 100%;
         height: 100%;
         padding: 16rem;
@@ -20,6 +24,15 @@
         font-size: 16rem;
         line-height: 1.4;
         resize: none;
+
+        @include mob {
+            padding: 20rem 16rem;
+            font-size: 18rem;
+        }
+    }
+
+    &._area &__support {
+        align-items: flex-start;
     }
 
     &__support {

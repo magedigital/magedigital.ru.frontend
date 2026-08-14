@@ -6,6 +6,7 @@ import getMode from './methods/getMode.ts';
 
 import FileFieldI, { FileFieldModeT } from './types.ts';
 
+import DashedBorder from '../dashedBorder/DashedBorder.tsx';
 import Icon from '../icon/Icon.tsx';
 import List from '../list/List.tsx';
 
@@ -26,8 +27,6 @@ class FileField extends Default<FileFieldI['props'], FileFieldI['state']> implem
         const mode = this.getMode();
         const renderKey = [mode, value].filter((t) => t).join('');
 
-        console.log(value);
-
         return (
             <label className={this.getClass('fileField _CLICK', this.setClass(mode))}>
                 <input
@@ -44,6 +43,7 @@ class FileField extends Default<FileFieldI['props'], FileFieldI['state']> implem
                     itemStyleProps={[]}
                     parentStyleProps={['width']}
                     parentRealStyleProps={['width']}
+                    resizeWidth={true}
                     render={({ item }: { item: { mode: FileFieldModeT; value?: string } }) => ({
                         item: (
                             <div
@@ -54,7 +54,8 @@ class FileField extends Default<FileFieldI['props'], FileFieldI['state']> implem
                             >
                                 {item.mode === 'empty' && (
                                     <>
-                                        {support}
+                                        <DashedBorder className="fileField__stateDashed" />
+                                        <span dangerouslySetInnerHTML={{ __html: support }}></span>
                                         <Icon name="file" className="fileField__stateIcon _file" />
                                     </>
                                 )}

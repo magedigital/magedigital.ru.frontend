@@ -2,11 +2,13 @@ import DefaultI from '@/src/components/default/types';
 
 type PropsT = {};
 
-type StateT = {};
+type StateT = {
+    isMobMenuShow?: boolean;
+};
 
 interface PageI<P = {}, S = {}> extends DefaultI<PropsT & P, StateT & S> {
     name: string;
-    fixTopBarIsShow?:boolean
+    fixTopBarIsShow?: boolean;
 
     renderPage(
         this: PageI,

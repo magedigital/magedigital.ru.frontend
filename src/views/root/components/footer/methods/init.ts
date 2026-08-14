@@ -20,6 +20,8 @@ const init: I['init'] = async function (this: I) {
 
     const onScroll = () => {
         if (appStore.getState().device === 'mobile') {
+            bubbleNode.style.transform = '';
+
             return;
         }
 
@@ -31,14 +33,21 @@ const init: I['init'] = async function (this: I) {
         bubbleNode.style.transform = `translate(0,${-200 * percent}px)`;
     };
 
+    document.addEventListener('customResize', onScroll);
     pageNode.addEventListener('scroll', onScroll);
 
     this.unmountHandlers.all = () => {
+        document.removeEventListener('customResize', onScroll);
         pageNode.removeEventListener('scroll', onScroll);
     };
 
-    let gravitation = 1.03;
+    this.timers.start = setTimeout(() => {
+        onScroll();
+    }, 10);
+
+    let gravitation = 1.14;
     let bound = 0;
+    let loop = 0;
     let boundGravitation = 0.99;
     let scale = 0.2;
     let tick = performance.now();
@@ -47,6 +56,8 @@ const init: I['init'] = async function (this: I) {
         if (appStore.getState().device === 'mobile') {
             glassNode.style.transform = `scale(1)`;
             glassNode.style.filter = `blur(4px)`;
+
+            this.animateId = requestAnimationFrame(glassAnimate);
 
             return;
         }
@@ -66,9 +77,24 @@ const init: I['init'] = async function (this: I) {
 
             if (scale >= 1) {
                 scale = 1;
-                gravitation = 1.02 + Math.random() * 0.25;
-                bound = 1.5 + Math.random() * 1.5;
+                gravitation = 1.14;
+
+                if (loop === 0) {
+                    bound = 2.8;
+                } else if (loop === 1) {
+                    bound = 2;
+                } else if (loop === 2) {
+                    bound = 1.8;
+                } else if (loop === 3) {
+                    bound = 1.6;
+                }
+
                 boundGravitation = 0.984 + ((3 - bound) * 0.01) / 1.5;
+                loop += 1;
+
+                if (loop >= 4) {
+                    loop = 0;
+                }
             }
         };
 

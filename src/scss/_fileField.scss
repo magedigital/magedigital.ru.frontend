@@ -12,6 +12,12 @@
         border: 1rem solid transparent;
         border-radius: 12rem;
 
+        @include mob {
+            padding-right: 52rem;
+            font-size: 18rem;
+            border-radius: 16rem;
+        }
+
         &._empty {
             color: rgba(var(--dark-c), 0.5);
             background: rgba(#fff, 0.7);
@@ -22,6 +28,33 @@
             border-color: rgb(var(--dark-c));
         }
 
+        &Dashed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+
+            & .dashedBorder__rect {
+                rx: 11rem;
+                ry: 11rem;
+                x: 0.75rem;
+                y: 0.75rem;
+                width: calc(100% - 1.5rem);
+                height: calc(100% - 1.5rem);
+                stroke-width: 1.5rem;
+                stroke: rgb(var(--dark-c));
+                stroke-dasharray: 6rem 6rem;
+
+                @include mob {
+                    rx: 15rem;
+                    ry: 15rem;
+                }
+            }
+        }
+
         &Icon {
             position: absolute;
             top: 50%;
@@ -29,6 +62,12 @@
             width: 18rem;
             height: 18rem;
             transform: translate(0, -50%);
+
+            @include mob {
+                right: 18rem;
+                width: 22rem;
+                height: 22rem;
+            }
         }
     }
 }

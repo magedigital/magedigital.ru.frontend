@@ -50,6 +50,8 @@ const resizeHandler: I['resizeHandler'] = async function (force) {
     window.widthPrevValue = window.widthValue;
     window.heightPrevValue = window.heightValue;
     window.sizeK = window.widthValue / (appStore.getState().device === 'desktop' ? 1512 : 414);
+
+    document.dispatchEvent(new CustomEvent('customResize'));
 };
 
 export default resizeHandler;

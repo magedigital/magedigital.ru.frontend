@@ -146,5 +146,13 @@
 
             @include icon(#fff);
         }
+
+        &._whiteHover:hover &__inner,
+        &._whiteHover:hover &__icon {
+            color: rgb(var(--dark-c));
+            background: #fff;
+
+            @include icon(rgb(var(--dark-c)));
+        }
     }
 }

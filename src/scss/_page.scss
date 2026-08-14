@@ -13,7 +13,20 @@
 
         &._fix:not(._show) {
             transform: translate(0, -100%);
+
+            @include mob {
+                transform: none;
+            }
         }
+    }
+
+    &__mobMenu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        padding: 64rem 0 0;
+        background: #fff;
     }
 
     &__scroll {

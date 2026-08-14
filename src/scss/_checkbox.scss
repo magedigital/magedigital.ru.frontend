@@ -11,10 +11,16 @@
         font-size: 16rem;
         line-height: 1.4;
 
+        @include mob {
+            padding: 0 0 0 44rem;
+            font-size: 15rem;
+        }
+
         & a {
             position: relative;
             display: inline-block;
             color: rgb(var(--dark-c));
+            line-height: 1;
             transition: $trans;
 
             &::after {

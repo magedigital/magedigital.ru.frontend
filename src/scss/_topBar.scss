@@ -3,9 +3,18 @@
     z-index: 1;
     padding: 27rem 0;
 
+    @include mob {
+        padding: 16rem 0;
+    }
+
     &__inner {
         flex-direction: row;
         padding: 0 6rem;
+
+        @include mob {
+            align-items: center;
+            padding: 0;
+        }
     }
 
     &__logo {
@@ -151,12 +160,24 @@
         }
     }
 
+    &__mob {
+        align-items: center;
+        margin: -3rem 0 0 auto;
+        pointer-events: visible;
+    }
+
     &__contacts {
         position: relative;
         width: 124rem;
         height: 36rem;
         margin-left: auto;
         pointer-events: visible;
+
+        @include mob {
+            width: 28rem;
+            height: 28rem;
+            margin-left: 0;
+        }
 
         &:not(._active) {
             pointer-events: none;
@@ -215,6 +236,10 @@
 
             @include icon(rgb(var(--dark-c)));
         }
+
+        &._active &Icon {
+            @include icon(#d049ff);
+        }
     }
 
     &[data-light] &__contactsButton {
@@ -224,5 +249,83 @@
 
     &[data-light] &__contactsIcon {
         @include icon(#fff);
+    }
+
+    &__menuBtn {
+        position: relative;
+        z-index: 1;
+        width: 36rem;
+        height: 36rem;
+        margin-left: 16rem;
+        background: rgba(#fff, 0.7);
+        border-radius: 14rem;
+        transition: $trans;
+
+        &._active {
+            background: rgb(var(--dark-c));
+        }
+
+        &Point {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: 0.15s ease-in-out;
+
+            &:first-child {
+                transform: translate(-6rem, 0);
+            }
+
+            &:last-child {
+                transform: translate(6rem, 0);
+            }
+
+            &::after {
+                width: 4rem;
+                height: 4rem;
+                background: rgb(var(--dark-c));
+                border-radius: 2rem;
+                transition: inherit;
+                content: "";
+            }
+
+            &:first-child::after {
+                transform: rotate(-45deg);
+            }
+
+            &:last-child::after {
+                transform: rotate(45deg);
+            }
+        }
+
+        &._active &Point {
+            &::after {
+                background: #fff;
+            }
+        }
+
+        &[data-start] &Point {
+            transform: translate(0, 0);
+        }
+
+        &[data-end] &Point {
+            &:first-child::after {
+                width: 18rem;
+                height: 3rem;
+            }
+
+            &:nth-child(2)::after {
+                opacity: 0;
+            }
+
+            &:last-child::after {
+                width: 18rem;
+                height: 3rem;
+            }
+        }
     }
 }

@@ -8,6 +8,12 @@ const init: I['init'] = async function (this: I) {
     removeTransition({ item: `#input${this.id}` });
 
     this.setAreaSize();
+
+    document.addEventListener('customResize', this.setAreaSize);
+
+    this.unmountHandlers.all = () => {
+        document.removeEventListener('customResize', this.setAreaSize);
+    };
 };
 
 export default init;

@@ -37,6 +37,12 @@
         transform: translate(-50%, 0);
         will-change: transform;
 
+        @include mob {
+            bottom: 8rem;
+            width: calc(100% - 16rem);
+            border-radius: 26rem;
+        }
+
         &:not([data-show]) {
             transform: translate(-50%, 0) scale(1.1);
             opacity: 0;
@@ -47,6 +53,10 @@
             color: #fff;
             font-size: 24rem;
             white-space: nowrap;
+
+            @include mob {
+                font-size: 26rem;
+            }
 
             & a {
                 position: relative;
@@ -86,6 +96,13 @@
             background: #fff;
             border-radius: 16rem;
             transition: $trans;
+
+            @include mob {
+                width: 54rem;
+                height: 54rem;
+                margin-left: auto;
+                border-radius: 18rem;
+            }
 
             @include hover {
                 &:hover {

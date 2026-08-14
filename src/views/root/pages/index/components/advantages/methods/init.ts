@@ -110,13 +110,15 @@ const init: I['init'] = async function (this: I) {
         });
     };
 
+    document.addEventListener('customResize', onScroll);
     pageNode.addEventListener('scroll', onScroll);
 
     this.unmountHandlers.all = () => {
+        document.removeEventListener('customResize', onScroll);
         pageNode.removeEventListener('scroll', onScroll);
     };
 
-    setTimeout(() => {
+    this.timers.start = setTimeout(() => {
         onScroll();
     }, 10);
 };

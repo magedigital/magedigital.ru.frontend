@@ -68,14 +68,16 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     </div>
                 </div>
                 <div className={this.getClass('indexHeader__box', frameIsAnimated && '_animate')}>
-                    <div className="indexHeader__boxColor"></div>
-                    <div className="indexHeader__boxFrame">
-                        <div className="indexHeader__boxFrameInner _FULL">
-                            <img
-                                src={require('@/src/media/index/header.jpg')}
-                                className="_FULL"
-                                style={{ objectFit: 'cover' }}
-                            />
+                    <div className="indexHeader__boxInner _FULL">
+                        <div className="indexHeader__boxColor"></div>
+                        <div className="indexHeader__boxFrame">
+                            <div className="indexHeader__boxFrameInner _FULL">
+                                <img
+                                    src={require('@/src/media/index/header.jpg')}
+                                    className="_FULL"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +87,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                             {`Помогаем агентствам и брендам<br/>запускать digital-промо<br/>федерального масштаба с 2010`}
                         </AnimateText>
                     </Media>
-                    <Media media='mobile'>
+                    <Media media="mobile">
                         <AnimateText className="indexHeader__aboutText" delay={50}>
                             {`Помогаем агентствам и брендам запускать digital-промо федерального масштаба с 2010`}
                         </AnimateText>

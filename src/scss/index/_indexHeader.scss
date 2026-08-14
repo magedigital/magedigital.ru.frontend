@@ -4,6 +4,10 @@
     width: 100%;
     padding: 80rem 0 40rem;
 
+    @include mob {
+        padding: 84rem 0 46rem;
+    }
+
     &::after {
         position: absolute;
         top: 740rem;
@@ -13,10 +17,10 @@
         height: 40rem;
         background: linear-gradient(to bottom, rgba(#e6f7ff, 0), #e6f7ff 50%);
         content: "";
-    }
 
-    @include mob {
-        padding: 84rem 0 46rem;
+        @include mob {
+            display: none;
+        }
     }
 
     &__back {
@@ -58,7 +62,7 @@
     }
 
     &__button {
-        transition: $trans;
+        transition: 0.3s ease-out;
 
         &:not(._animate) {
             transform: translate(0, 16rem);
@@ -76,6 +80,16 @@
         @include mob {
             height: 300rem;
             margin: 102rem 0 0;
+        }
+
+        &Inner {
+            position: relative;
+            transition: 0.3s ease-out;
+        }
+
+        &:not(._animate) &Inner {
+            transform: translate(0, 56rem);
+            opacity: 0;
         }
 
         &Color {
