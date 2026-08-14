@@ -36,8 +36,8 @@ const init: I['init'] = async function (this: I) {
         if (backHeight < 150) {
             backHeight = 150;
         }
-        if (backHeight > 800) {
-            backHeight = 800;
+        if (backHeight > 1000) {
+            backHeight = 1000;
         }
 
         if (appStore.getState().device === 'mobile') {

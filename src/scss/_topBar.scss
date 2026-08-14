@@ -315,7 +315,7 @@
         &[data-end] &Point {
             &:first-child::after {
                 width: 18rem;
-                height: 3rem;
+                height: 2.5rem;
             }
 
             &:nth-child(2)::after {
@@ -324,7 +324,7 @@
 
             &:last-child::after {
                 width: 18rem;
-                height: 3rem;
+                height: 2.5rem;
             }
         }
     }

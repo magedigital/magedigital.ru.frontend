@@ -117,6 +117,10 @@ const init: I['init'] = async function (this: I) {
 
             thisTop -= offset * window.sizeK;
 
+            if (i === 0) {
+                // console.log(thisTop.toFixed(0));
+            }
+
             s.style.transform = `translate(0,${thisTop}px) scale(${scale})`;
             totalTop = thisTop + s.offsetHeight;
         });

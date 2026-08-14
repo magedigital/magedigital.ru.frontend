@@ -10,7 +10,7 @@ const init: I['init'] = async function (this: I) {
     const fixTopBar = fixTopBarWrapper.querySelector('.topBar') as HTMLElement;
     let velocity = 0;
     let current = 0;
-    const edgeDistance = window.heightValue / 2;
+
     const localScrollName = ['scroll', this.name].join('_');
     const startScroll = localStorage.getItem(localScrollName);
 
@@ -52,7 +52,7 @@ const init: I['init'] = async function (this: I) {
     };
 
     const themeBlocks = document.querySelectorAll<HTMLElement>(
-        '.indexHeader__boxFrame,.indexServices,.indexAdvantages,.footer__banner',
+        '.indexHeader__box,.indexServices,.indexAdvantages,.footer__banner',
     );
 
     const checkTheme = () => {
@@ -83,7 +83,7 @@ const init: I['init'] = async function (this: I) {
             return;
         }
         e.preventDefault();
-        velocity += e.deltaY * 0.04;
+        velocity += e.deltaY * 0.05;
     });
 
     const scroll = () => {
@@ -97,6 +97,8 @@ const init: I['init'] = async function (this: I) {
             this.animateId = requestAnimationFrame(scroll);
             return;
         }
+
+        const edgeDistance = window.heightValue / 2;
 
         const maxScroll = scrollNode.scrollHeight - scrollNode.clientHeight;
         const shouldStopAtTop = current < edgeDistance && velocity < -2;

@@ -59,6 +59,7 @@
     &__content {
         position: relative;
         height: 550rem * 3;
+        will-change: transform;
 
         @include mob {
             height: 700rem * 3;

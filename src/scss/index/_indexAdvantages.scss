@@ -8,14 +8,14 @@
     }
 
     &__top {
-        height: 800rem;
+        height: 1000rem;
 
         @include mob {
             height: 578rem;
         }
 
         &Back {
-            padding-bottom: 210rem;
+            padding-bottom: 190rem;
             background: #000;
             border-radius: 48rem 48rem 0 0;
 

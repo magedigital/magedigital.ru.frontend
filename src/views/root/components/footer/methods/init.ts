@@ -45,7 +45,7 @@ const init: I['init'] = async function (this: I) {
         onScroll();
     }, 10);
 
-    let gravitation = 1.14;
+    let gravitation = 1.01;
     let bound = 0;
     let loop = 0;
     let boundGravitation = 0.99;
@@ -67,7 +67,7 @@ const init: I['init'] = async function (this: I) {
         const tickAnimate = () => {
             scale += 0.01 * gravitation;
             scale -= 0.01 * bound;
-            gravitation *= 1.0025;
+            gravitation *= 1.0005;
 
             if (bound > 0) {
                 bound *= boundGravitation;
@@ -77,19 +77,19 @@ const init: I['init'] = async function (this: I) {
 
             if (scale >= 1) {
                 scale = 1;
-                gravitation = 1.14;
+                gravitation = 1.01;
 
                 if (loop === 0) {
-                    bound = 2.8;
+                    bound = 2.2;
                 } else if (loop === 1) {
-                    bound = 2;
-                } else if (loop === 2) {
                     bound = 1.8;
-                } else if (loop === 3) {
+                } else if (loop === 2) {
                     bound = 1.6;
+                } else if (loop === 3) {
+                    bound = 1.4;
                 }
 
-                boundGravitation = 0.984 + ((3 - bound) * 0.01) / 1.5;
+                boundGravitation = 0.992;
                 loop += 1;
 
                 if (loop >= 4) {
