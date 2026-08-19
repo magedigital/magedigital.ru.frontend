@@ -68,7 +68,10 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         </Button>
                     </div>
                 </div>
-                <div className={this.getClass('indexHeader__box', frameIsAnimated && '_animate')}>
+                <div
+                    className={this.getClass('indexHeader__box', frameIsAnimated && '_animate')}
+                    data-theme
+                >
                     <div className="indexHeader__boxInner _FULL">
                         <div className="indexHeader__boxColor"></div>
                         <div className="indexHeader__boxFrame">

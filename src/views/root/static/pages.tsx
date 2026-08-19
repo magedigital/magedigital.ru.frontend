@@ -1,9 +1,8 @@
-// const Profile =
-//     process.env.REACT_APP_SEO === 'true' && require('../../pages/profile/Profile.tsx').default;
 import React from 'react';
 
 import RootI from '../types.ts';
 
+import About from '../pages/about/About.tsx';
 import Index from '../pages/index/Index.tsx';
 
 const pages = {
@@ -12,6 +11,15 @@ const pages = {
             return (
                 <>
                     <Index />
+                </>
+            );
+        },
+    },
+    about: {
+        render(this: RootI) {
+            return (
+                <>
+                    <About />
                 </>
             );
         },

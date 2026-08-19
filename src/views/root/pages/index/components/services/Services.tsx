@@ -25,7 +25,7 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
 
     render() {
         return (
-            <div ref={this.parent} className="indexServices">
+            <div ref={this.parent} className="indexServices" data-theme>
                 <div className="indexServices__top _FULL_W">
                     <div className="indexServices__topBack _FULL_W _COL _COL_CENTER">
                         <Media media="desktop">
@@ -63,7 +63,9 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                         {s.text}
                                     </AnimateText>
                                     <div className="indexServices__serviceButton">
-                                        <Button className="_dark _whiteHover _minSize">Подробнее</Button>
+                                        <Button className="_dark _whiteHover _minSize">
+                                            Подробнее
+                                        </Button>
                                     </div>
                                 </div>
                                 <img

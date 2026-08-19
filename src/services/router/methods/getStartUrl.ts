@@ -1,7 +1,7 @@
 import I from '../types.ts';
 
 const getStartUrl: I['getStartUrl'] = function (path) {
-    if (!['auth'].includes(path.split('/')[0])) {
+    if (!['auth'].includes(path.split('/')[0]) &&0) {
         path = `/${path}`;
     }
 

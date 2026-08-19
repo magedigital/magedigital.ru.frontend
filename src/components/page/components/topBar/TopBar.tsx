@@ -40,7 +40,13 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
         return (
             <div ref={this.parent} className={this.getClass('topBar _SECTION')}>
                 <div className="topBar__inner _INNER">
-                    <Icon name="logo" className="topBar__logo" />
+                    <Icon
+                        name="logo"
+                        className="topBar__logo _CLICK"
+                        onClick={() => {
+                            AppRouter.changePage({ pageName: 'index' });
+                        }}
+                    />
                     {device === 'desktop' && (
                         <>
                             {mode === 'fix' && (
@@ -88,6 +94,9 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
                                         )}
                                         key={p}
                                         data-key={p}
+                                        onClick={() => {
+                                            AppRouter.changePage({ pageName: p });
+                                        }}
                                     >
                                         <div className="topBar__navLinkInner">
                                             <span>{AppRouter.pages[p].content}</span>

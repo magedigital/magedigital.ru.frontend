@@ -1,0 +1,113 @@
+.aboutStats {
+    position: relative;
+    z-index: 2;
+    margin: -36rem 0 0;
+    padding: 178rem 0 1030rem;
+    overflow: hidden;
+    background: rgb(var(--dark-c));
+    border-radius: 36rem;
+    transition: $trans;
+
+    &:not(._animate) {
+        transform: translate(0, 32rem);
+        opacity: 0;
+    }
+
+    &__cards {
+        display: inline-flex;
+        margin-left: -36rem;
+        will-change: transform;
+    }
+
+    &__card {
+        width: 480rem + 16rem;
+        padding: 0 8rem;
+
+        &:nth-child(2n + 1) {
+            transform: translate(0, 32rem) rotate(-3deg);
+        }
+
+        &:nth-child(2n) {
+            transform: rotate(3deg);
+        }
+    }
+
+    &__card:nth-child(2n + 1) &__stat {
+        @include hover {
+            &:hover {
+                transform: rotate(3deg);
+            }
+        }
+    }
+
+    &__card:nth-child(2n) &__stat {
+        @include hover {
+            &:hover {
+                transform: rotate(-3deg);
+            }
+        }
+    }
+
+    &__stat {
+        width: 100%;
+        padding: 40rem;
+        border-radius: 28rem;
+        transition: $trans;
+        will-change: transform;
+        aspect-ratio: 1;
+
+        &Icon {
+            width: 46rem;
+            height: 46rem;
+            margin-bottom: 52rem;
+        }
+
+        &Title {
+            font-weight: 100;
+            font-size: 128rem;
+            line-height: 100rem;
+        }
+
+        & ._infinity {
+            width: 152rem;
+            height: 78rem;
+        }
+
+        &Text {
+            margin-top: auto;
+            color: rgb(var(--dark-c));
+            font-size: 20rem;
+            line-height: 1.4;
+        }
+    }
+
+    &__logo {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        z-index: -2;
+        color: #ccb8ff;
+        font-weight: 100;
+        font-size: 660rem;
+        white-space: nowrap;
+        text-align: center;
+        transform: translate(-50%, 0);
+        opacity: 0.14;
+        user-select: none;
+        pointer-events: none;
+        will-change: transform;
+    }
+
+    &__arm {
+        position: absolute;
+        bottom: -400rem;
+        left: 50%;
+        z-index: -1;
+        width: 633rem;
+        height: 792rem;
+        object-fit: contain;
+        transform: translate(-50%, 0);
+        user-select: none;
+        pointer-events: none;
+    }
+}

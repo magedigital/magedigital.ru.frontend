@@ -51,9 +51,7 @@ const init: I['init'] = async function (this: I) {
         }
     };
 
-    const themeBlocks = document.querySelectorAll<HTMLElement>(
-        '.indexHeader__box,.indexServices,.indexAdvantages,.footer__banner',
-    );
+    const themeBlocks = document.querySelectorAll<HTMLElement>('[data-theme]');
 
     const checkTheme = () => {
         const { isMobMenuShow } = this.state;

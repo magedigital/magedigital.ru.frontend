@@ -1,0 +1,48 @@
+.aboutHeader {
+    position: relative;
+    z-index: 1;
+    height: var(--wheight);
+    padding: 252rem 0 86rem;
+
+    &__back {
+        z-index: -2;
+        object-fit: cover;
+        object-position: center top;
+    }
+
+    &__inner {
+        margin: auto 0;
+    }
+
+    &__text {
+        margin-bottom: 32rem;
+        color: rgb(var(--dark-c));
+        font-size: 20rem;
+        line-height: 1.2;
+    }
+
+    &__title {
+        color: rgb(var(--dark-c));
+        font-weight: 100;
+        font-size: 160rem;
+        line-height: 1.3;
+    }
+
+    &__decor {
+        position: absolute;
+        bottom: -104rem;
+        left: 50%;
+        z-index: -1;
+        width: calc(100% - 92rem);
+        height: 200rem;
+        background: rgb(var(--main-c));
+        border-radius: 36rem;
+        transform: translate(-50%, 0);
+        transition: $trans;
+
+        &:not(._animate) {
+            transform: translate(-50%, 32rem);
+            opacity: 0;
+        }
+    }
+}

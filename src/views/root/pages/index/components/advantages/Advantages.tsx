@@ -28,7 +28,7 @@ class Advantages
 
     render() {
         return (
-            <div ref={this.parent} className="indexAdvantages">
+            <div ref={this.parent} className="indexAdvantages" data-theme>
                 <div className="indexAdvantages__top _FULL_W">
                     <div className="indexAdvantages__topBack _FULL_W _COL _COL_CENTER">
                         <Media media="desktop">

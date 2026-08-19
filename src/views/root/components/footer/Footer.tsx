@@ -29,7 +29,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
     render() {
         return (
             <div ref={this.parent} className="footer">
-                <div className="footer__banner">
+                <div className="footer__banner" data-theme>
                     <div className="footer__bannerContent _COL">
                         <AnimateText className="footer__bannerTitle" tag="h3" delay={50}>
                             Узнать больше
