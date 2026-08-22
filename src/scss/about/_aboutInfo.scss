@@ -1,0 +1,70 @@
+.aboutInfo {
+    padding: 207rem 0;
+
+    @include mob {
+        padding: 120rem 0 114rem;
+    }
+
+    &__content {
+        max-width: 930rem;
+        margin: 0 auto;
+
+        @include mob {
+            width: 100%;
+        }
+    }
+
+    &__thumb {
+        width: 300rem;
+        height: 194rem;
+        margin-bottom: 50rem;
+        object-fit: contain;
+        animation: aboutInfoThumb 2s infinite ease-in-out;
+        will-change: transform;
+
+        @include mob {
+            width: 200rem;
+            height: 130rem;
+        }
+
+        @keyframes aboutInfoThumb {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    &__title {
+        margin-bottom: 36rem;
+        color: rgb(var(--dark-c));
+        font-weight: 200;
+        font-size: 64rem;
+        line-height: 1.1;
+        text-align: center;
+
+        @include mob {
+            margin-bottom: 24rem;
+            font-weight: 400;
+            font-size: 31rem;
+            line-height: 1.08;
+        }
+    }
+
+    &__text {
+        color: rgb(var(--dark-c));
+        font-size: 20rem;
+        line-height: 1.25;
+        text-align: center;
+
+        @include mob {
+            padding: 0 12rem;
+            font-size: 21rem;
+            line-height: 1.12;
+        }
+    }
+}

@@ -2,6 +2,7 @@ import React from 'react';
 
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
+import Strings from '@/src/services/strings/Strings.service.ts';
 
 import init from './methods/init.ts';
 
@@ -49,7 +50,12 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
                                         <p className="aboutStats__statTitle">{s.title}</p>
                                     )}
 
-                                    <p className="aboutStats__statText">{s.text}</p>
+                                    <p
+                                        className="aboutStats__statText"
+                                        dangerouslySetInnerHTML={{
+                                            __html: new Strings().setSpaces(s.text),
+                                        }}
+                                    ></p>
                                 </div>
                             </div>
                         ),

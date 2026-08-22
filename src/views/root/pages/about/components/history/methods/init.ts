@@ -29,7 +29,7 @@ const init: I['init'] = async function (this: I) {
 
     setStart();
 
-    const check = () => {
+    const onScroll = () => {
         (['top', 'bottom'] as const).forEach((dir) => {
             if (this.animates[dir]) {
                 return;
@@ -60,12 +60,14 @@ const init: I['init'] = async function (this: I) {
         });
     };
 
-    check();
+    onScroll();
 
-    pageNode.addEventListener('scroll', check);
+    document.addEventListener('customResize', onScroll);
+    pageNode.addEventListener('scroll', onScroll);
 
     this.unmountHandlers.all = () => {
-        pageNode.removeEventListener('scroll', check);
+        document.removeEventListener('customResize', onScroll);
+        pageNode.removeEventListener('scroll', onScroll);
     };
 };
 

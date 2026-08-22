@@ -86,6 +86,7 @@ const init: I['init'] = async function (this: I) {
 
     const scroll = () => {
         if (appStore.getState().device === 'mobile') {
+            current = scrollNode.scrollTop;
             localStorage.setItem(localScrollName, current.toString());
 
             checkAnimate();

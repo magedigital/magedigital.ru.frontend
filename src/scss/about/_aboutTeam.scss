@@ -2,8 +2,16 @@
     background: #5227ff;
     border-radius: 36rem;
 
+    @include mob {
+        border-radius: 32rem;
+    }
+
     &__head {
         padding: 86rem 78rem;
+
+        @include mob {
+            padding: 64rem 16rem 50rem;
+        }
     }
 
     &__title {
@@ -12,6 +20,12 @@
         font-weight: 200;
         font-size: 84rem;
         line-height: 1;
+
+        @include mob {
+            margin-bottom: 24rem;
+            font-weight: 300;
+            font-size: 47rem;
+        }
     }
 
     &__text {
@@ -19,11 +33,19 @@
         color: #fff;
         font-size: 20rem;
         line-height: 1.15;
+
+        @include mob {
+            font-size: 20.5rem;
+        }
     }
 
     &__cards {
         margin: 30rem 0 90rem;
         background: #5227ff;
+
+        @include mob {
+            margin: 30rem 0 60rem;
+        }
     }
 
     &__card {
@@ -34,9 +56,18 @@
         background: #5227ff;
         transition: $trans;
 
+        @include mob {
+            height: 110rem;
+            padding: 0 16rem;
+        }
+
         &._active {
             height: 274rem;
             background: #000;
+
+            @include mob {
+                height: 510rem;
+            }
         }
 
         &Back {
@@ -70,6 +101,11 @@
             line-height: 1.2;
             transition: $trans;
             will-change: transform;
+
+            @include mob {
+                padding: 36rem 0 0;
+                font-size: 34rem;
+            }
         }
 
         &._active &Title {
@@ -82,6 +118,11 @@
             font-size: 20rem;
             line-height: 1.4;
             transition: $trans;
+
+            @include mob {
+                margin-top: 6rem;
+                font-size: 21rem;
+            }
         }
 
         &:not(._active) &Role {
@@ -99,6 +140,13 @@
             border-radius: 16rem 16rem 0 0;
             transition: $trans;
             pointer-events: none;
+
+            @include mob {
+                right: 18rem;
+                width: 280rem;
+                height: 340rem;
+                border-radius: 12rem 12rem 0 0;
+            }
         }
 
         &:not(._active) &Preview {
@@ -113,6 +161,10 @@
             pointer-events: none;
             will-change: transform;
 
+            @include mob {
+                bottom: 22rem;
+            }
+
             &Inner {
                 color: #5227ff;
                 font-weight: 100;
@@ -120,6 +172,11 @@
                 line-height: 1;
                 white-space: nowrap;
                 transition: $trans;
+
+                @include mob {
+                    font-weight: 200;
+                    font-size: 80rem;
+                }
             }
         }
 

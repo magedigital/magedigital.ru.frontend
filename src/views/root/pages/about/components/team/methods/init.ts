@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 import { teamPersons } from '../static/persons.ts';
@@ -23,12 +25,14 @@ const init: I['init'] = async function (this: I) {
         descriptionsMoves[i] = 0;
     });
 
-    cardsNode!.style.height = `${(teamPersons.length - 1) * 130 + 274}rem`;
-
     let time = performance.now();
     let backProgress = 0;
 
     const animate = () => {
+        const cardHeight = appStore.getState().device === 'desktop' ? 130 : 110;
+        const cardFullHeight = appStore.getState().device === 'desktop' ? 274 : 510;
+        cardsNode!.style.height = `${(teamPersons.length - 1) * cardHeight + cardFullHeight}rem`;
+
         descriptionsNodes.forEach((n, i) => {
             const width = n.getBoundingClientRect().width / 2;
 
@@ -45,7 +49,8 @@ const init: I['init'] = async function (this: I) {
             n.style.transform = `translate(${-descriptionsMoves[i]}px,0px)`;
         });
 
-        backProgress += (performance.now() - time) / 16;
+        backProgress +=
+            (performance.now() - time) / (appStore.getState().device === 'desktop' ? 16 : 12);
 
         backsNodes.forEach((n) => {
             const index = +n.getAttribute('data-index')!;
@@ -83,17 +88,20 @@ const init: I['init'] = async function (this: I) {
                 .map((c) => (c.length === 1 ? `0${c}` : c))
                 .join('')}`;
 
-            const speed = 10 + (50 - leftProgress) / 5;
+            const max = appStore.getState().device === 'desktop' ? 10 : 24;
+            const min = appStore.getState().device === 'desktop' ? 1 : 1.5;
+
+            const speed = max + (50 - leftProgress) / 5;
             const progresses = [
                 `#${startColor} 0%`,
                 `#${startColor} ${leftProgress - speed}%`,
-                `#${endColor} ${leftProgress - 1}%`,
-                `#${endColor} ${leftProgress + 1}%`,
+                `#${endColor} ${leftProgress - min}%`,
+                `#${endColor} ${leftProgress + min}%`,
                 `${resultColorHex} ${leftProgress + speed <= 50 ? leftProgress + speed : 50}%`,
                 `${resultColorHex} 50%`,
                 `${resultColorHex} ${rightProgress - speed >= 50 ? rightProgress - speed : 50}%`,
-                `#${endColor} ${rightProgress - 1}%`,
-                `#${endColor} ${rightProgress + 1}%`,
+                `#${endColor} ${rightProgress - min}%`,
+                `#${endColor} ${rightProgress + min}%`,
                 `#${startColor} ${rightProgress + speed}%`,
                 `#${startColor} 100%`,
             ].join(', ');

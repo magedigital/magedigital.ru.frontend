@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -62,16 +64,18 @@ const init: I['init'] = async function (this: I) {
             armProgress = 0.5 + (armProgress - 0.5) / (armProgress < 1 ? 1 : armProgress);
         }
 
-        const armTop = -450 * armProgress;
+        const armTop = -(appStore.getState().device === 'desktop' ? 450 : 200) * armProgress;
 
         armNode.style.transform = `translate(-50%,${armTop}rem)`;
     };
 
-    pageNode.addEventListener('scroll', onScroll);
-
     this.animateId = requestAnimationFrame(lineMove);
 
+    document.addEventListener('customResize', onScroll);
+    pageNode.addEventListener('scroll', onScroll);
+
     this.unmountHandlers.all = () => {
+        document.removeEventListener('customResize', onScroll);
         pageNode.removeEventListener('scroll', onScroll);
 
         if (this.animateId) {

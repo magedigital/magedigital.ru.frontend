@@ -8,6 +8,11 @@
     border-radius: 36rem;
     transition: $trans;
 
+    @include mob {
+        padding: 64rem 0 552rem;
+        border-radius: 32rem;
+    }
+
     &:not(._animate) {
         transform: translate(0, 32rem);
         opacity: 0;
@@ -17,11 +22,19 @@
         display: inline-flex;
         margin-left: -36rem;
         will-change: transform;
+
+        @include mob {
+            margin-left: -16rem;
+        }
     }
 
     &__card {
         width: 480rem + 16rem;
         padding: 0 8rem;
+
+        @include mob {
+            width: 366rem + 16rem;
+        }
 
         &:nth-child(2n + 1) {
             transform: translate(0, 32rem) rotate(-3deg);
@@ -56,21 +69,41 @@
         will-change: transform;
         aspect-ratio: 1;
 
+        @include mob {
+            padding: 34rem;
+            border-radius: 22rem;
+        }
+
         &Icon {
             width: 46rem;
             height: 46rem;
             margin-bottom: 52rem;
+
+            @include mob {
+                margin-bottom: 22rem;
+            }
         }
 
         &Title {
             font-weight: 100;
             font-size: 128rem;
             line-height: 100rem;
+
+            @include mob {
+                font-weight: 200;
+                font-size: 80rem;
+                line-height: 1;
+            }
         }
 
         & ._infinity {
             width: 152rem;
             height: 78rem;
+
+            @include mob {
+                width: 120rem;
+                height: 60rem;
+            }
         }
 
         &Text {
@@ -78,6 +111,11 @@
             color: rgb(var(--dark-c));
             font-size: 20rem;
             line-height: 1.4;
+
+            @include mob {
+                font-weight: 400;
+                font-size: 21rem;
+            }
         }
     }
 
@@ -96,6 +134,11 @@
         user-select: none;
         pointer-events: none;
         will-change: transform;
+
+        @include mob {
+            bottom: -110rem;
+            font-size: 240rem;
+        }
     }
 
     &__arm {
@@ -109,5 +152,11 @@
         transform: translate(-50%, 0);
         user-select: none;
         pointer-events: none;
+
+        @include mob {
+            bottom: -250rem;
+            width: 370rem;
+            height: 370rem;
+        }
     }
 }

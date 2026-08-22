@@ -1,6 +1,10 @@
 .aboutHistory {
     padding: 230rem 0 206rem;
 
+    @include mob {
+        padding: 146rem 0 154rem;
+    }
+
     &__inner {
         align-items: center;
     }
@@ -11,6 +15,10 @@
 
         &Cards {
             display: inline-flex;
+
+            @include mob {
+                flex-direction: column;
+            }
         }
 
         &Card {
@@ -19,6 +27,11 @@
             margin: 0 -17rem;
             will-change: transform;
 
+            @include mob {
+                width: 244rem;
+                margin: -15rem 0;
+            }
+
             &:not([data-animate]) {
                 opacity: 0;
             }
@@ -26,6 +39,10 @@
             &Thumb {
                 display: block;
                 border-radius: 20rem;
+
+                @include mob {
+                    border-radius: 15rem;
+                }
             }
 
             &:nth-child(2n) &Thumb {
@@ -42,11 +59,19 @@
             font-weight: 400;
             font-size: 24rem;
             line-height: 1.25;
+
+            @include mob {
+                font-size: 26rem;
+            }
         }
 
         &Cards + &Support,
         &Support + &Cards {
             margin-top: 74rem;
+
+            @include mob {
+                margin-top: 60rem;
+            }
         }
     }
 
@@ -55,6 +80,10 @@
         z-index: 2;
         max-width: 860rem;
         margin: 130rem 0;
+
+        @include mob {
+            margin: 78rem 0;
+        }
     }
 
     &__title {
@@ -64,6 +93,11 @@
         font-size: 64rem;
         line-height: 1.3;
         text-align: center;
+
+        @include mob {
+            font-weight: 400;
+            font-size: 31rem;
+        }
     }
 
     &__text {
@@ -71,5 +105,9 @@
         font-size: 20rem;
         line-height: 1.15;
         text-align: center;
+
+        @include mob {
+            font-size: 21rem;
+        }
     }
 }

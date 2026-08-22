@@ -53,6 +53,11 @@ class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
                                     async () => await this.asyncSetState({ activePerson: i }),
                                 )
                             }
+                            onClick={() =>
+                                this.addStack(
+                                    async () => await this.asyncSetState({ activePerson: i }),
+                                )
+                            }
                         >
                             <div
                                 className="aboutTeam__cardBack"
