@@ -207,26 +207,18 @@ const init: I['init'] = async function (this: I) {
                 cardThumbNode!.style.transform = `translate(0,${(s.offsetHeight - thumbOffset) * thumbProgress}px)`;
             }
         });
+    };
 
-        console.log('sc');
-
+    const scrollHandler = () => {
         this.animateId = requestAnimationFrame(onScroll);
     };
 
-    this.animateId = requestAnimationFrame(onScroll);
-
-    // const scrollHandler = () => {
-    //     this.animateId = requestAnimationFrame(() => {
-    //         onScroll();
-    //     });
-    // };
-
     document.addEventListener('customResize', onScroll);
-    // pageNode.addEventListener('scroll', scrollHandler);
+    pageNode.addEventListener('scroll', scrollHandler);
 
     this.unmountHandlers.all = () => {
         document.removeEventListener('customResize', onScroll);
-        // pageNode.removeEventListener('scroll', scrollHandler);
+        pageNode.removeEventListener('scroll', scrollHandler);
 
         if (this.animateId) {
             cancelAnimationFrame(this.animateId);
