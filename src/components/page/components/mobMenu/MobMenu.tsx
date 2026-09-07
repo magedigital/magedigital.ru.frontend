@@ -29,6 +29,7 @@ class MobMenu extends Default<MobMenuI['props'], MobMenuI['state']> implements M
                                 key={p}
                                 data-key={p}
                                 onClick={() => {
+                                    AppRouter.changePage({ pageName: p });
                                     onShowState(false);
                                 }}
                             >

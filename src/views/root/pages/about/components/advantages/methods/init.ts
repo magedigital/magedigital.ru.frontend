@@ -43,20 +43,8 @@ const init: I['init'] = async function (this: I) {
     };
 
     const onScroll = () => {
-        let progress =
-            (pageNode.scrollTop - parentNode.offsetTop) /
-            (cardsNode.offsetHeight -
-                (cardNode.offsetHeight + 80 * (cardsNodes.length - 1) * window.sizeK));
-
-        if (progress < 0) {
-            progress = 0;
-        }
-        if (progress > 1) {
-            progress = 1;
-        }
-
         cardsNodes.forEach((card, i) => {
-            const thisTop = +getTop(card, i).toFixed(0);
+            const thisTop = getTop(card, i);
             const prevTop = i === 0 ? undefined : getTop(cardsNodes[i - 1], i - 1);
 
             let cardProgress = 0;

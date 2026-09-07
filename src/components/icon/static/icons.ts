@@ -12,6 +12,14 @@ const icons = [
     'about-stats-4',
     'about-stats-5',
     'about-infinity',
+    'services-adv-1',
+    'services-adv-2',
+    'services-adv-3',
+    'services-adv-4',
+    'services-adv-5',
+    'services-adv-6',
+    'services-adv-7',
+    'services-adv-8',
 ] as const;
 
 export default icons;

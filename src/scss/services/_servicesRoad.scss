@@ -1,0 +1,178 @@
+.servicesRoad {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 212rem;
+    overflow: clip;
+    background: #000;
+    border-radius: 36rem;
+
+    @include mob {
+        margin-bottom: 110rem;
+    }
+
+    &__head {
+        position: relative;
+        width: 100%;
+        padding: 70rem 0 120rem;
+
+        @include mob {
+            padding: 60rem 0 30rem;
+        }
+
+        &Layer {
+            width: 776rem;
+            height: 292rem;
+            object-fit: contain;
+
+            @include mob {
+                width: 384rem;
+                height: 174rem;
+            }
+
+            & + & {
+                margin-top: -32rem;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        padding-bottom: 120rem;
+
+        @include mob {
+            flex-direction: column;
+            padding-bottom: 40rem;
+        }
+
+        &Block {
+            &._text {
+                position: sticky;
+                top: 80rem;
+                width: 572rem;
+
+                @include mob {
+                    position: relative;
+                    top: 0;
+                    width: 100%;
+                    padding-bottom: 40rem;
+                }
+            }
+
+            &._cards {
+                width: 694rem;
+                margin-left: auto;
+
+                @include mob {
+                    width: 100%;
+                }
+            }
+        }
+
+        &Title {
+            margin-bottom: 44rem;
+            color: #fff;
+            font-weight: 300;
+            font-size: 64rem;
+            line-height: 1.1;
+
+            @include mob {
+                margin-bottom: 24rem;
+                font-size: 32rem;
+            }
+        }
+
+        &Text {
+            color: #fff;
+            font-size: 20rem;
+            line-height: 1.15;
+
+            @include mob {
+                max-width: 80%;
+            }
+        }
+
+        &:not([data-animate]) &Card {
+            transform: translate(0, -100rem);
+            opacity: 0;
+        }
+
+        &Card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            transition: 0.3s ease-in-out;
+
+            & + & {
+                margin-top: 4rem;
+            }
+
+            &Inner {
+                padding: 30rem 28rem;
+                overflow: hidden;
+                background: #191919;
+                border-radius: 12rem;
+                transition: $trans;
+
+                @include mob {
+                    padding: 24rem 22rem;
+                }
+            }
+
+            &._current &Inner {
+                background: #5227ff;
+            }
+
+            &Count {
+                margin-bottom: 7rem;
+                color: #5227ff;
+                font-size: 16rem;
+                line-height: 1.4;
+                transition: $trans;
+
+                @include mob {
+                    font-size: 20rem;
+                }
+            }
+
+            &._current &Count {
+                color: #fff;
+            }
+
+            &Title {
+                color: #fff;
+                font-size: 36rem;
+                line-height: 1.4;
+
+                @include mob {
+                    font-weight: 300;
+                    font-size: 30rem;
+                }
+            }
+
+            &Texts {
+                width: 100%;
+
+                &:not(._empty) {
+                    margin-top: 24rem;
+
+                    @include mob {
+                        margin-top: 20rem;
+                    }
+                }
+            }
+
+            &Text {
+                color: #fff;
+                font-size: 16rem;
+                line-height: 1.4;
+
+                @include mob {
+                    font-size: 18rem;
+                }
+            }
+        }
+    }
+}

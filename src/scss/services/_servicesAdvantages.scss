@@ -1,0 +1,252 @@
+.servicesAdvantages {
+    padding: 144rem 0;
+
+    @include mob {
+        padding: 110rem 0;
+    }
+
+    &__inner {
+        position: relative;
+        flex-direction: row;
+        align-items: flex-start;
+
+        @include mob {
+            flex-direction: column;
+        }
+    }
+
+    &__content {
+        position: sticky;
+        top: 50rem;
+        width: 583rem;
+
+        @include mob {
+            position: relative;
+            top: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            width: 100%;
+        }
+    }
+
+    &__buttons {
+        position: relative;
+        margin: 32rem 0 72rem;
+        padding-left: 75rem;
+
+        @include mob {
+            width: 100%;
+            margin: 64rem 0 32rem;
+            padding: 0;
+        }
+
+        &Inner {
+            @include mob {
+                display: inline-flex;
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        &Arrow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30rem;
+            height: 56rem;
+            transition: 0.4s cubic-bezier(0.91, -0.72, 0.12, 1.74);
+            will-change: transform;
+
+            @include mob {
+                display: none;
+            }
+
+            &._bottom {
+                top: 100%;
+                transform: translate(0, -100%);
+            }
+
+            &Icon {
+                @include icon(rgb(var(--dark-c)));
+
+                width: 30rem;
+                height: 26rem;
+            }
+        }
+    }
+
+    &__button {
+        transform-origin: left center;
+        transition: $trans;
+        will-change: transform;
+
+        &._current {
+            transform: scale(1.5);
+
+            @include mob {
+                transform: scale(1.25);
+            }
+        }
+
+        & + & {
+            margin-top: 24rem;
+
+            @include mob {
+                margin-top: 0;
+            }
+        }
+
+        &._current:first-child {
+            @include mob {
+                margin-right: 80rem;
+            }
+        }
+
+        &:not(._current):first-child {
+            @include mob {
+                margin-left: -15rem;
+            }
+        }
+
+        &._current:last-child {
+            @include mob {
+                margin-left: 30rem;
+            }
+        }
+
+        &Text {
+            color: rgb(var(--dark-c));
+            font-weight: 200;
+            font-size: 48rem;
+            line-height: 1.2;
+
+            @include mob {
+                font-weight: 300;
+                font-size: 34rem;
+            }
+        }
+    }
+
+    &__text {
+        color: rgb(var(--dark-c));
+        font-size: 20rem;
+        line-height: 1.15;
+
+        @include mob {
+            max-width: 85%;
+        }
+    }
+
+    &__cards {
+        width: 702rem;
+        margin-left: auto;
+
+        @include mob {
+            width: 100%;
+        }
+
+        &Block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            &[data-id="agency"] {
+                transform-origin: right top;
+            }
+
+            &[data-id="brands"] {
+                transform-origin: left top;
+            }
+        }
+    }
+
+    & &__cardsInner {
+        transition: 0.5s cubic-bezier(0.91, -0.72, 0.12, 1.74);
+    }
+
+    &__cardsBlock[data-id="agency"] &__card._current {
+        background: #36c0f7;
+    }
+
+    &__cardsBlock[data-id="brands"] &__card._current {
+        background: #f46eb8;
+    }
+
+    &__cardsBlock[data-id="agency"]:not([data-show]) &__cardsInner {
+        transform: translate(-180rem, -20rem) rotate(5deg);
+    }
+
+    &__cardsBlock[data-id="brands"]:not([data-show]) &__cardsInner {
+        transform: translate(180rem, -20rem) rotate(-5deg);
+    }
+
+    &__card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 28rem;
+        overflow: hidden;
+        background: #dcf0ff;
+        border-radius: 16rem;
+        transition: $trans;
+
+        @include mob {
+            padding: 26rem 24rem 32rem;
+        }
+
+        & + & {
+            margin-top: 4rem;
+        }
+
+        &Icon {
+            width: 32rem;
+            height: 32rem;
+            margin-bottom: 16rem;
+            transform-origin: left center;
+            transition: $trans;
+            will-change: transform;
+
+            @include mob {
+                width: 34rem;
+                height: 34rem;
+            }
+        }
+
+        &._current &Icon {
+            transform: scale(1.25);
+        }
+
+        &Title {
+            color: rgb(var(--dark-c));
+            font-size: 36rem;
+            line-height: 1.4;
+            transform-origin: left center;
+            transition: $trans;
+            will-change: transform;
+
+            @include mob {
+                font-weight: 300;
+                font-size: 32rem;
+            }
+        }
+
+        &._current &Title {
+            transform: scale(1.1);
+        }
+
+        &Texts {
+            width: 100%;
+
+            &:not(._empty) {
+                margin-top: 24rem;
+            }
+        }
+
+        &Text {
+            color: rgb(var(--dark-c));
+            font-size: 16rem;
+            line-height: 1.4;
+        }
+    }
+}

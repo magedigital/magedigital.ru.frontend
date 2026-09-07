@@ -159,6 +159,7 @@ const init: I['init'] = async function (this: I) {
 
         this.animateId = requestAnimationFrame(scroll);
     };
+
     this.animateId = requestAnimationFrame(scroll);
 };
 

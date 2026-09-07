@@ -4,6 +4,8 @@ type PropsT = {};
 
 type StateT = {};
 
-interface AdvantagesI extends DefaultI<PropsT, StateT> {}
+interface AdvantagesI extends DefaultI<PropsT, StateT> {
+    animateId?: number;
+}
 
 export default AdvantagesI;
