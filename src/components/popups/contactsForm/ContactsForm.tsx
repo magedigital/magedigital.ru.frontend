@@ -13,15 +13,15 @@ import { converFileSize } from '@/src/utils/convertFileSize.ts';
 import init from './methods/init.ts';
 
 import { contactFormTypes } from './static/types.ts';
-import ContactFormI from './types.ts';
+import ContactsFormI from './types.ts';
 
-class ContactForm
-    extends Editor<ContactFormI['props'], ContactFormI['state']>
-    implements ContactFormI
+class ContactsForm
+    extends Editor<ContactsFormI['props'], ContactsFormI['state']>
+    implements ContactsFormI
 {
-    parent: ContactFormI['parent'];
+    parent: ContactsFormI['parent'];
 
-    constructor(props: ContactFormI['props']) {
+    constructor(props: ContactsFormI['props']) {
         super(props);
         this.state = {};
 
@@ -32,12 +32,12 @@ class ContactForm
 
     renderLinks() {
         return (
-            <div className="contactForm__links _COL">
-                <a href="#" className="contactForm__link">
+            <div className="contactsForm__links _COL">
+                <a href="#" className="contactsForm__link">
                     <Icon name="mail" />
                     hello@magedigital.ru
                 </a>
-                <a href="#" className="contactForm__link">
+                <a href="#" className="contactsForm__link">
                     <Icon name="phone" />
                     +7 499 638-24-69
                 </a>
@@ -49,54 +49,54 @@ class ContactForm
         const { form } = this.state;
 
         return (
-            <div ref={this.parent} className="contactForm _FULL">
-                <div className="contactForm__inner _INNER _FULL_H">
+            <div ref={this.parent} className="contactsForm _FULL">
+                <div className="contactsForm__inner _INNER _FULL_H">
                     <Icon
                         name="popup-close"
-                        className="contactForm__close _CLICK"
+                        className="contactsForm__close _CLICK"
                         onClick={() => {
-                            appStore.getState().showContactForm(false);
+                            appStore.getState().closePopup({ name: 'contactsFormPopup' });
                         }}
                     />
-                    <div className="contactForm__content _FULL _NOSCROLL">
-                        <div className="contactForm__contentInner">
-                            <div className="contactForm__block _preview">
-                                <h2 className="contactForm__title">
+                    <div className="contactsForm__content _FULL _NOSCROLL">
+                        <div className="contactsForm__contentInner">
+                            <div className="contactsForm__block _preview">
+                                <h2 className="contactsForm__title">
                                     Давайте
                                     <br />
                                     общаться
                                 </h2>
-                                <p className="contactForm__text">
+                                <p className="contactsForm__text">
                                     Расскажите немного о предстоящем проекте и оставьте свои
                                     координаты в&nbsp;удобной для вас форме - мы скоро свяжемся с
                                     вами
                                 </p>
-                                <Media media="desktop">{this.renderLinks()}</Media>
+                                <Media check={(d) => d === 'desktop'}>{this.renderLinks()}</Media>
                             </div>
-                            <div className="contactForm__block _form">
-                                <div className="contactForm__form _COL">
-                                    <div className="contactForm__formBlock">
-                                        <p className="contactForm__formBlockTitle">
+                            <div className="contactsForm__block _form">
+                                <div className="contactsForm__form _COL">
+                                    <div className="contactsForm__formBlock">
+                                        <p className="contactsForm__formBlockTitle">
                                             Тип диджитал активации:
                                         </p>
-                                        <div className="contactForm__formBlockContent">
-                                            <div className="contactForm__formTypes">
+                                        <div className="contactsForm__formBlockContent">
+                                            <div className="contactsForm__formTypes">
                                                 {contactFormTypes.map((t) => (
                                                     <label
-                                                        className="contactForm__formType _CLICK"
+                                                        className="contactsForm__formType _CLICK"
                                                         key={t.id}
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            checked={form?.type === t.id}
+                                                            checked={form?.types?.includes(t.id)}
                                                             onChange={async () => {
                                                                 await this.setValue({
-                                                                    data: { type: t.id },
+                                                                    data: { types: t.id },
                                                                     targetName: 'form',
                                                                 });
                                                             }}
                                                         />
-                                                        <div className="contactForm__formTypeView">
+                                                        <div className="contactsForm__formTypeView">
                                                             {t.title}
                                                         </div>
                                                     </label>
@@ -104,13 +104,13 @@ class ContactForm
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="contactForm__formBlock">
-                                        <p className="contactForm__formBlockTitle">
+                                    <div className="contactsForm__formBlock">
+                                        <p className="contactsForm__formBlockTitle">
                                             Ваши контакты:
                                         </p>
-                                        <div className="contactForm__formBlockContent">
-                                            <div className="contactForm__formFields">
-                                                <div className="contactForm__formField _name _short">
+                                        <div className="contactsForm__formBlockContent">
+                                            <div className="contactsForm__formFields">
+                                                <div className="contactsForm__formField _name _short">
                                                     <Input
                                                         support="Имя"
                                                         value={form?.name ?? ''}
@@ -122,7 +122,7 @@ class ContactForm
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="contactForm__formField _name _short">
+                                                <div className="contactsForm__formField _name _short">
                                                     <Input
                                                         support="Телефон или Email"
                                                         value={form?.contact ?? ''}
@@ -134,7 +134,7 @@ class ContactForm
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="contactForm__formField _about _area">
+                                                <div className="contactsForm__formField _about _area">
                                                     <Input
                                                         support="Расскажите немного о проекте или вашем поводе пообщаться, например, запросить закрытую презентацию..."
                                                         value={form?.about ?? ''}
@@ -150,7 +150,7 @@ class ContactForm
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="contactForm__formField _auto">
+                                                <div className="contactsForm__formField _auto">
                                                     <FileField
                                                         support="Приложить брифчик <br class='_MOBILE' />(файл, не более 20 мб)"
                                                         value={form?.filename}
@@ -169,7 +169,7 @@ class ContactForm
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="contactForm__formField _auto">
+                                                <div className="contactsForm__formField _auto">
                                                     <Checkbox
                                                         value={!!form?.agreement}
                                                         onChange={async (d) => {
@@ -188,7 +188,7 @@ class ContactForm
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="contactForm__formButton">
+                                    <div className="contactsForm__formButton">
                                         <Button className="_dark">Отправить</Button>
                                     </div>
                                 </div>
@@ -201,4 +201,4 @@ class ContactForm
     }
 }
 
-export default ContactForm;
+export default ContactsForm;

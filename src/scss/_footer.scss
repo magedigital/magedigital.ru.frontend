@@ -235,6 +235,15 @@
         line-height: 1;
         transition: $trans;
 
+        &._channel {
+            font-size: 20rem;
+        }
+
+        &._copy::after,
+        &._channel::after {
+            display: none;
+        }
+
         &::after {
             position: absolute;
             bottom: 0;
@@ -247,7 +256,7 @@
         }
 
         @include hover {
-            &:hover {
+            &:not(._copy):hover {
                 color: #5227ff;
 
                 &::after {

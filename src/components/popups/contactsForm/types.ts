@@ -4,7 +4,7 @@ type PropsT = {};
 
 type StateT = {
     form?: Partial<{
-        type: string;
+        types: string[];
         name: string;
         contact: string;
         about: string;
@@ -13,6 +13,6 @@ type StateT = {
     }>;
 };
 
-interface ContactFormI extends EditorI<PropsT, StateT> {}
+interface ContactsFormI extends EditorI<PropsT, StateT> {}
 
-export default ContactFormI;
+export default ContactsFormI;

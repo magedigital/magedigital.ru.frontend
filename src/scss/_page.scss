@@ -38,6 +38,22 @@
     }
 
     &__inner {
+        position: relative;
+
         // transform: translate(0, -6900px);
+    }
+
+    &__contactsFormBack {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        background: rgba(#e6f7ff, 0.8);
+        transition: $trans;
+        pointer-events: none;
+
+        &:not(._show) {
+            opacity: 0;
+        }
     }
 }

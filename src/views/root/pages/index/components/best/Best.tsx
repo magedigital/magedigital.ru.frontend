@@ -4,6 +4,7 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Media from '@/src/components/media/Media.tsx';
+import { appStore } from '@/src/store/store.tsx';
 
 import BestI from './types.ts';
 
@@ -36,11 +37,25 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
                         </AnimateText>
                     </div>
                     <div className="indexBest__button">
-                        <Media media="desktop">
-                            <Button className="_purple">Увидеть всё на закрытой презентации</Button>
+                        <Media check={(d) => d === 'desktop'}>
+                            <Button
+                                className="_purple"
+                                onClick={() => {
+                                    appStore.getState().setPopup({ name: 'contactsFormPopup' });
+                                }}
+                            >
+                                Увидеть всё на закрытой презентации
+                            </Button>
                         </Media>
-                        <Media media="mobile">
-                            <Button className="_purple _minSize">Увидеть всё на презентации</Button>
+                        <Media check={(d) => d === 'mobile'}>
+                            <Button
+                                className="_purple _minSize"
+                                onClick={() => {
+                                    appStore.getState().setPopup({ name: 'contactsFormPopup' });
+                                }}
+                            >
+                                Увидеть всё на презентации
+                            </Button>
                         </Media>
                     </div>
                 </div>

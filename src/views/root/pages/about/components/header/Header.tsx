@@ -25,13 +25,13 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
 
         return (
             <div ref={this.parent} className="aboutHeader _SECTION">
-                <Media media="desktop">
+                <Media check={(d) => d === 'desktop'}>
                     <img
                         src={require('@/src/media/about/header.jpg')}
                         className="aboutHeader__back _FULL_ABS"
                     />
                 </Media>
-                <Media media="mobile">
+                <Media check={(d) => d === 'mobile'}>
                     <img
                         src={require('@/src/media/about/img-about-mob.jpg')}
                         className="aboutHeader__back _FULL_ABS"
@@ -42,7 +42,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     data-theme
                 />
                 <div className="aboutHeader__inner _INNER">
-                    <Media media="desktop">
+                    <Media check={(d) => d === 'desktop'}>
                         <AnimateText
                             className="aboutHeader__text"
                             delay={30}
@@ -53,7 +53,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                             }
                         </AnimateText>
                     </Media>
-                    <Media media="mobile">
+                    <Media check={(d) => d === 'mobile'}>
                         <AnimateText
                             className="aboutHeader__text"
                             delay={30}

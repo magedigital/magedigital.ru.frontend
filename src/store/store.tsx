@@ -8,6 +8,7 @@ import UserT from '@/src/global/models/User';
 import { enums } from '../global/enums';
 
 import { PageNamesT } from '../services/router/static/pages';
+import { PopupsReducersT, PopupsT, createPopupsStore } from './popups';
 
 type StorePagesT = {
     isShow: boolean;
@@ -26,8 +27,8 @@ type StoreT = {
     isCheckAuth?: boolean;
     prevPageUrl?: string;
     isAcceptCookies: boolean;
-    isContactFormShow?: boolean;
-};
+    currentPopup?: keyof PopupsT;
+} & PopupsT;
 
 type ReducersT = {
     setDevice: (device: StoreT['device']) => void;
@@ -38,8 +39,7 @@ type ReducersT = {
     windowLoad: () => void;
     showCookies: () => void;
     acceptCookies: () => void;
-    showContactForm: (s: boolean) => void;
-};
+} & PopupsReducersT;
 
 const appStore = create<StoreT & ReducersT>((set) => ({
     device: 'desktop',
@@ -66,8 +66,7 @@ const appStore = create<StoreT & ReducersT>((set) => ({
         localStorage.setItem(enums.ACCEPT_COOKIES, 't');
         set({ isAcceptCookies: true });
     },
-    isContactFormShow: false,
-    showContactForm: (s) => set({ isContactFormShow: s }),
+    ...createPopupsStore(set),
 }));
 
 const WithStore = function <

@@ -15,15 +15,13 @@ class Media extends React.Component<MediaI['props'], MediaI['state']> implements
     }
 
     render() {
-        const { device, media, children } = this.props;
+        const { device, children, check } = this.props;
+        const cond = check(device);
 
-        if (
-            (device === 'desktop' && media === 'mobile') ||
-            (device === 'mobile' && media === 'desktop')
-        ) {
+        if (!cond) {
             return;
         }
-
+        
         return <>{children}</>;
     }
 }

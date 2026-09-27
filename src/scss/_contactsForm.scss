@@ -1,4 +1,4 @@
-.contactForm {
+.contactsForm {
     width: 100%;
     padding: 102rem 0 0;
 
@@ -21,7 +21,7 @@
         }
     }
 
-    .body__contactForm:not([data-show]) &__inner {
+    .body__popup:not([data-show]) &__inner {
         transform: translate(0, 100%);
     }
 

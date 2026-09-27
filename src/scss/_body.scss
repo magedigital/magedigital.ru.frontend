@@ -112,15 +112,22 @@
         }
     }
 
-    &__contactForm {
+    &__popup {
         position: absolute;
         bottom: 0;
         left: 0;
         z-index: 9;
+        width: 100%;
+        height: 100%;
         opacity: 1 !important;
 
         &:not([data-show]) {
             pointer-events: none;
+        }
+
+        &Inner {
+            width: 100%;
+            height: 100%;
         }
     }
 }

@@ -26,9 +26,8 @@ const init: I['init'] = async function (this: I) {
         }
 
         const percent =
-            (window.heightValue / 2 - bannerNode.getBoundingClientRect().y) /
-            bannerNode.offsetHeight /
-            2;
+            (window.heightValue / 1.3 - bannerNode.getBoundingClientRect().y) /
+            bannerNode.offsetHeight;
 
         bubbleNode.style.transform = `translate(0,${-200 * percent}px)`;
     };

@@ -7,6 +7,7 @@ import init from './methods/init.ts';
 import PageI from './types.ts';
 
 import renderPage from './renders/renderPage.tsx';
+import updatedStateCallback from './methods/updatedStateCallback.ts';
 
 class Page<P = {}, S = {}>
     extends Default<PageI<P, S>['props'], PageI<P, S>['state']>
@@ -24,6 +25,7 @@ class Page<P = {}, S = {}>
     name = '';
 
     init = init;
+    updatedStateCallback=updatedStateCallback
 
     renderPage = renderPage;
 }

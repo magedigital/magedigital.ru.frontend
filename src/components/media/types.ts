@@ -2,7 +2,7 @@ import { StoreT } from '@/src/store/store';
 
 type PropsT = {
     device: StoreT['device'];
-    media: StoreT['device'];
+    check: (d: StoreT['device']) => boolean;
     children: React.ReactNode;
 };
 

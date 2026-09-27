@@ -61,7 +61,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         <Button
                             className="_white"
                             onClick={() => {
-                                appStore.getState().showContactForm(true);
+                                appStore.getState().setPopup({ name: 'contactsFormPopup' });
                             }}
                         >
                             Обсудить проект
@@ -86,12 +86,12 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     </div>
                 </div>
                 <div className="indexHeader__about _COL _COL_CENTER">
-                    <Media media="desktop">
+                    <Media check={(d) => d === 'desktop'}>
                         <AnimateText className="indexHeader__aboutText" delay={50}>
                             {`Помогаем агентствам и брендам<br/>запускать digital-промо<br/>федерального масштаба с 2010`}
                         </AnimateText>
                     </Media>
-                    <Media media="mobile">
+                    <Media check={(d) => d === 'mobile'}>
                         <AnimateText className="indexHeader__aboutText" delay={50}>
                             {`Помогаем агентствам и брендам запускать digital-промо федерального масштаба с 2010`}
                         </AnimateText>

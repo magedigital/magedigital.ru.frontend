@@ -130,7 +130,7 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
                                     this.addStack(this.onContactsHover.bind(this, 'leave'));
                                 }}
                                 onClick={() => {
-                                    appStore.getState().showContactForm(true);
+                                    appStore.getState().setPopup({ name: 'contactsFormPopup' });
                                 }}
                             >
                                 <Icon name="smile" className="topBar__contactsIcon _start" />
@@ -150,7 +150,7 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
                                         isMobMenuShow && '_active',
                                     )}
                                     onClick={() => {
-                                        appStore.getState().showContactForm(true);
+                                        appStore.getState().setPopup({ name: 'contactsFormPopup' });
                                     }}
                                 >
                                     <Icon name="smile" className="topBar__contactsIcon _end" />

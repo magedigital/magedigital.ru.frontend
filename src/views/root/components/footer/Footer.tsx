@@ -44,7 +44,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 className="_dark"
                                 icon="smile"
                                 onClick={() => {
-                                    appStore.getState().showContactForm(true);
+                                    appStore.getState().setPopup({ name: 'contactsFormPopup' });
                                 }}
                             >
                                 Написать нам
@@ -60,7 +60,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                     <div className="footer__glass" />
                     <div className="footer__inner _INNER">
                         <div className="footer__blocks">
-                            <Media media="mobile">
+                            <Media check={(d) => d === 'mobile'}>
                                 <Icon name="logo" className="footer__logo" />
                             </Media>
                             <div className="footer__block">
@@ -73,7 +73,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 </nav>
                             </div>
                             <div className="footer__block">
-                                <Media media="desktop">
+                                <Media check={(d) => d === 'desktop'}>
                                     <Icon name="logo" className="footer__logo" />
                                 </Media>
                                 <div className="footer__links _COL">
@@ -101,9 +101,23 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 </a>
                             </div>
                         </div>
-                        <p className="footer__copyright">
-                            © Mage Digital 2009-{new Date().getFullYear()}
-                        </p>
+                        <div className="footer__blocks _docs">
+                            <div className="footer__block">
+                                <p className="footer__doc _copy">
+                                    © Mage Digital 2009-{new Date().getFullYear()}
+                                </p>
+                            </div>
+                            <div className="footer__block">
+                                <a
+                                    href="https://t.me/magedigital_official"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                    className="footer__doc _channel"
+                                >
+                                    Канал Mage Club
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Page from '@/src/components/page/Page.tsx';
+import { StoreT, WithStore } from '@/src/store/store.tsx';
 
 import Footer from '../../components/footer/Footer.tsx';
 import Advantages from './components/advantages/Advantages.tsx';
@@ -55,4 +56,8 @@ class About extends Page<AboutI['props'], AboutI['state']> implements AboutI {
     }
 }
 
-export default About;
+const mapStore = (s: StoreT) => ({
+    currentPopup: s.currentPopup,
+});
+
+export default WithStore(About, mapStore);

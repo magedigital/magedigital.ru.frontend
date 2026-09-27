@@ -76,7 +76,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                                 className="servicesLayers__cardService _CLICK"
                                                 key={si}
                                             >
-                                                <Media media="mobile">
+                                                <Media check={(d) => d === 'mobile'}>
                                                     <div className="servicesLayers__cardServiceArrow">
                                                         <Icon name="next-arrow" />
                                                     </div>

@@ -34,14 +34,14 @@ class Advantages
                         <AnimateText className="aboutAdvantages__title" delay={100}>
                             Наши принципы
                         </AnimateText>
-                        <Media media="desktop">
+                        <Media check={(d) => d === 'desktop'}>
                             <AnimateText className="aboutAdvantages__text" delay={30}>
                                 {
                                     'Мы не стремимся быть фабрикой production-<br/>задач. Нам важно включаться в проекты: понимать механику, видеть слабые места, держать визуальный уровень и не терять детали на стыке дизайна, разработки и поддержки.'
                                 }
                             </AnimateText>
                         </Media>
-                        <Media media="mobile">
+                        <Media check={(d) => d === 'mobile'}>
                             <AnimateText className="aboutAdvantages__text" delay={30}>
                                 {
                                     'Мы не стремимся быть фабрикой production-задач. Нам важно включаться в проекты: понимать механику, видеть слабые места, держать визуальный уровень и не терять детали на стыке дизайна, разработки и поддержки.'

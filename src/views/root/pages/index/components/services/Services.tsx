@@ -28,12 +28,12 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
             <div ref={this.parent} className="indexServices" data-theme>
                 <div className="indexServices__top _FULL_W">
                     <div className="indexServices__topBack _FULL_W _COL _COL_CENTER">
-                        <Media media="desktop">
+                        <Media check={(d) => d === 'desktop'}>
                             <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
                                 {`Объединяем все слои промо<br/>в едином digital-решении`}
                             </AnimateText>
                         </Media>
-                        <Media media="mobile">
+                        <Media check={(d) => d === 'mobile'}>
                             <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
                                 {`Объединяем все слои\xa0промо в едином digital-решении`}
                             </AnimateText>

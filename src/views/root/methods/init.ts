@@ -11,6 +11,8 @@ const init: I['init'] = async function () {
         this.resizeHandler();
     });
 
+    this.popupsHandler(true);
+
     setTimeout(() => {
         appStore.getState().showCookies();
     }, 1_000);

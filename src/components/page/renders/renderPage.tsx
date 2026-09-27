@@ -10,15 +10,16 @@ import Media from '../../media/Media.tsx';
 
 const renderPage: I['renderPage'] = function ({ render }) {
     const { isMobMenuShow } = this.state;
+    const { currentPopup } = this.props;
 
     return (
         <div ref={this.parent} className="page">
-            <Media media="desktop">
+            <Media check={(d) => d === 'desktop'}>
                 <div className="page__topBar _FULL_W _fix">
                     <TopBar mode="fix" device="desktop" />
                 </div>
             </Media>
-            <Media media="mobile">
+            <Media check={(d) => d === 'mobile'}>
                 <div className="page__topBar _FULL_W _fix">
                     <TopBar
                         mode="fix"
@@ -38,13 +39,20 @@ const renderPage: I['renderPage'] = function ({ render }) {
                 </Fade>
             </Media>
             <div className="page__scroll _FULL _NOSCROLL">
-                <Media media="desktop">
+                <Media check={(d) => d === 'desktop'}>
                     <div className="page__topBar _FULL_W">
                         <TopBar mode="default" device="desktop" />
                     </div>
                 </Media>
-
-                <div className="page__inner _FULL_W">{render()}</div>
+                <div className="page__inner _FULL_W">
+                    <div
+                        className={this.getClass(
+                            'page__contactsFormBack _FULL',
+                            currentPopup && '_show',
+                        )}
+                    />
+                    {render()}
+                </div>
             </div>
         </div>
     );

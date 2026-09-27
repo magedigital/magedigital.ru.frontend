@@ -54,6 +54,7 @@ const init: I['init'] = async function (this: I) {
     const themeBlocks = document.querySelectorAll<HTMLElement>('[data-theme]');
 
     const checkTheme = () => {
+        const { currentPopup } = this.props;
         const { isMobMenuShow } = this.state;
         let isLight = false;
         const topBarBound = fixTopBar.getBoundingClientRect();
@@ -69,7 +70,9 @@ const init: I['init'] = async function (this: I) {
             }
         });
 
-        if (isLight && !isMobMenuShow) {
+        if (currentPopup) {
+            fixTopBar.removeAttribute('data-light');
+        } else if (isLight && !isMobMenuShow) {
             fixTopBar.setAttribute('data-light', 't');
         } else {
             fixTopBar.removeAttribute('data-light');

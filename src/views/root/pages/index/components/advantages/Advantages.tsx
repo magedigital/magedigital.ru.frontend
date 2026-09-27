@@ -31,12 +31,12 @@ class Advantages
             <div ref={this.parent} className="indexAdvantages" data-theme>
                 <div className="indexAdvantages__top _FULL_W">
                     <div className="indexAdvantages__topBack _FULL_W _COL _COL_CENTER">
-                        <Media media="desktop">
+                        <Media check={(d) => d === 'desktop'}>
                             <AnimateText className="indexAdvantages__topTitle" delay={50}>
                                 {`Почему нас выбирают<br/>партнёром`}
                             </AnimateText>
                         </Media>
-                        <Media media="mobile">
+                        <Media check={(d) => d === 'mobile'}>
                             <AnimateText className="indexAdvantages__topTitle" delay={50}>
                                 {`Почему нас <br/>выбирают партнёром`}
                             </AnimateText>
