@@ -5,6 +5,7 @@ const icons = [
     'mail',
     'phone',
     'popup-close',
+    'popup-close-thin',
     'file',
     'about-stats-1',
     'about-stats-2',
@@ -20,6 +21,8 @@ const icons = [
     'services-adv-6',
     'services-adv-7',
     'services-adv-8',
+    'contacts-phone',
+    'contacts-mail',
 ] as const;
 
 export default icons;

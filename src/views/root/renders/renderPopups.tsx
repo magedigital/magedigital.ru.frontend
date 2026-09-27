@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PopupWrapper from '@/src/components/popupWrapper/PopupWrapper.tsx';
-import { popups } from '@/src/store/popups.ts';
+import { PopupDataT, popups } from '@/src/store/popups.ts';
 
 import I from '../types.ts';
 
@@ -10,7 +10,7 @@ const renderPopups: I['renderPopups'] = function () {
         <>
             {(Object.keys(popups) as (keyof typeof popups)[]).map((name) => {
                 const popup = this.props[name];
-                const popupData = popups[name];
+                const popupData = popups[name] as PopupDataT;
                 return (
                     <PopupWrapper
                         key={name}

@@ -28,6 +28,7 @@ type StoreT = {
     prevPageUrl?: string;
     isAcceptCookies: boolean;
     currentPopup?: keyof PopupsT;
+    isInputFocus?: boolean;
 } & PopupsT;
 
 type ReducersT = {
@@ -39,6 +40,7 @@ type ReducersT = {
     windowLoad: () => void;
     showCookies: () => void;
     acceptCookies: () => void;
+    setInputFocus: (s: boolean) => void;
 } & PopupsReducersT;
 
 const appStore = create<StoreT & ReducersT>((set) => ({
@@ -55,6 +57,7 @@ const appStore = create<StoreT & ReducersT>((set) => ({
     isWindowLoad: false,
     windowLoad: () => set({ isWindowLoad: true }),
     isAcceptCookies: true,
+    setInputFocus: (s) => set({ isInputFocus: s }),
     showCookies: () => {
         const isAcceptCookies = localStorage.getItem(enums.ACCEPT_COOKIES);
         if (isAcceptCookies) {

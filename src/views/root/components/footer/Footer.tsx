@@ -4,7 +4,6 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
-import Media from '@/src/components/media/Media.tsx';
 import { AppRouter } from '@/src/index.tsx';
 import { appStore } from '@/src/store/store.tsx';
 
@@ -57,25 +56,37 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                     />
                 </div>
                 <div className="footer__content _SECTION">
+                    <div className="footer__decor">
+                        <div className="footer__flash" />
+                        <div className="footer__ring" />
+                    </div>
+
                     <div className="footer__glass" />
                     <div className="footer__inner _INNER">
+                        <Icon name="logo" className="footer__logo" />
                         <div className="footer__blocks">
-                            <Media check={(d) => d === 'mobile'}>
-                                <Icon name="logo" className="footer__logo" />
-                            </Media>
                             <div className="footer__block">
                                 <nav className="footer__nav _COL">
                                     {navPages.map((p) => (
-                                        <li className="footer__navLink _CLICK" key={p}>
+                                        <li
+                                            className="footer__navLink _CLICK"
+                                            key={p}
+                                            onClick={() => {
+                                                if (p === 'contacts') {
+                                                    appStore
+                                                        .getState()
+                                                        .setPopup({ name: 'contactsFormPopup' });
+                                                } else {
+                                                    AppRouter.changePage({ pageName: p });
+                                                }
+                                            }}
+                                        >
                                             {AppRouter.pages[p].content}
                                         </li>
                                     ))}
                                 </nav>
                             </div>
-                            <div className="footer__block">
-                                <Media check={(d) => d === 'desktop'}>
-                                    <Icon name="logo" className="footer__logo" />
-                                </Media>
+                            <div className="footer__block _links">
                                 <div className="footer__links _COL">
                                     <a href="#" className="footer__link">
                                         hello@magedigital.ru
@@ -91,9 +102,14 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                         </div>
                         <div className="footer__blocks _docs">
                             <div className="footer__block">
-                                <a href="#" className="footer__doc">
+                                <span
+                                    className="footer__doc _CLICK"
+                                    onClick={() => {
+                                        appStore.getState().setPopup({ name: 'contactsPopup' });
+                                    }}
+                                >
                                     Аккредитованная ИТ-компания
-                                </a>
+                                </span>
                             </div>
                             <div className="footer__block">
                                 <a href="#" className="footer__doc">

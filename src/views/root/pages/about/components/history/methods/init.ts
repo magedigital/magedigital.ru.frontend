@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
@@ -9,21 +11,39 @@ const init: I['init'] = async function (this: I) {
 
     const setStart = () => {
         const cardsNodes = this.parent.current!.querySelectorAll<HTMLElement>(
-            '.aboutHistory__galeryCard',
+            '.aboutHistory__galeryCards',
         );
 
-        cardsNodes.forEach((card, i) => {
-            const parendBound = this.parent.current!.getBoundingClientRect();
-            const cardBound = card.getBoundingClientRect();
+        const device = appStore.getState().device;
 
-            const x =
-                parendBound.x + parendBound.width / 2 - (cardBound.left + cardBound.width / 2);
-            const y =
-                parendBound.y + parendBound.height / 2 - (cardBound.top + cardBound.height / 2);
+        cardsNodes.forEach((c) => {
+            const thisCards = c.querySelectorAll<HTMLElement>('.aboutHistory__galeryCard');
+            const cardsBound = c.getBoundingClientRect();
 
-            card.style.transform = `translate(${x}px,${y}px)`;
-            card.style.transition = '.4s ease-out';
-            card.style.transitionDelay = `${i * 60}ms`;
+            thisCards.forEach((card, i) => {
+                const parendBound = this.parent.current!.getBoundingClientRect();
+
+                const cardBound = card.getBoundingClientRect();
+                const delayIndex = Math.abs(2 - i);
+
+                const x =
+                    device === 'desktop'
+                        ? parendBound.x +
+                          parendBound.width / 2 -
+                          (cardBound.left + cardBound.width / 2)
+                        : 0;
+                const y =
+                    device === 'desktop'
+                        ? 0
+                        : cardsBound.y +
+                          cardsBound.height / 2 -
+                          (cardBound.top + cardBound.height / 2);
+
+                card.style.zIndex = `${cardsNodes.length - delayIndex}`;
+                card.style.transform = `translate(${x}px,${y}px) rotate(0deg)`;
+                card.style.transition = '.4s ease-out';
+                card.style.transitionDelay = `${delayIndex * 60 + 250}ms`;
+            });
         });
     };
 
@@ -45,14 +65,20 @@ const init: I['init'] = async function (this: I) {
 
             const cardBound = cardsNode.getBoundingClientRect();
 
-            const k = dir === 'top' ? 2 / 3 : 1;
+            let k = dir === 'top' ? 2 / 3 : 1;
+
+            if (appStore.getState().device === 'mobile') {
+                k = 1 / 4;
+            }
 
             if (cardBound.y < window.heightValue * k) {
+                cardsNode.setAttribute('data-animate', 't');
                 cardsNode
                     .querySelectorAll<HTMLElement>('.aboutHistory__galeryCard')
-                    .forEach((c) => {
+                    .forEach((c, i) => {
+                        // const thisThumbNode = c.querySelector('.aboutHistory__galeryCardThumb') as HTMLElement
                         c.setAttribute('data-animate', 't');
-                        c.style.transform = '';
+                        c.style.transform = `translate(0,0) rotate(${i % 2 === 1 ? 15 : -15}deg)`;
                     });
 
                 this.animates[dir] = true;

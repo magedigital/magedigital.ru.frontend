@@ -95,7 +95,13 @@ class TopBar extends Default<TopBarI['props'], TopBarI['state']> implements TopB
                                         key={p}
                                         data-key={p}
                                         onClick={() => {
-                                            AppRouter.changePage({ pageName: p });
+                                            if (p === 'contacts') {
+                                                appStore
+                                                    .getState()
+                                                    .setPopup({ name: 'contactsFormPopup' });
+                                            } else {
+                                                AppRouter.changePage({ pageName: p });
+                                            }
                                         }}
                                     >
                                         <div className="topBar__navLinkInner">

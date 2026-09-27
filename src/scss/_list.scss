@@ -41,7 +41,7 @@
         }
 
         &:not([data-show]) > div {
-            opacity: 0 !important;
+            opacity: 0;
         }
     }
 

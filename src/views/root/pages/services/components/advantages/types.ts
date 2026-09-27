@@ -13,7 +13,7 @@ type StateT = {
 interface AdvantagesI extends DefaultI<PropsT, StateT> {
     setType(this: AdvantagesI, d: { type: StateT['currentType']; card?: number }): Promise<void>;
 
-    renderCards(this: AdvantagesI, d: { type: StateT['currentType'] }): React.ReactNode;
+    renderCard(this: AdvantagesI, d: { index: number }): React.ReactNode;
 }
 
 export default AdvantagesI;

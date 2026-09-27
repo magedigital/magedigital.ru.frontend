@@ -14,6 +14,7 @@ type InfoPopupT<T = {}> = PopupT<
 
 type PopupsT = {
     contactsFormPopup: PopupT;
+    contactsPopup: PopupT;
 };
 
 type PopupsReducersT = {
@@ -29,9 +30,8 @@ type PopupsReducersT = {
 };
 
 const popups = {
-    contactsFormPopup: {
-        duration: 700,
-    },
+    contactsFormPopup: { duration: 700 },
+    contactsPopup: {},
 } as const;
 
 type PopupDataT = Partial<{

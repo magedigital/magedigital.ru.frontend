@@ -19,6 +19,7 @@ const drawItems: I['drawItems'] = async function ({ addesIds, deletesIds, wasEmp
         currentItem,
         itemClass,
         itemWidthOffset,
+        duration,
     } = this.props;
     const parent = this.parent.current!;
 
@@ -170,7 +171,7 @@ const drawItems: I['drawItems'] = async function ({ addesIds, deletesIds, wasEmp
 
     this.currentIndex = allItems ? allItems.indexOf(currentItem!) : undefined;
 
-    await setAsyncTimer(300);
+    await setAsyncTimer(duration ?? 300);
 
     if (relative) {
         addesIds.forEach((id) => {

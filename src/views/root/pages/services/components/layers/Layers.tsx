@@ -52,10 +52,12 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                 className="servicesLayers__card _FULL_W"
                                 style={{ background: s.fill }}
                             >
-                                <img
-                                    src={require(`@/src/media/services/${s.thumb}`)}
-                                    className="servicesLayers__cardThumb"
-                                />
+                                <div className="servicesLayers__cardPreview">
+                                    <img
+                                        src={require(`@/src/media/services/${s.thumb}`)}
+                                        className="servicesLayers__cardPreviewThumb _FULL"
+                                    />
+                                </div>
 
                                 <div className="servicesLayers__cardContent _COL">
                                     <div className="servicesLayers__cardCount">0{i + 1}</div>

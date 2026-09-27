@@ -1,3 +1,5 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const focusHandler: I['focusHandler'] = async function (isFocus) {
@@ -5,7 +7,7 @@ const focusHandler: I['focusHandler'] = async function (isFocus) {
 
     await this.asyncSetState({ isFocus });
 
-    // appStore.getState().setInputFocus(isFocus);
+    appStore.getState().setInputFocus(isFocus);
 
     if (regName) {
         const reg = this.getReg();

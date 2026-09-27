@@ -4,6 +4,7 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Media from '@/src/components/media/Media.tsx';
+import { AppRouter } from '@/src/index.tsx';
 
 import init from './methods/init.ts';
 
@@ -42,7 +43,14 @@ class Advantages
                             </AnimateText>
                         </Media>
                         <div className="indexAdvantages__topButton">
-                            <Button className="_white _whiteDark _minSize">О нас</Button>
+                            <Button
+                                className="_white _whiteDark _minSize"
+                                onClick={() => {
+                                    AppRouter.changePage({ pageName: 'about' });
+                                }}
+                            >
+                                О нас
+                            </Button>
                         </div>
                     </div>
                 </div>

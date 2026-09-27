@@ -60,6 +60,12 @@ const init: I['init'] = async function (this: I) {
         const topBarBound = fixTopBar.getBoundingClientRect();
 
         themeBlocks.forEach((b) => {
+            const media = b.getAttribute('data-media');
+
+            if (media && appStore.getState().device !== media) {
+                return;
+            }
+
             const thisBound = b.getBoundingClientRect();
 
             if (

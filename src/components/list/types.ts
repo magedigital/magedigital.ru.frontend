@@ -45,6 +45,7 @@ type PropsT = {
     resizeHeight?: boolean;
     allItems?: readonly string[];
     currentItem?: string;
+    duration?: number;
 };
 
 type StateT = {

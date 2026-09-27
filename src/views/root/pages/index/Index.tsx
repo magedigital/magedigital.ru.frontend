@@ -8,8 +8,8 @@ import Advantages from './components/advantages/Advantages.tsx';
 import Best from './components/best/Best.tsx';
 import Brands from './components/brands/Brands.tsx';
 import Header from './components/header/Header.tsx';
-import Projects from './components/projects/Projects.tsx';
 import Services from './components/services/Services.tsx';
+import ServicesInfo from './components/servicesInfo/ServicesInfo.tsx';
 import Stats from './components/stats/Stats.tsx';
 
 import IndexI from './types.ts';
@@ -43,8 +43,11 @@ class Index extends Page<IndexI['props'], IndexI['state']> implements IndexI {
                         <Services />
                     </div>
                     <div className="page__section _FULL_W">
-                        <Projects />
+                        <ServicesInfo />
                     </div>
+                    {/* <div className="page__section _FULL_W">
+                        <Projects />
+                    </div> */}
                     <div className="page__section _FULL_W">
                         <Advantages />
                     </div>

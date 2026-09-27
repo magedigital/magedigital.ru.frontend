@@ -3,6 +3,23 @@
     z-index: 1;
     overflow: hidden;
 
+    &__decor {
+        position: absolute;
+        right: 28rem;
+        bottom: -33rem;
+        z-index: 2;
+        width: 800rem;
+        height: 800rem;
+
+        @include mob {
+            top: 130rem;
+            right: -175rem;
+            bottom: auto;
+            width: 450rem;
+            height: 450rem;
+        }
+    }
+
     &__glass {
         position: absolute;
         right: 28rem;
@@ -23,6 +40,32 @@
             width: 450rem;
             height: 450rem;
         }
+    }
+
+    &__flash {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(closest-side, rgb(255 255 255 / 95%), rgb(255 255 255 / 0%));
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &__ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 76%;
+        margin: -38% 0 0 -38%;
+        border: 2rem solid rgb(255 255 255 / 95%);
+        border-radius: 50%;
+        box-shadow: 0 0 18rem rgb(143 211 255 / 80%);
+        opacity: 0;
+        pointer-events: none;
+        aspect-ratio: 1;
     }
 
     &__banner {
@@ -139,6 +182,14 @@
             width: 100%;
         }
 
+        &._links {
+            padding-top: 10rem;
+
+            @include mob {
+                padding-top: 0;
+            }
+        }
+
         & + & {
             margin-left: 90rem;
 
@@ -237,6 +288,10 @@
 
         &._channel {
             font-size: 20rem;
+        }
+
+        &._copy {
+            margin-top: 3rem;
         }
 
         &._copy::after,

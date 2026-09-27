@@ -22,7 +22,11 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
         return (
             <div ref={this.parent} className="indexBest _FULL_W">
                 <div className="indexBest__inner _COL _COL_CENTER">
-                    <div className="indexBest__banner _COL _COL_CENTER">
+                    <div
+                        className="indexBest__banner _COL _COL_CENTER"
+                        data-theme
+                        data-media="mobile"
+                    >
                         <img
                             className="indexBest__bannerBack _FULL_ABS"
                             src={require('@/src/media/index/best.jpg')}

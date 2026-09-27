@@ -1,1 +1,1 @@
-export const navPages = ['cases', 'services', 'about', 'blog', 'contacts'] as const;
+export const navPages = ['services', 'about', 'contacts'] as const;

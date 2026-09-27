@@ -77,7 +77,7 @@ const init: I['init'] = async function (this: I) {
         cards.forEach((s, i) => {
             const cardContentNode = s.querySelector<HTMLElement>('.servicesLayers__cardContent');
             const arrowNode = s.querySelector<HTMLElement>('.servicesLayers__cardServicesArrow');
-            const cardThumbNode = s.querySelector<HTMLElement>('.servicesLayers__cardThumb');
+            const cardThumbNode = s.querySelector<HTMLElement>('.servicesLayers__cardPreview');
             const cardServicesNode = s.querySelector<HTMLElement>('.servicesLayers__cardServices');
             const cardServicesNodes = cardContentNode!.querySelectorAll<HTMLElement>(
                 '.servicesLayers__cardService',
@@ -124,8 +124,9 @@ const init: I['init'] = async function (this: I) {
             let thumbProgress =
                 (-cardTop - thumbOffset) / (s.offsetHeight - thumbOffset - offset - thisMargin);
 
-            if (appStore.getState().device === 'mobile') {
-                thumbProgress = servicesArrowProgress;
+            if (appStore.getState().device === 'mobile' && 1) {
+                thumbProgress =
+                    (-cardTop - thumbOffset) / (s.offsetHeight - thumbOffset - offset - thisMargin);
             }
 
             if (thumbProgress < 0) {
@@ -163,20 +164,6 @@ const init: I['init'] = async function (this: I) {
                 colorProgress -= ni * servicesStep;
                 colorProgress /= servicesStep;
 
-                let heightProgress = colorProgress;
-
-                if (heightProgress < 0) {
-                    heightProgress = 0;
-                }
-
-                if (heightProgress > 1) {
-                    heightProgress = 1;
-                }
-
-                if (appStore.getState().device === 'desktop') {
-                    heightProgress = 0;
-                }
-
                 const color = colorProgress < 0 || colorProgress > 1 ? '#fff' : '#000';
 
                 if (appStore.getState().device === 'desktop') {
@@ -185,7 +172,7 @@ const init: I['init'] = async function (this: I) {
 
                 const optionLeft = appStore.getState().device === 'desktop' ? 0 : thisProgress * 50;
 
-                n.style.transform = `translate(${optionLeft}px,${-heightProgress * 200 * window.sizeK}px) scale(${1 + thisProgress * 0.5})`;
+                n.style.transform = `translate(${optionLeft}px,0px) scale(${1 + thisProgress * 0.5})`;
 
                 if (optionArrowNode) {
                     optionArrowNode.style.transform = `translate(${(1 - thisProgress * 2) * -30}px,-50%)`;
@@ -202,7 +189,19 @@ const init: I['init'] = async function (this: I) {
             s.style.transform = `translate(0,${-cardTop}px)`;
 
             if (appStore.getState().device === 'mobile') {
-                cardThumbNode!.style.transform = `translate(0,${-(cardServicesNode!.offsetHeight - 0 * window.sizeK) * (1 - thumbProgress)}px)`;
+                let thumbTop = s.offsetHeight * (1 - thumbProgress);
+
+                if (
+                    thumbTop >=
+                    cardServicesNode!.offsetHeight - cardThumbNode!.offsetHeight + 48 * window.sizeK
+                ) {
+                    thumbTop =
+                        cardServicesNode!.offsetHeight -
+                        cardThumbNode!.offsetHeight +
+                        48 * window.sizeK;
+                }
+
+                cardThumbNode!.style.transform = `translate(0,${-thumbTop}px)`;
             } else {
                 cardThumbNode!.style.transform = `translate(0,${(s.offsetHeight - thumbOffset) * thumbProgress}px)`;
             }

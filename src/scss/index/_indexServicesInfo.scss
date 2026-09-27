@@ -1,0 +1,22 @@
+.indexServicesInfo {
+    padding: 240rem 0;
+
+    @include mob {
+        padding: 110rem 24rem 130rem;
+    }
+
+    &__text {
+        margin-bottom: 48rem;
+        color: rgb(var(--dark-c));
+        font-weight: 300;
+        font-size: 64rem;
+        line-height: 1.3;
+        text-align: center;
+
+        @include mob {
+            margin-bottom: 36rem;
+            font-size: 31rem;
+            line-height: 1.08;
+        }
+    }
+}

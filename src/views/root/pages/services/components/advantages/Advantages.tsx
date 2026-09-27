@@ -3,7 +3,6 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
-import List from '@/src/components/list/List.tsx';
 
 import init from './methods/init.ts';
 import setType from './methods/setType.ts';
@@ -11,7 +10,7 @@ import setType from './methods/setType.ts';
 import { servicesAdvantagesTypes } from './static/types.ts';
 import AdvantagesI from './types.ts';
 
-import renderCards from './renders/renderCards.tsx';
+import renderCard from './renders/renderCard.tsx';
 
 class Advantages
     extends Default<AdvantagesI['props'], AdvantagesI['state']>
@@ -32,10 +31,10 @@ class Advantages
 
     setType = setType;
 
-    renderCards = renderCards;
+    renderCard = renderCard;
 
     render() {
-        const { currentType, hoverCard, updatedKey } = this.state;
+        const { currentType } = this.state;
 
         return (
             <div ref={this.parent} className="servicesAdvantages _SECTION">
@@ -85,20 +84,13 @@ class Advantages
                             агентствам и брендам.
                         </AnimateText>
                     </div>
-                    <List
-                        renderKey={[currentType, hoverCard, updatedKey].join('')}
-                        updateKey={hoverCard?.toString()}
-                        items={[{ _id: currentType }]}
-                        parentClass="servicesAdvantages__cards"
-                        itemClass="servicesAdvantages__cardsBlock _FULL_W"
-                        itemStyleProps={[]}
-                        parentStyleProps={['width']}
-                        parentRealStyleProps={['width']}
-                        resizeWidth={true}
-                        render={({ item }) => ({
-                            item: this.renderCards({ type: item._id }),
-                        })}
-                    />
+                    <div className="servicesAdvantages__cards">
+                        {[0, 1, 2, 3].map((k) => (
+                            <div className="servicesAdvantages__cardsItem" key={k}>
+                                {this.renderCard({ index: k })}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         );

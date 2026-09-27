@@ -2,6 +2,7 @@ import React from 'react';
 
 import Default from '@/src/components/default/Default.tsx';
 import { AppRouter } from '@/src/index.tsx';
+import { appStore } from '@/src/store/store.tsx';
 import { navPages } from '@/src/views/root/components/footer/static/pages.ts';
 
 import MobMenuI from './types.ts';
@@ -44,9 +45,15 @@ class MobMenu extends Default<MobMenuI['props'], MobMenuI['state']> implements M
                         <a href="#" className="mobMenu__link">
                             +7 499 638-24-69
                         </a>
-                        <a href="#" className="mobMenu__link _doc">
+                        <span
+                            className="mobMenu__link _doc _CLICK"
+                            onClick={() => {
+                                appStore.getState().setPopup({ name: 'contactsPopup' });
+                                onShowState(false);
+                            }}
+                        >
                             Аккредитованная ИТ-компания
-                        </a>
+                        </span>
                         <p className="mobMenu__link _copy">
                             © Mage Digital 2009-{new Date().getFullYear()}
                         </p>

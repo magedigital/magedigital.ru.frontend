@@ -4,6 +4,7 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Media from '@/src/components/media/Media.tsx';
+import { AppRouter } from '@/src/index.tsx';
 import { appStore } from '@/src/store/store.tsx';
 
 import init from './methods/init.ts';
@@ -97,7 +98,14 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         </AnimateText>
                     </Media>
                     <div className="indexHeader__aboutButton">
-                        <Button className="_dark _minSize">О нас</Button>
+                        <Button
+                            className="_dark _minSize"
+                            onClick={() => {
+                                AppRouter.changePage({ pageName: 'about' });
+                            }}
+                        >
+                            О нас
+                        </Button>
                     </div>
                 </div>
             </div>

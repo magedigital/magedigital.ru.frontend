@@ -54,7 +54,7 @@
             left: 0;
             width: 30rem;
             height: 56rem;
-            transition: 0.4s cubic-bezier(0.91, -0.72, 0.12, 1.74);
+            transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
 
             @include mob {
@@ -77,7 +77,7 @@
 
     &__button {
         transform-origin: left center;
-        transition: $trans;
+        transition: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
 
         &._current {
@@ -145,58 +145,55 @@
             width: 100%;
         }
 
-        &Block {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+        &Item {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            background: #dcf0ff;
+            border-radius: 16rem;
 
-            &[data-id="agency"] {
-                transform-origin: right top;
-            }
-
-            &[data-id="brands"] {
-                transform-origin: left top;
+            & + & {
+                margin-top: 4rem;
             }
         }
     }
 
-    & &__cardsInner {
-        transition: 0.5s cubic-bezier(0.91, -0.72, 0.12, 1.74);
-    }
+    &__cardBlock {
+        transform: translate(0, 100%);
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition-duration: 750ms !important;
+        will-change: transform;
 
-    &__cardsBlock[data-id="agency"] &__card._current {
-        background: #36c0f7;
-    }
+        &[data-show] {
+            transform: translate(0, 0);
+        }
 
-    &__cardsBlock[data-id="brands"] &__card._current {
-        background: #f46eb8;
-    }
-
-    &__cardsBlock[data-id="agency"]:not([data-show]) &__cardsInner {
-        transform: translate(-180rem, -20rem) rotate(5deg);
-    }
-
-    &__cardsBlock[data-id="brands"]:not([data-show]) &__cardsInner {
-        transform: translate(180rem, -20rem) rotate(-5deg);
+        &[data-hide] {
+            transform: translate(0, -100%) !important;
+            transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important;
+            transition-duration: 300ms !important;
+        }
     }
 
     &__card {
         position: relative;
-        z-index: 1;
         width: 100%;
         padding: 28rem;
-        overflow: hidden;
         background: #dcf0ff;
         border-radius: 16rem;
+        opacity: 1 !important;
         transition: $trans;
 
         @include mob {
             padding: 26rem 24rem 32rem;
         }
 
-        & + & {
-            margin-top: 4rem;
+        &._agency._current {
+            background: #36c0f7;
+        }
+
+        &._brands._current {
+            background: #f46eb8;
         }
 
         &Icon {
