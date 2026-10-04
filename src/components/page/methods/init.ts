@@ -51,9 +51,8 @@ const init: I['init'] = async function (this: I) {
         }
     };
 
-    const themeBlocks = document.querySelectorAll<HTMLElement>('[data-theme]');
-
     const checkTheme = () => {
+        const themeBlocks = document.querySelectorAll<HTMLElement>('[data-theme]');
         const { currentPopup } = this.props;
         const { isMobMenuShow } = this.state;
         let isLight = false;
@@ -170,6 +169,10 @@ const init: I['init'] = async function (this: I) {
     };
 
     this.animateId = requestAnimationFrame(scroll);
+
+    if (this.onPageInit) {
+        this.onPageInit();
+    }
 };
 
 export default init;

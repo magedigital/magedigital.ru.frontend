@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.afac60b6.css",
-    "main.js": "/static/js/main.a7d4ff77.js",
+    "main.css": "/static/css/main.532a9b2f.css",
+    "main.js": "/static/js/main.0ca8efd3.js",
     "static/js/311.1d98d51b.chunk.js": "/static/js/311.1d98d51b.chunk.js",
     "static/js/879.e028a792.chunk.js": "/static/js/879.e028a792.chunk.js",
     "static/js/296.09395460.chunk.js": "/static/js/296.09395460.chunk.js",
@@ -28,17 +28,34 @@
     "static/js/820.184bae0f.chunk.js": "/static/js/820.184bae0f.chunk.js",
     "static/js/955.ca8a1196.chunk.js": "/static/js/955.ca8a1196.chunk.js",
     "static/js/894.b339fe56.chunk.js": "/static/js/894.b339fe56.chunk.js",
+    "static/media/main-reel.mp4": "/static/media/main-reel.87e575ac581628c1a05a.mp4",
+    "static/media/hidden-reel.mp4": "/static/media/hidden-reel.83f4c51ed3c76bb96e1b.mp4",
     "static/media/mage-back-glass-logo.mp4": "/static/media/mage-back-glass-logo.ff61ca7664d062bb025d.mp4",
-    "static/media/design.jpg": "/static/media/design.f57935f87bfda9a163c4.jpg",
-    "static/media/mehanics.jpg": "/static/media/mehanics.7fc67d987ec0bc06d0a6.jpg",
+    "static/media/shot-design.mp4": "/static/media/shot-design.b114ad4eb354efcb5f33.mp4",
+    "static/media/shot-games.mp4": "/static/media/shot-games.7280b235ddefe92b53ca.mp4",
+    "static/media/shot-platform.mp4": "/static/media/shot-platform.3b3bd3b67b5b8f5b03cd.mp4",
     "static/media/Inter-Regular.ttf": "/static/media/Inter-Regular.991468dd4e43f260e6a4.ttf",
-    "static/media/platform.jpg": "/static/media/platform.49e5df0b74990b25c0c3.jpg",
+    "static/media/parson-4.mp4": "/static/media/parson-4.6892e86c5ce3786e7cb6.mp4",
     "static/media/footer-bubble.png": "/static/media/footer-bubble.31a35dc7f62a1d19691b.png",
+    "static/media/parson-5.mp4": "/static/media/parson-5.1739535ac88ef015d329.mp4",
     "static/media/footer-glass.png": "/static/media/footer-glass.f5221e348ef09183e95d.png",
     "static/media/arm.png": "/static/media/arm.069611cea1ed712fa51b.png",
+    "static/media/parson-6.mp4": "/static/media/parson-6.2c23d4edf1a0ebeed76e.mp4",
     "static/media/layer-2.png": "/static/media/layer-2.86e646078385af8a1f44.png",
+    "static/media/parson-2.mp4": "/static/media/parson-2.d5ec9cbfba1bb55ba111.mp4",
+    "static/media/project-6.jpg": "/static/media/project-6.b9ffcdfdbe63a0bda164.jpg",
     "static/media/layer-3.png": "/static/media/layer-3.bf60966a8b007682ec1b.png",
+    "static/media/project-4.jpg": "/static/media/project-4.cb05b2698caab32223d3.jpg",
+    "static/media/parson-1.mp4": "/static/media/parson-1.157b5dfe2bb4ac7c3537.mp4",
+    "static/media/parson-3.mp4": "/static/media/parson-3.aee813f7cb605cb8a6be.mp4",
+    "static/media/project-1.jpg": "/static/media/project-1.e63fa05bbc782417ef39.jpg",
     "static/media/layer-1.png": "/static/media/layer-1.3d3e95334f801136b518.png",
+    "static/media/preview-games.jpg": "/static/media/preview-games.6b4424295ca0df4caea5.jpg",
+    "static/media/project-5.jpg": "/static/media/project-5.6247d7022fe9c522e93e.jpg",
+    "static/media/project-3.jpg": "/static/media/project-3.2dbc8d84472fb9bef4af.jpg",
+    "static/media/preview-platform.jpg": "/static/media/preview-platform.319a8c9b91f739d189dd.jpg",
+    "static/media/preview-design.jpg": "/static/media/preview-design.2e967a294c4095627a9f.jpg",
+    "static/media/project-2.jpg": "/static/media/project-2.1c2a1c72e32e8dd52ba0.jpg",
     "static/media/service-3.jpg": "/static/media/service-3.44b6b811bc8eff3be155.jpg",
     "static/media/Onest-Medium.ttf": "/static/media/Onest-Medium.fbd1029ceefc29dbe253.ttf",
     "static/media/Onest-ExtraLight.ttf": "/static/media/Onest-ExtraLight.0d3c681a7484be51a8ee.ttf",
@@ -94,7 +111,7 @@
     "static/media/magnit.svg": "/static/media/magnit.6c09cdfa068fc0cf7d44.svg"
   },
   "entrypoints": [
-    "static/css/main.afac60b6.css",
-    "static/js/main.a7d4ff77.js"
+    "static/css/main.532a9b2f.css",
+    "static/js/main.0ca8efd3.js"
   ]
 }

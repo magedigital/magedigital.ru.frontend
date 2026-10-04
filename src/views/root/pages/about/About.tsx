@@ -11,6 +11,8 @@ import Info from './components/info/Info.tsx';
 import Stats from './components/stats/Stats.tsx';
 import Team from './components/team/Team.tsx';
 
+import onPageInit from './methods/onPageInit.ts';
+
 import AboutI from './types.ts';
 
 class About extends Page<AboutI['props'], AboutI['state']> implements AboutI {
@@ -25,39 +27,45 @@ class About extends Page<AboutI['props'], AboutI['state']> implements AboutI {
 
     name = 'about';
 
+    onPageInit = onPageInit;
+
     render() {
+        const { contents } = this.props;
+
         return this.renderPage({
-            render: () => (
-                <>
-                    <div className="page__section _FULL_W">
-                        <Header />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Stats />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <History />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Team />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Info />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Advantages />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Footer />
-                    </div>
-                </>
-            ),
+            render: () =>
+                contents.about && (
+                    <>
+                        <div className="page__section _FULL_W">
+                            <Header content={contents.about} />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Stats />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <History />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Team />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Info />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Advantages />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Footer />
+                        </div>
+                    </>
+                ),
         });
     }
 }
 
 const mapStore = (s: StoreT) => ({
     currentPopup: s.currentPopup,
+    contents: s.contents,
 });
 
 export default WithStore(About, mapStore);

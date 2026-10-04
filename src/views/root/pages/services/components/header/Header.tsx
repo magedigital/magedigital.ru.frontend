@@ -22,6 +22,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
 
     render() {
         const { titleIsAnimated, textIsAnimated, decorIsAnimated } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="servicesHeader _SECTION">
@@ -45,28 +46,14 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     data-theme
                 />
                 <div className="servicesHeader__inner _INNER">
-                    <Media check={(d) => d === 'desktop'}>
-                        <AnimateText
-                            className="servicesHeader__text"
-                            delay={30}
-                            disabled={!titleIsAnimated}
-                        >
-                            {
-                                'Разрабатываем всю digital-часть активаций: от механики и визуала до платформы, интерактива, интеграций и поддержки.'
-                            }
-                        </AnimateText>
-                    </Media>
-                    <Media check={(d) => d === 'mobile'}>
-                        <AnimateText
-                            className="servicesHeader__text"
-                            delay={30}
-                            disabled={!titleIsAnimated}
-                        >
-                            {
-                                'Разрабатываем всю digital-часть активаций: от механики и визуала до платформы, интерактива, интеграций и поддержки.'
-                            }
-                        </AnimateText>
-                    </Media>
+                    <AnimateText
+                        className="servicesHeader__text"
+                        delay={30}
+                        disabled={!titleIsAnimated}
+                    >
+                        {content['sections.hero']?.subtitle}
+                    </AnimateText>
+
                     <AnimateText
                         className="servicesHeader__title"
                         delay={100}

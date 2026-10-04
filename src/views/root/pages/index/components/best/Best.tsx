@@ -3,6 +3,7 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Lazy from '@/src/components/lazy/Lazy.tsx';
 import Media from '@/src/components/media/Media.tsx';
 import { appStore } from '@/src/store/store.tsx';
 
@@ -27,9 +28,22 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
                         data-theme
                         data-media="mobile"
                     >
-                        <img
+                        <Lazy
+                            getScrollNode={() =>
+                                this.parent.current?.closest<HTMLElement>('.page__scroll')
+                            }
                             className="indexBest__bannerBack _FULL_ABS"
-                            src={require('@/src/media/index/best.jpg')}
+                            render={() => (
+                                <video
+                                    className="_FULL"
+                                    src={require('@/src/media/index/hidden-reel.mp4')}
+                                    loop
+                                    muted
+                                    playsInline
+                                    autoPlay
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            )}
                         />
                         <AnimateText className="indexBest__bannerTitle" delay={50} tag="h3">
                             Наши лучшие кейсы скрыты NDA

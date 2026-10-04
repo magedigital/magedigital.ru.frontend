@@ -135,6 +135,10 @@
                     border-radius: 28rem;
                 }
             }
+
+            & video {
+                object-fit: cover;
+            }
         }
 
         &:not(._animate) &FrameInner {
@@ -151,6 +155,7 @@
         }
 
         &Text {
+            max-width: 70%;
             margin-bottom: 48rem;
             color: rgb(var(--dark-c));
             font-weight: 300;
@@ -159,6 +164,7 @@
             text-align: center;
 
             @include mob {
+                max-width: 100%;
                 margin-bottom: 36rem;
                 font-size: 31rem;
                 line-height: 1.08;

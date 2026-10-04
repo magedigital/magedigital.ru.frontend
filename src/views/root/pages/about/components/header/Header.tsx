@@ -22,6 +22,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
 
     render() {
         const { titleIsAnimated, textIsAnimated, decorIsAnimated } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="aboutHeader _SECTION">
@@ -42,28 +43,13 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                     data-theme
                 />
                 <div className="aboutHeader__inner _INNER">
-                    <Media check={(d) => d === 'desktop'}>
-                        <AnimateText
-                            className="aboutHeader__text"
-                            delay={30}
-                            disabled={!titleIsAnimated}
-                        >
-                            {
-                                'Разрабатываем всю digital-часть активаций: <br/>от механики и визуала до платформы, интерактива, <br/>интеграций и поддержки.'
-                            }
-                        </AnimateText>
-                    </Media>
-                    <Media check={(d) => d === 'mobile'}>
-                        <AnimateText
-                            className="aboutHeader__text"
-                            delay={30}
-                            disabled={!titleIsAnimated}
-                        >
-                            {
-                                'Разрабатываем всю digital-часть активаций: от механики и визуала до платформы, интерактива, интеграций и поддержки.'
-                            }
-                        </AnimateText>
-                    </Media>
+                    <AnimateText
+                        className="aboutHeader__text"
+                        delay={30}
+                        disabled={!titleIsAnimated}
+                    >
+                        {content['sections.hero']?.subtitle}
+                    </AnimateText>
                     <AnimateText
                         className="aboutHeader__title"
                         delay={100}

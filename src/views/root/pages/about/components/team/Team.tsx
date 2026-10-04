@@ -2,6 +2,7 @@ import React from 'react';
 
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Lazy from '@/src/components/lazy/Lazy.tsx';
 
 import init from './methods/init.ts';
 
@@ -78,12 +79,22 @@ class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
                                     {p.description}&nbsp;{p.description}&nbsp;
                                 </div>
                             </div>
-                            <div className="aboutTeam__cardPreview">
-                                <img
-                                    className="_FULL"
-                                    src={require(`@/src/media/about/${p.thumb}`)}
-                                />
-                            </div>
+                            <Lazy
+                                getScrollNode={() =>
+                                    this.parent.current?.closest<HTMLElement>('.page__scroll')
+                                }
+                                className="aboutTeam__cardPreview _FULL"
+                                render={() => (
+                                    <video
+                                        className="_FULL"
+                                        src={require(`@/src/media/about/${p.preview}`)}
+                                        loop
+                                        muted
+                                        autoPlay
+                                        playsInline
+                                    />
+                                )}
+                            />
                         </div>
                     ))}
                 </div>

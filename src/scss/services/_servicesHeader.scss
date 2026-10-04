@@ -27,6 +27,7 @@
         line-height: 1.2;
 
         @include mob {
+            max-width: 100%;
             margin-bottom: 12rem;
             font-size: 21rem;
             line-height: 1.12;

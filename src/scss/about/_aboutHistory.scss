@@ -40,11 +40,14 @@
 
             &Thumb {
                 display: block;
-                border-radius: 20rem;
                 transition: $trans;
 
-                @include mob {
-                    border-radius: 15rem;
+                & img {
+                    border-radius: 20rem;
+
+                    @include mob {
+                        border-radius: 15rem;
+                    }
                 }
             }
         }

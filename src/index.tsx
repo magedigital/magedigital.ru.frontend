@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { strapi } from '@strapi/client';
+
 import Router from './services/router/Router.ts';
 import { StoreT, appStore } from './store/store.tsx';
 import Root from './views/root/Root.tsx';
@@ -9,6 +11,11 @@ const resultPages = {} as StoreT['pages'];
 
 const AppRouter = new Router();
 const path = AppRouter.getStartUrl(window.location.pathname.slice(1));
+
+export const strapiClient = strapi({
+    baseURL: 'https://stage.magedigital.srv08.ru/api',
+    auth: process.env.REACT_APP_STRAPI_TOKEN,
+});
 
 (Object.keys(AppRouter.pages) as (keyof typeof AppRouter.pages)[]).forEach((name) => {
     resultPages[name] = {

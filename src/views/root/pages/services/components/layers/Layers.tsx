@@ -3,6 +3,7 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
+import Lazy from '@/src/components/lazy/Lazy.tsx';
 import Media from '@/src/components/media/Media.tsx';
 
 import init from './methods/init.ts';
@@ -53,9 +54,24 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                 style={{ background: s.fill }}
                             >
                                 <div className="servicesLayers__cardPreview">
-                                    <img
-                                        src={require(`@/src/media/services/${s.thumb}`)}
+                                    <Lazy
+                                        getScrollNode={() =>
+                                            this.parent.current?.closest<HTMLElement>(
+                                                '.page__scroll',
+                                            )
+                                        }
                                         className="servicesLayers__cardPreviewThumb _FULL"
+                                        render={() => (
+                                            <video
+                                                className="_FULL"
+                                                src={require(`@/src/media/${s.video}`)}
+                                                playsInline
+                                                muted
+                                                autoPlay
+                                                loop
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        )}
                                     />
                                 </div>
 

@@ -3,6 +3,7 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Lazy from '@/src/components/lazy/Lazy.tsx';
 import Media from '@/src/components/media/Media.tsx';
 
 import init from './methods/init.ts';
@@ -68,9 +69,21 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                         </Button>
                                     </div>
                                 </div>
-                                <img
+                                <Lazy
+                                    getScrollNode={() =>
+                                        this.parent.current?.closest<HTMLElement>('.page__scroll')
+                                    }
                                     className="indexServices__serviceThumb"
-                                    src={require(`@/src/media/index/services/${s.thumb}`)}
+                                    render={() => (
+                                        <video
+                                            className="_FULL"
+                                            src={require(`@/src/media/${s.video}`)}
+                                            playsInline
+                                            muted
+                                            autoPlay
+                                            loop
+                                        />
+                                    )}
                                 />
                             </div>
                         </div>

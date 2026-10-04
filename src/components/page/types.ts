@@ -15,6 +15,8 @@ interface PageI<P = {}, S = {}> extends DefaultI<PropsT & P, StateT & S> {
     animateId?: number;
     currentPopup?: string;
 
+    onPageInit?: () => Promise<void>;
+
     renderPage(
         this: PageI,
         d: {

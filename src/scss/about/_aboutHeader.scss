@@ -20,12 +20,14 @@
     }
 
     &__text {
+        max-width: 540rem;
         margin-bottom: 32rem;
         color: rgb(var(--dark-c));
         font-size: 20rem;
         line-height: 1.2;
 
         @include mob {
+            max-width: 100%;
             margin-bottom: 12rem;
             font-size: 21rem;
             line-height: 1.12;
@@ -51,7 +53,7 @@
         z-index: -1;
         width: calc(100% - 92rem);
         height: 200rem;
-        background: #5227FF;
+        background: #5227ff;
         border-radius: 36rem;
         transform: translate(-50%, 0);
         transition: $trans;

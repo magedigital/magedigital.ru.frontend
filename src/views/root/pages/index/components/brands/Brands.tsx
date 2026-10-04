@@ -27,32 +27,27 @@ class Brands extends Default<BrandsI['props'], BrandsI['state']> implements Bran
                     {brandsLines.map((line, i) => (
                         <div className="indexBrands__line _ROW" key={i}>
                             <div className="indexBrands__lineMove _ROW">
-                                <div className="indexBrands__lineItems _ROW">
-                                    {line.map((l) => (
-                                        <div className="indexBrands__lineItem" key={l}>
-                                            <div className="indexBrands__lineBrand">
-                                                <img
-                                                    src={require(
-                                                        `@/src/media/index/brands/${l}.svg`,
-                                                    )}
-                                                />
+                                {['default', 'fake'].map((k) => (
+                                    <div
+                                        className={this.getClass(
+                                            'indexBrands__lineItems _ROW',
+                                            this.setClass(k),
+                                        )}
+                                        key={k}
+                                    >
+                                        {line.map((l) => (
+                                            <div className="indexBrands__lineItem" key={l}>
+                                                <div className="indexBrands__lineBrand">
+                                                    <img
+                                                        src={require(
+                                                            `@/src/media/index/brands/${l}.svg`,
+                                                        )}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="indexBrands__lineItems _fake _ROW">
-                                    {line.map((l) => (
-                                        <div className="indexBrands__lineItem" key={l}>
-                                            <div className="indexBrands__lineBrand">
-                                                <img
-                                                    src={require(
-                                                        `@/src/media/index/brands/${l}.svg`,
-                                                    )}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     ))}

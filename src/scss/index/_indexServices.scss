@@ -135,8 +135,6 @@
             z-index: 2;
             width: 702rem;
             height: 434rem;
-            object-fit: cover;
-            border-radius: 16rem 16rem 0 0;
 
             @include mob {
                 position: absolute;
@@ -146,7 +144,15 @@
                 width: calc(100% - 32rem);
                 height: 286rem;
                 margin: 58rem 0 0;
-                border-radius: 18rem;
+            }
+
+            & video {
+                object-fit: cover;
+                border-radius: 16rem 16rem 0 0;
+
+                @include mob {
+                    border-radius: 18rem;
+                }
             }
         }
     }

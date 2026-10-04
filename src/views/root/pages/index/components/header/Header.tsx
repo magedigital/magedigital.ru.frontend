@@ -3,7 +3,6 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
-import Media from '@/src/components/media/Media.tsx';
 import { AppRouter } from '@/src/index.tsx';
 import { appStore } from '@/src/store/store.tsx';
 
@@ -25,6 +24,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
 
     render() {
         const { titleIsAnimated, textIsAnimated, buttonIsAnimated, frameIsAnimated } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="indexHeader _SECTION">
@@ -51,7 +51,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         delay={30}
                         disabled={!textIsAnimated}
                     >
-                        Превращаем идеи в масштабные диджитал-активации
+                        {content['sections.hero']?.title}
                     </AnimateText>
                     <div
                         className={this.getClass(
@@ -77,26 +77,21 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         <div className="indexHeader__boxColor"></div>
                         <div className="indexHeader__boxFrame">
                             <div className="indexHeader__boxFrameInner _FULL">
-                                <img
-                                    src={require('@/src/media/index/header.jpg')}
+                                <video
+                                    src={require('@/src/media/index/main-reel.mp4')}
                                     className="_FULL"
-                                    style={{ objectFit: 'cover' }}
+                                    loop
+                                    muted
+                                    playsInline
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="indexHeader__about _COL _COL_CENTER">
-                    <Media check={(d) => d === 'desktop'}>
-                        <AnimateText className="indexHeader__aboutText" delay={50}>
-                            {`Помогаем агентствам и брендам<br/>запускать digital-промо<br/>федерального масштаба с 2010`}
-                        </AnimateText>
-                    </Media>
-                    <Media check={(d) => d === 'mobile'}>
-                        <AnimateText className="indexHeader__aboutText" delay={50}>
-                            {`Помогаем агентствам и брендам запускать digital-промо федерального масштаба с 2010`}
-                        </AnimateText>
-                    </Media>
+                    <AnimateText className="indexHeader__aboutText" delay={50}>
+                        {content['sections.hero']?.subtitle}
+                    </AnimateText>
                     <div className="indexHeader__aboutButton">
                         <Button
                             className="_dark _minSize"

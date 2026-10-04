@@ -2,6 +2,7 @@ import React from 'react';
 
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Default from '@/src/components/default/Default.tsx';
+import Lazy from '@/src/components/lazy/Lazy.tsx';
 
 import init from './methods/init.ts';
 
@@ -31,9 +32,20 @@ class History extends Default<HistoryI['props'], HistoryI['state']> implements H
                         <div className="aboutHistory__galeryCards _top">
                             {historyTopCards.map((c, i) => (
                                 <div className="aboutHistory__galeryCard" key={i}>
-                                    <img
+                                    <Lazy
+                                        getScrollNode={() =>
+                                            this.parent.current?.closest<HTMLElement>(
+                                                '.page__scroll',
+                                            )
+                                        }
                                         className="aboutHistory__galeryCardThumb _FULL"
-                                        src={require(`@/src/media/about/${c}`)}
+                                        render={() => (
+                                            <img
+                                                className="_FULL"
+                                                src={require(`@/src/media/about/${c}`)}
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        )}
                                     />
                                 </div>
                             ))}
@@ -57,9 +69,20 @@ class History extends Default<HistoryI['props'], HistoryI['state']> implements H
                         <div className="aboutHistory__galeryCards _bottom">
                             {historyBottomCards.map((c, i) => (
                                 <div className="aboutHistory__galeryCard" key={i}>
-                                    <img
+                                    <Lazy
+                                        getScrollNode={() =>
+                                            this.parent.current?.closest<HTMLElement>(
+                                                '.page__scroll',
+                                            )
+                                        }
                                         className="aboutHistory__galeryCardThumb _FULL"
-                                        src={require(`@/src/media/about/${c}`)}
+                                        render={() => (
+                                            <img
+                                                className="_FULL"
+                                                src={require(`@/src/media/about/${c}`)}
+                                                style={{ objectFit: 'cover' }}
+                                            />
+                                        )}
                                     />
                                 </div>
                             ))}

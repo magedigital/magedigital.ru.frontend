@@ -12,6 +12,8 @@ import Services from './components/services/Services.tsx';
 import ServicesInfo from './components/servicesInfo/ServicesInfo.tsx';
 import Stats from './components/stats/Stats.tsx';
 
+import onPageInit from './methods/onPageInit.ts';
+
 import IndexI from './types.ts';
 
 class Index extends Page<IndexI['props'], IndexI['state']> implements IndexI {
@@ -26,45 +28,51 @@ class Index extends Page<IndexI['props'], IndexI['state']> implements IndexI {
 
     name = 'index';
 
+    onPageInit = onPageInit;
+
     render() {
+        const { contents } = this.props;
+
         return this.renderPage({
-            render: () => (
-                <>
-                    <div className="page__section _FULL_W">
-                        <Header />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Brands />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Stats />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Services />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <ServicesInfo />
-                    </div>
-                    {/* <div className="page__section _FULL_W">
+            render: () =>
+                contents.home && (
+                    <>
+                        <div className="page__section _FULL_W">
+                            <Header content={contents.home} />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Brands />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Stats />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Services />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <ServicesInfo />
+                        </div>
+                        {/* <div className="page__section _FULL_W">
                         <Projects />
                     </div> */}
-                    <div className="page__section _FULL_W">
-                        <Advantages />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Best />
-                    </div>
-                    <div className="page__section _FULL_W">
-                        <Footer />
-                    </div>
-                </>
-            ),
+                        <div className="page__section _FULL_W">
+                            <Advantages />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Best />
+                        </div>
+                        <div className="page__section _FULL_W">
+                            <Footer />
+                        </div>
+                    </>
+                ),
         });
     }
 }
 
 const mapStore = (s: StoreT) => ({
     currentPopup: s.currentPopup,
+    contents: s.contents,
 });
 
 export default WithStore(Index, mapStore);

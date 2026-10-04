@@ -2,23 +2,6 @@ import { appStore } from '@/src/store/store.tsx';
 
 import I from '../types.ts';
 
-// function cubicBezier(t: number, x1: number, y1: number, x2: number, y2: number): [number, number] {
-//     t = Math.max(0, Math.min(1, t));
-//     const x = cubicInterpolate(t, 0, x1, x2, 1);
-//     const y = cubicInterpolate(t, 0, y1, y2, 1);
-//     return [x, y];
-// }
-
-// function cubicInterpolate(t: number, p0: number, p1: number, p2: number, p3: number) {
-//     const t2 = t * t;
-//     const t3 = t2 * t;
-//     const oneMinusT = 1 - t;
-//     const oneMinusT2 = oneMinusT * oneMinusT;
-//     const oneMinusT3 = oneMinusT2 * oneMinusT;
-
-//     return p0 * oneMinusT3 + p1 * 3 * t * oneMinusT2 + p2 * 3 * t2 * oneMinusT + p3 * t3;
-// }
-
 const init: I['init'] = async function (this: I) {
     const pageNode = this.parent.current!.closest<HTMLElement>('.page__scroll');
     const boxNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__box');
@@ -101,7 +84,18 @@ const init: I['init'] = async function (this: I) {
                 await this.asyncSetState({ buttonIsAnimated: true });
                 this.timers.animate = setTimeout(async () => {
                     await this.asyncSetState({ frameIsAnimated: true });
+
                     onScroll();
+
+                    this.timers.video = setTimeout(() => {
+                        const videoNode = this.parent
+                            .current!.querySelector('.indexHeader__boxFrameInner')
+                            ?.querySelector<HTMLVideoElement>('video');
+
+                        if (videoNode) {
+                            videoNode.play();
+                        }
+                    }, 300);
                 }, 50);
             }, 50);
         }, 50);

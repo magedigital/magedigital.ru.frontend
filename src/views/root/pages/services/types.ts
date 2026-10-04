@@ -1,6 +1,16 @@
 import PageI from '@/src/components/page/types';
+import { StoreT } from '@/src/store/store';
 
-type PropsT = {};
+export type ServicesPageContentT = Partial<{
+    'sections.hero': Partial<{
+        title: string;
+        subtitle: string;
+    }>;
+}>;
+
+type PropsT = {
+    contents: StoreT['contents'];
+};
 
 type StateT = {};
 

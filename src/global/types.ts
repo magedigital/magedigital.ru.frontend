@@ -27,8 +27,7 @@ declare global {
 
     namespace NodeJS {
         interface ProcessEnv {
-            REACT_APP_SEO: string;
-            REACT_APP_API: string;
+            REACT_APP_STRAPI_TOKEN: string;
         }
     }
 

@@ -8,12 +8,21 @@ import UserT from '@/src/global/models/User';
 import { enums } from '../global/enums';
 
 import { PageNamesT } from '../services/router/static/pages';
+import { AboutPageContentT } from '../views/root/pages/about/types';
+import { HomePageContentT } from '../views/root/pages/index/types';
+import { ServicesPageContentT } from '../views/root/pages/services/types';
 import { PopupsReducersT, PopupsT, createPopupsStore } from './popups';
 
 type StorePagesT = {
     isShow: boolean;
     id?: string;
     data?: Record<string, any>;
+};
+
+type ContentsT = {
+    home: HomePageContentT;
+    services: ServicesPageContentT;
+    about: AboutPageContentT;
 };
 
 type StoreT = {
@@ -29,6 +38,7 @@ type StoreT = {
     isAcceptCookies: boolean;
     currentPopup?: keyof PopupsT;
     isInputFocus?: boolean;
+    contents: Partial<ContentsT>;
 } & PopupsT;
 
 type ReducersT = {
@@ -41,6 +51,7 @@ type ReducersT = {
     showCookies: () => void;
     acceptCookies: () => void;
     setInputFocus: (s: boolean) => void;
+    setContent: <N extends keyof ContentsT>(name: N, data: ContentsT[N]) => void;
 } & PopupsReducersT;
 
 const appStore = create<StoreT & ReducersT>((set) => ({
@@ -68,6 +79,12 @@ const appStore = create<StoreT & ReducersT>((set) => ({
     acceptCookies: () => {
         localStorage.setItem(enums.ACCEPT_COOKIES, 't');
         set({ isAcceptCookies: true });
+    },
+    contents: {},
+    setContent: (name, data) => {
+        const thisContents = { ...appStore.getState().contents };
+        thisContents[name] = data;
+        set({ contents: thisContents });
     },
     ...createPopupsStore(set),
 }));

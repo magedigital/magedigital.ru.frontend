@@ -1,6 +1,10 @@
 import DefaultI from '@/src/components/default/types';
 
-type PropsT = {};
+import { AboutPageContentT } from '../../types';
+
+type PropsT = {
+    content: AboutPageContentT;
+};
 
 type StateT = {
     titleIsAnimated?: boolean;
