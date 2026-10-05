@@ -29,8 +29,8 @@ class Advantages
 
     render() {
         return (
-            <div ref={this.parent} className="indexAdvantages" data-theme>
-                <div className="indexAdvantages__top _FULL_W">
+            <div ref={this.parent} className="indexAdvantages">
+                <div className="indexAdvantages__top _FULL_W" data-theme>
                     <div className="indexAdvantages__topBack _FULL_W _COL _COL_CENTER">
                         <Media check={(d) => d === 'desktop'}>
                             <AnimateText className="indexAdvantages__topTitle" delay={50}>
@@ -60,6 +60,7 @@ class Advantages
                             className="indexAdvantages__contentCard _FULL_W"
                             key={i}
                             style={{ zIndex: i + 1 }}
+                            data-theme
                         >
                             <div
                                 className="indexAdvantages__card _FULL_W"
