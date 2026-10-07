@@ -15,7 +15,7 @@ class Checkbox extends Default<CheckboxI['props'], CheckboxI['state']> implement
     }
 
     render() {
-        const { value, onChange, children } = this.props;
+        const { value, onChange, children, disabled } = this.props;
 
         return (
             <label className="checkbox">
@@ -23,6 +23,7 @@ class Checkbox extends Default<CheckboxI['props'], CheckboxI['state']> implement
                     type="checkbox"
                     checked={value}
                     onChange={() => onChange({ value: !value })}
+                    disabled={disabled}
                 />
                 <div className="checkbox__view">
                     <div className="checkbox__point" />

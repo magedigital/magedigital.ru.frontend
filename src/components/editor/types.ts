@@ -15,9 +15,9 @@ type StateT = {
     listInit?: boolean;
     isListLoading?: boolean;
     isListSearchLoading?: boolean;
-    error?: ResponseErrorT['error'];
+    error?: ErrorT;
     renderKey?: string;
-    filterQuery?: FilterQueryT[];
+    filterQuery?: any[];
 };
 
 type ItemT = { _id: string } & ObjT;
@@ -81,12 +81,12 @@ interface EditorI<P = ObjT, S = ObjT> extends DefaultI<PropsT & P, StateT & S> {
 
     initScrollList(this: EditorI, target: HTMLElement | string | undefined): Promise<void>;
     listScrollHandler(this: EditorI, e: Event): Promise<void>;
-    getListQuery(this: EditorI): FilterQueryT[];
-    getListQueryStr(this: EditorI, q: FilterQueryT[]): string;
+    getListQuery(this: EditorI): any[];
+    getListQueryStr(this: EditorI, q: any[]): string;
     getListItemsMore(this: EditorI): Promise<void>;
     getListItems?(
         this: EditorI,
-        data: { query: FilterQueryT[] },
+        data: { query: any[] },
     ): Promise<{ items: ItemT[]; count: number; isLimit?: boolean }>;
     setListItems(
         this: EditorI,
@@ -104,7 +104,7 @@ interface EditorI<P = ObjT, S = ObjT> extends DefaultI<PropsT & P, StateT & S> {
         this: EditorI,
         data: { items: ObjT[]; isFull?: boolean; isAdd?: boolean; prop?: string },
     ): Promise<void>;
-    searchListItems(this: EditorI, data: { query?: FilterQueryT[] }): Promise<void>;
+    searchListItems(this: EditorI, data: { query?: any[] }): Promise<void>;
     setRenderKey(this: EditorI): Promise<void>;
     setError(this: EditorI, error?: ErrorT, focus?: boolean): Promise<void>;
     getDeepValue(this: EditorI, o: any, prop: string): unknown;
@@ -112,10 +112,7 @@ interface EditorI<P = ObjT, S = ObjT> extends DefaultI<PropsT & P, StateT & S> {
 
     deleteItems(this: EditorI, data: { items: string[]; name: string }): Promise<void>;
 
-    filterHandler(
-        this: EditorI,
-        e: CustomEvent<{ name: string; query: FilterQueryT[] }>,
-    ): Promise<void>;
+    filterHandler(this: EditorI, e: CustomEvent<{ name: string; query: any[] }>): Promise<void>;
     getFilterItems<T extends ItemT>(data: {
         items: T[];
         filter: (i: T, f: Partial<Record<string, string[]>>) => boolean;

@@ -20,10 +20,13 @@ type StorePagesT = {
 };
 
 type ContentsT = {
+    global: GlobalContentT;
     home: HomePageContentT;
     services: ServicesPageContentT;
     about: AboutPageContentT;
 };
+
+export type NotificationT = { id: string; type: 'success' | 'error'; text: string };
 
 type StoreT = {
     device: 'mobile' | 'desktop';
@@ -39,6 +42,7 @@ type StoreT = {
     currentPopup?: keyof PopupsT;
     isInputFocus?: boolean;
     contents: Partial<ContentsT>;
+    notification?: NotificationT;
 } & PopupsT;
 
 type ReducersT = {
@@ -52,7 +56,10 @@ type ReducersT = {
     acceptCookies: () => void;
     setInputFocus: (s: boolean) => void;
     setContent: <N extends keyof ContentsT>(name: N, data: ContentsT[N]) => void;
+    setNotification: (n: Omit<NotificationT, 'id'> | undefined) => void;
 } & PopupsReducersT;
+
+let notificationTimerId: ReturnType<typeof setTimeout> | undefined;
 
 const appStore = create<StoreT & ReducersT>((set) => ({
     device: 'desktop',
@@ -85,6 +92,20 @@ const appStore = create<StoreT & ReducersT>((set) => ({
         const thisContents = { ...appStore.getState().contents };
         thisContents[name] = data;
         set({ contents: thisContents });
+    },
+    setNotification: (n) => {
+        if (notificationTimerId) {
+            clearTimeout(notificationTimerId);
+            notificationTimerId = undefined;
+        }
+
+        set({ notification: n ? { ...n, id: [n.type, n.text].join('_') } : undefined });
+
+        if (n) {
+            notificationTimerId = setTimeout(() => {
+                appStore.getState().setNotification(undefined);
+            }, 3_000);
+        }
     },
     ...createPopupsStore(set),
 }));

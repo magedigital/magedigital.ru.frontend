@@ -23,6 +23,8 @@ const icons = [
     'services-adv-8',
     'contacts-phone',
     'contacts-mail',
+    'notification-success',
+    'notification-error',
 ] as const;
 
 export default icons;

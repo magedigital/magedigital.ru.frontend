@@ -30,6 +30,10 @@ const chars = [
 ];
 
 const setSpaces: I['setSpaces'] = function (s, t) {
+    if (!s) {
+        return '';
+    }
+
     const arrText = s.split(' ');
 
     let result = '';

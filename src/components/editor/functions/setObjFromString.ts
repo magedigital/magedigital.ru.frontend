@@ -2,7 +2,7 @@ import getQueryString from './getQueryString';
 
 type ReturnT = Partial<Record<string, string | string[]>>;
 
-export default function setObjFromString(s: string | FilterQueryT[]): ReturnT {
+export default function setObjFromString(s: string | any[]): ReturnT {
     if (Array.isArray(s)) {
         s = getQueryString(s);
     }

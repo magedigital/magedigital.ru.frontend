@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmage_digital=globalThis.webpackChunkmage_digital||[]).push([[307],{7307:(s,e,t)=>{t.r(e),t.d(e,{default:()=>i});t(9950);var a=t(4414);const i=(0,a.jsx)("svg",{viewBox:"0 0 20 20",fill:"none",xmlns:"http://www.w3.org/2000/svg",children:(0,a.jsx)("path",{d:"M5 9L9 13L15 7",stroke:"white",strokeWidth:"2",className:"icon__stroke"})})}}]);

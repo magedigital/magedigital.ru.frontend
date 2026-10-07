@@ -7,12 +7,13 @@ import FileField from '@/src/components/fileField/FileField.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
 import Input from '@/src/components/input/Input.tsx';
 import Media from '@/src/components/media/Media.tsx';
-import { appStore } from '@/src/store/store.tsx';
+import Strings from '@/src/services/strings/Strings.service.ts';
+import { StoreT, WithStore, appStore } from '@/src/store/store.tsx';
 import { converFileSize } from '@/src/utils/convertFileSize.ts';
 
 import init from './methods/init.ts';
+import sendForm from './methods/sendForm.ts';
 
-import { contactFormTypes } from './static/types.ts';
 import ContactsFormI from './types.ts';
 
 class ContactsForm
@@ -28,16 +29,20 @@ class ContactsForm
         this.parent = React.createRef();
     }
 
+    formData = new FormData();
+
     init = init;
+
+    sendForm = sendForm;
 
     renderLinks() {
         return (
             <div className="contactsForm__links _COL">
-                <a href="#" className="contactsForm__link">
+                <a href="mailto:hello@magedigital.ru" className="contactsForm__link">
                     <Icon name="mail" />
                     hello@magedigital.ru
                 </a>
-                <a href="#" className="contactsForm__link">
+                <a href="tel:+74996382469" className="contactsForm__link">
                     <Icon name="phone" />
                     +7 499 638-24-69
                 </a>
@@ -46,10 +51,15 @@ class ContactsForm
     }
 
     render() {
-        const { form } = this.state;
+        const { form, loadingKey } = this.state;
+        const { contents } = this.props;
+        const globalContent = contents.global?.contacts;
 
         return (
-            <div ref={this.parent} className="contactsForm _FULL">
+            <div
+                ref={this.parent}
+                className={this.getClass('contactsForm _FULL', globalContent && '_init')}
+            >
                 <div className="contactsForm__inner _INNER _FULL_H">
                     <Icon
                         name="popup-close"
@@ -61,43 +71,40 @@ class ContactsForm
                     <div className="contactsForm__content _FULL _NOSCROLL">
                         <div className="contactsForm__contentInner">
                             <div className="contactsForm__block _preview">
-                                <h2 className="contactsForm__title">
-                                    Давайте
-                                    <br />
-                                    общаться
-                                </h2>
-                                <p className="contactsForm__text">
-                                    Расскажите немного о предстоящем проекте и оставьте свои
-                                    координаты в&nbsp;удобной для вас форме - мы скоро свяжемся с
-                                    вами
-                                </p>
+                                <h2 className="contactsForm__title">{globalContent?.title}</h2>
+                                <p
+                                    className="contactsForm__text"
+                                    dangerouslySetInnerHTML={{
+                                        __html: new Strings().setSpaces(globalContent?.subtitle),
+                                    }}
+                                ></p>
                                 <Media check={(d) => d === 'desktop'}>{this.renderLinks()}</Media>
                             </div>
                             <div className="contactsForm__block _form">
                                 <div className="contactsForm__form _COL">
                                     <div className="contactsForm__formBlock">
                                         <p className="contactsForm__formBlockTitle">
-                                            Тип диджитал активации:
+                                            {globalContent?.tagsTitle}
                                         </p>
                                         <div className="contactsForm__formBlockContent">
                                             <div className="contactsForm__formTypes">
-                                                {contactFormTypes.map((t) => (
+                                                {globalContent?.tags?.map((t) => (
                                                     <label
                                                         className="contactsForm__formType _CLICK"
                                                         key={t.id}
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            checked={form?.types?.includes(t.id)}
+                                                            checked={form?.types?.includes(t.code)}
                                                             onChange={async () => {
                                                                 await this.setValue({
-                                                                    data: { types: t.id },
+                                                                    data: { types: t.code },
                                                                     targetName: 'form',
                                                                 });
                                                             }}
                                                         />
                                                         <div className="contactsForm__formTypeView">
-                                                            {t.title}
+                                                            {t.label}
                                                         </div>
                                                     </label>
                                                 ))}
@@ -106,13 +113,13 @@ class ContactsForm
                                     </div>
                                     <div className="contactsForm__formBlock">
                                         <p className="contactsForm__formBlockTitle">
-                                            Ваши контакты:
+                                            {globalContent?.contactsTitle}
                                         </p>
                                         <div className="contactsForm__formBlockContent">
                                             <div className="contactsForm__formFields">
                                                 <div className="contactsForm__formField _name _short">
                                                     <Input
-                                                        support="Имя"
+                                                        support={globalContent?.namePlaceholder}
                                                         value={form?.name ?? ''}
                                                         onChange={async (d) => {
                                                             await this.setValue({
@@ -120,11 +127,12 @@ class ContactsForm
                                                                 targetName: 'form',
                                                             });
                                                         }}
+                                                        disabled={!!loadingKey}
                                                     />
                                                 </div>
                                                 <div className="contactsForm__formField _name _short">
                                                     <Input
-                                                        support="Телефон или Email"
+                                                        support={globalContent?.contactPlaceholder}
                                                         value={form?.contact ?? ''}
                                                         onChange={async (d) => {
                                                             await this.setValue({
@@ -132,11 +140,12 @@ class ContactsForm
                                                                 targetName: 'form',
                                                             });
                                                         }}
+                                                        disabled={!!loadingKey}
                                                     />
                                                 </div>
                                                 <div className="contactsForm__formField _about _area">
                                                     <Input
-                                                        support="Расскажите немного о проекте или вашем поводе пообщаться, например, запросить закрытую презентацию..."
+                                                        support={globalContent?.messagePlaceholder}
                                                         value={form?.about ?? ''}
                                                         onChange={async (d) => {
                                                             await this.setValue({
@@ -148,6 +157,7 @@ class ContactsForm
                                                             minHeight: () => 92 * window.sizeK,
                                                             isCalc: false,
                                                         }}
+                                                        disabled={!!loadingKey}
                                                     />
                                                 </div>
                                                 <div className="contactsForm__formField _auto">
@@ -155,6 +165,12 @@ class ContactsForm
                                                         support="Приложить брифчик <br class='_MOBILE' />(файл, не более 20 мб)"
                                                         value={form?.filename}
                                                         onChange={async (d) => {
+                                                            if (d.file) {
+                                                                this.formData.set('files', d.file);
+                                                            } else {
+                                                                this.formData.delete('files');
+                                                            }
+
                                                             await this.setValue({
                                                                 data: {
                                                                     filename: d.file
@@ -167,6 +183,7 @@ class ContactsForm
                                                                 targetName: 'form',
                                                             });
                                                         }}
+                                                        disabled={!!loadingKey}
                                                     />
                                                 </div>
                                                 <div className="contactsForm__formField _auto">
@@ -178,18 +195,29 @@ class ContactsForm
                                                                 targetName: 'form',
                                                             });
                                                         }}
+                                                        disabled={!!loadingKey}
                                                     >
-                                                        Согласен с{' '}
-                                                        <a href="#">политикой конфиденциальности</a>
-                                                        , обработкой{' '}
-                                                        <a href="#">персональных данных</a>
+                                                        <div
+                                                            dangerouslySetInnerHTML={{
+                                                                __html:
+                                                                    globalContent?.agreementLabel ??
+                                                                    '',
+                                                            }}
+                                                        ></div>
                                                     </Checkbox>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="contactsForm__formButton">
-                                        <Button className="_dark">Отправить</Button>
+                                        <Button
+                                            className="_dark"
+                                            onClick={this.sendForm.bind(this)}
+                                            disabled={loadingKey === 'send'}
+                                            loading={loadingKey === 'send'}
+                                        >
+                                            Отправить
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -201,4 +229,8 @@ class ContactsForm
     }
 }
 
-export default ContactsForm;
+const mapStore = (s: StoreT) => ({
+    contents: s.contents,
+});
+
+export default WithStore(ContactsForm, mapStore);

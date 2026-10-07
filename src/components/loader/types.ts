@@ -1,16 +1,11 @@
-import items from './static/items.ts';
+import DefaultI from '@/src/components/default/types';
 
 type PropsT = {
-    className?: string;
+    isShow: boolean;
 };
 
 type StateT = {};
 
-interface LoaderI extends React.Component<PropsT, StateT> {
-    props: PropsT;
-    state: StateT;
-
-    items: typeof items;
-}
+interface LoaderI extends DefaultI<PropsT, StateT> {}
 
 export default LoaderI;

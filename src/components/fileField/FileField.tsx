@@ -23,7 +23,7 @@ class FileField extends Default<FileFieldI['props'], FileFieldI['state']> implem
     getMode = getMode;
 
     render() {
-        const { value, support, onChange } = this.props;
+        const { value, support, onChange, disabled } = this.props;
         const mode = this.getMode();
         const renderKey = [mode, value].filter((t) => t).join('');
 
@@ -34,6 +34,7 @@ class FileField extends Default<FileFieldI['props'], FileFieldI['state']> implem
                     onChange={(e) => {
                         onChange({ file: e.target.files![0] });
                     }}
+                    disabled={disabled}
                 />
                 <List
                     renderKey={renderKey}

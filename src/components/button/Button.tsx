@@ -7,6 +7,7 @@ import onHover from './methods/onHover.ts';
 import ButtonI from './types.ts';
 
 import Icon from '../icon/Icon.tsx';
+import Loader from '../loader/Loader.tsx';
 
 class Button extends Default<ButtonI['props'], ButtonI['state']> implements ButtonI {
     parent: ButtonI['parent'];
@@ -21,7 +22,7 @@ class Button extends Default<ButtonI['props'], ButtonI['state']> implements Butt
     onHover = onHover;
 
     render() {
-        const { className, children, icon, onClick } = this.props;
+        const { className, children, icon, onClick, loading } = this.props;
 
         return (
             <div
@@ -35,7 +36,10 @@ class Button extends Default<ButtonI['props'], ButtonI['state']> implements Butt
                     this.addStack(this.onHover.bind(this, 'leave'));
                 }}
             >
-                <div className="button__inner _ROW _ROW_CENTER">{children}</div>
+                <div className="button__inner _ROW _ROW_CENTER">
+                    <Loader className="button__loader" isShow={!!loading} />
+                    {children}
+                </div>
                 <div className={this.getClass('button__icon _COL', this.setClass(icon))}>
                     <Icon name={icon ?? 'next-arrow'} />
                 </div>

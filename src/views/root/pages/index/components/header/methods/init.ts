@@ -5,13 +5,14 @@ import I from '../types.ts';
 const init: I['init'] = async function (this: I) {
     const pageNode = this.parent.current!.closest<HTMLElement>('.page__scroll');
     const boxNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__box');
+    const boxInnerNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__boxInner');
     const colorNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__boxColor');
     const frameNode = this.parent.current!.querySelector<HTMLElement>('.indexHeader__boxFrame');
     const frameInnerNode = this.parent.current!.querySelector<HTMLElement>(
         '.indexHeader__boxFrameInner',
     );
 
-    if (!pageNode || !boxNode || !colorNode || !frameNode || !frameInnerNode) {
+    if (!pageNode || !boxNode || !colorNode || !frameNode || !frameInnerNode || !boxInnerNode) {
         return;
     }
 
@@ -35,6 +36,8 @@ const init: I['init'] = async function (this: I) {
             percent = 1;
         }
 
+        // console.log(percent)
+
         // const c = cubicBezier(percent, 0.84, -0.7, 0.2, 1.59);
 
         let colorTop = boxNode.offsetTop - boxNode.getBoundingClientRect().y;
@@ -44,11 +47,7 @@ const init: I['init'] = async function (this: I) {
             colorHeight = 950 * window.sizeK;
         }
 
-        const colorMaxTop =
-            this.parent.current!.offsetHeight -
-            boxNode.offsetHeight -
-            boxNode.offsetTop -
-            colorHeight;
+        const colorMaxTop = boxInnerNode.offsetHeight + boxInnerNode.offsetTop - colorHeight;
 
         if (colorTop > colorMaxTop) {
             colorTop = colorMaxTop;

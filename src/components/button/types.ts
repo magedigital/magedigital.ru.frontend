@@ -4,6 +4,7 @@ import { IconT } from '../icon/types';
 
 type PropsT = {
     icon?: IconT;
+    loading?: boolean;
 };
 
 type StateT = {};

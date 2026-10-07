@@ -6,23 +6,19 @@ import { appStore } from '@/src/store/store.tsx';
 import I from '../types.ts';
 
 const renderCookies: I['renderCookies'] = function () {
-    const { isAcceptCookies } = this.props;
+    const { isAcceptCookies, contents } = this.props;
+    const cookiesContent = contents.global?.cookies;
 
     return (
-        <Fade className="body__cookies _ROW" isShow={!isAcceptCookies}>
-            <p className="body__cookiesTitle">
-                Используем{' '}
-                <a href="#" target="_blank" className="_CLICK">
-                    куки
-                </a>
-            </p>
+        <Fade className="body__cookies _ROW" isShow={!isAcceptCookies && !!cookiesContent}>
+            <p className="body__cookiesTitle">{cookiesContent?.text}</p>
             <div
                 className="body__cookiesButton _CLICK"
                 onClick={() => {
                     appStore.getState().acceptCookies();
                 }}
             >
-                Ок
+                {cookiesContent?.buttonLabel}
             </div>
         </Fade>
     );

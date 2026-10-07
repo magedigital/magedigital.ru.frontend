@@ -30,7 +30,11 @@ class MobMenu extends Default<MobMenuI['props'], MobMenuI['state']> implements M
                                 key={p}
                                 data-key={p}
                                 onClick={() => {
-                                    AppRouter.changePage({ pageName: p });
+                                    if (p === 'contacts') {
+                                        appStore.getState().setPopup({ name: 'contactsFormPopup' });
+                                    } else {
+                                        AppRouter.changePage({ pageName: p });
+                                    }
                                     onShowState(false);
                                 }}
                             >

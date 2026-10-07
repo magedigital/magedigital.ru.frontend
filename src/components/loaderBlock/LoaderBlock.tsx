@@ -39,7 +39,7 @@ class LoaderBlock extends Default<LoaderBlockI['props']> implements LoaderBlockI
                 isShow={isShow}
             >
                 <div className={`${itemClassName} _LOADERITEM`}>
-                    <Loader className={loaderClassName} />
+                    <Loader isShow={true} className={loaderClassName} />
                 </div>
             </Fade>
         );

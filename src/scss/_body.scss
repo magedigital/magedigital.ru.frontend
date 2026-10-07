@@ -133,4 +133,66 @@
             height: 100%;
         }
     }
+
+    &__notifications {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        pointer-events: none;
+
+        &Item {
+            width: 100%;
+            padding: 20rem 36rem;
+
+            @include mob {
+                padding: 10rem;
+            }
+        }
+    }
+
+    &__notification {
+        width: 100%;
+        padding: 18rem 32rem;
+        border-radius: 20rem;
+
+        @include mob {
+            padding: 18rem;
+            border-radius: 16rem 24rem;
+        }
+
+        &._success {
+            background: #36c0f7;
+        }
+
+        &._error {
+            background: #f46eb8;
+        }
+
+        &Inner {
+            align-items: center;
+        }
+
+        &Icon {
+            width: 20rem;
+            height: 20rem;
+            background: #191919;
+            border-radius: 8rem;
+
+            @include icon(#fff);
+        }
+
+        &Text {
+            max-width: calc(100% - 20rem);
+            padding-left: 8rem;
+            color: #000;
+            font-size: 20rem;
+            line-height: 1.2;
+
+            @include mob {
+                padding-left: 14rem;
+                line-height: 1.25;
+            }
+        }
+    }
 }

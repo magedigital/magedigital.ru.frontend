@@ -8,6 +8,8 @@ type PropsT = {
     isRootInit: StoreT['isRootInit'];
     isAcceptCookies: StoreT['isAcceptCookies'];
     currentPopup: StoreT['currentPopup'];
+    notification: StoreT['notification'];
+    contents: StoreT['contents'];
 } & PopupsT;
 
 type StateT = {};
@@ -26,6 +28,7 @@ interface RootI extends DefaultI<PropsT, StateT> {
 
     renderCookies(this: RootI): React.ReactNode;
     renderPopups(this: RootI): React.ReactNode;
+    renderNotification(this: RootI): React.ReactNode;
 }
 
 export default RootI;

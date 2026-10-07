@@ -1,6 +1,9 @@
 import EditorI from '@/src/components/editor/types';
+import { StoreT } from '@/src/store/store';
 
-type PropsT = {};
+type PropsT = {
+    contents: StoreT['contents'];
+};
 
 type StateT = {
     form?: Partial<{
@@ -13,6 +16,10 @@ type StateT = {
     }>;
 };
 
-interface ContactsFormI extends EditorI<PropsT, StateT> {}
+interface ContactsFormI extends EditorI<PropsT, StateT> {
+    formData: FormData;
+    
+    sendForm(this: ContactsFormI): Promise<void>;
+}
 
 export default ContactsFormI;

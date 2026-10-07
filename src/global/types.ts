@@ -28,6 +28,7 @@ declare global {
     namespace NodeJS {
         interface ProcessEnv {
             REACT_APP_STRAPI_TOKEN: string;
+            REACT_APP_API_HOST: string;
         }
     }
 
@@ -39,19 +40,15 @@ declare global {
     } & T;
 
     type ResponseErrorT = {
-        accessToken?: string;
-        message?: string;
-        error?: ErrorT;
+        error: {
+            message: string;
+            details?: Record<string, string>;
+        };
     };
 
     type ErrorT = {
         text: string;
         name?: string;
-    };
-
-    type FilterQueryT = {
-        name: string;
-        value: string;
     };
 
     type ListenerT<T = MouseEvent | TouchEvent> = (
@@ -86,6 +83,26 @@ declare global {
         height?: number;
         fullSrc?: string;
     };
+
+    type GlobalContentT = Partial<{
+        contacts: Partial<{
+            agreementLabel: string;
+            contactPlaceholder: string;
+            contactsTitle: string;
+            namePlaceholder: string;
+            messagePlaceholder: string;
+            sendButtonLabel: string;
+            showButtonLabel: string;
+            subtitle: string;
+            tagsTitle: string;
+            title: string;
+            tags: { id: number; code: string; label: string }[];
+        }>;
+        cookies: Partial<{
+            text: string;
+            buttonLabel: string;
+        }>;
+    }>;
 }
 
 export type {};

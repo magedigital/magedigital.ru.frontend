@@ -13,6 +13,7 @@ import RootI from './types.ts';
 import { AppRouter } from '../../index.tsx';
 import { StoreT, WithStore } from '../../store/store.tsx';
 import renderCookies from './renders/renderCookies.tsx';
+import renderNotification from './renders/renderNotification.tsx';
 import renderPopups from './renders/renderPopups.tsx';
 import pages from './static/pages.tsx';
 
@@ -37,6 +38,7 @@ class Root extends Default<RootI['props'], RootI['state']> implements RootI {
 
     renderCookies = renderCookies;
     renderPopups = renderPopups;
+    renderNotification = renderNotification;
 
     render() {
         const { isRootInit } = this.props;
@@ -46,6 +48,7 @@ class Root extends Default<RootI['props'], RootI['state']> implements RootI {
                 {Styles && <Styles />}
                 {this.renderCookies()}
                 {this.renderPopups()}
+                {this.renderNotification()}
                 <div className="body__content">
                     {isRootInit && (
                         <Pages
@@ -64,6 +67,8 @@ const mapStore = (s: StoreT) => ({
     isRootInit: s.isRootInit,
     isAcceptCookies: s.isAcceptCookies,
     currentPopup: s.currentPopup,
+    notification: s.notification,
+    contents: s.contents,
     ...(() => {
         const popupsData: Record<keyof typeof popups, PopupT> = {} as Record<
             keyof typeof popups,
