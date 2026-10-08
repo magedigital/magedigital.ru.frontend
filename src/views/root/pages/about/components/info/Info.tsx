@@ -16,6 +16,8 @@ class Info extends Default<InfoI['props'], InfoI['state']> implements InfoI {
     }
 
     render() {
+        const { content } = this.props;
+
         return (
             <div ref={this.parent} className="aboutInfo _SECTION">
                 <div className="aboutInfo__inner _INNER">
@@ -25,13 +27,10 @@ class Info extends Default<InfoI['props'], InfoI['state']> implements InfoI {
                             src={require(`@/src/media/about/hands-connected.png`)}
                         />
                         <AnimateText className="aboutInfo__title" tag="h1" delay={70}>
-                            Стратегический диджитал партнер на проект и на годы
+                            {content.partner?.title}
                         </AnimateText>
                         <AnimateText className="aboutInfo__text" tag="p" delay={30}>
-                            Мы редко делаем один проект и расходимся. Чаще остаёмся с клиентом на
-                            годы — ведём кампанию за кампанией и со временем становимся его
-                            digital-отделом: знаем продукт, аудиторию и механики, которые уже
-                            сработали.
+                            {content.partner?.subtitle}
                         </AnimateText>
                     </div>
                 </div>

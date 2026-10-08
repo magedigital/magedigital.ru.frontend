@@ -27,6 +27,7 @@
         }
 
         &Title {
+            max-width: 50%;
             color: #fff;
             font-weight: 300;
             font-size: 64rem;
@@ -69,6 +70,22 @@
     &__contentCard:not(:last-child) &__card {
         padding-bottom: 126rem;
     }
+
+    // &__contentCard:nth-child(1) &__card {
+    //     background: #d049ff;
+    // }
+
+    // &__contentCard:nth-child(2) &__card {
+    //     background: #f46eb8;
+    // }
+
+    // &__contentCard:nth-child(3) &__card {
+    //     background: #886aff;
+    // }
+
+    // &__contentCard:nth-child(4) &__card {
+    //     background: #36c0f7;
+    // }
 
     &__card {
         position: relative;

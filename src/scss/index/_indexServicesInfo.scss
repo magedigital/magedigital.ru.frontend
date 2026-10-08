@@ -5,7 +5,12 @@
         padding: 110rem 24rem 130rem;
     }
 
+    &__inner {
+        align-items: center;
+    }
+
     &__text {
+        max-width: 90%;
         margin-bottom: 48rem;
         color: rgb(var(--dark-c));
         font-weight: 300;

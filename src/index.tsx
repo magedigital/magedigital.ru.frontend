@@ -17,6 +17,9 @@ export const strapiClient = strapi({
     auth: process.env.REACT_APP_STRAPI_TOKEN,
 });
 
+export const getStrapiUrl = (u: string | undefined): string =>
+    ['https://stage.magedigital.srv08.ru', u].join('/');
+
 (Object.keys(AppRouter.pages) as (keyof typeof AppRouter.pages)[]).forEach((name) => {
     resultPages[name] = {
         isShow: false,

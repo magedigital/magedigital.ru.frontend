@@ -3,14 +3,11 @@ import React from 'react';
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
-import Media from '@/src/components/media/Media.tsx';
 import { AppRouter } from '@/src/index.tsx';
 
 import init from './methods/init.ts';
 
 import AdvantagesI from './types.ts';
-
-import { advantages } from './static/advantages.ts';
 
 class Advantages
     extends Default<AdvantagesI['props'], AdvantagesI['state']>
@@ -28,20 +25,15 @@ class Advantages
     init = init;
 
     render() {
+        const { content } = this.props;
+
         return (
             <div ref={this.parent} className="indexAdvantages">
                 <div className="indexAdvantages__top _FULL_W" data-theme>
                     <div className="indexAdvantages__topBack _FULL_W _COL _COL_CENTER">
-                        <Media check={(d) => d === 'desktop'}>
-                            <AnimateText className="indexAdvantages__topTitle" delay={50}>
-                                {`Почему нас выбирают<br/>партнёром`}
-                            </AnimateText>
-                        </Media>
-                        <Media check={(d) => d === 'mobile'}>
-                            <AnimateText className="indexAdvantages__topTitle" delay={50}>
-                                {`Почему нас <br/>выбирают партнёром`}
-                            </AnimateText>
-                        </Media>
+                        <AnimateText className="indexAdvantages__topTitle" delay={50}>
+                            {content['sections.advantages']?.title}
+                        </AnimateText>
                         <div className="indexAdvantages__topButton">
                             <Button
                                 className="_white _whiteDark _minSize"
@@ -49,13 +41,13 @@ class Advantages
                                     AppRouter.changePage({ pageName: 'about' });
                                 }}
                             >
-                                О нас
+                                {content['sections.advantages']?.button?.label}
                             </Button>
                         </div>
                     </div>
                 </div>
                 <div className="indexAdvantages__content _FULL_W">
-                    {advantages.map((s, i) => (
+                    {content['sections.advantages']?.advantages?.map((s, i) => (
                         <div
                             className="indexAdvantages__contentCard _FULL_W"
                             key={i}
@@ -64,7 +56,7 @@ class Advantages
                         >
                             <div
                                 className="indexAdvantages__card _FULL_W"
-                                style={{ background: s.fill }}
+                                style={{ background: s.color }}
                             >
                                 <div className="indexAdvantages__cardContent _FULL_W _COL">
                                     <div className="indexAdvantages__cardCount">{i + 1}</div>

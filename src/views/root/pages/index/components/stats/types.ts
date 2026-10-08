@@ -1,6 +1,10 @@
 import DefaultI from '@/src/components/default/types';
 
-type PropsT = {};
+import { HomePageContentT } from '../../types';
+
+type PropsT = {
+    content: HomePageContentT;
+};
 
 type StateT = {
     isInit?: boolean;

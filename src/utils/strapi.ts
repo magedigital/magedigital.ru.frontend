@@ -1,11 +1,17 @@
-export const setStrapiContent = (d: { sections: ObjT[] }): Partial<Record<string, ObjT>> => {
-    const content: Partial<Record<string, ObjT>> = {};
+export const setStrapiContent = (d: {
+    sections: ObjT[];
+}): Partial<Record<string, StrapiBlockT>> => {
+    const content: Partial<Record<string, StrapiBlockT>> = {};
 
     d.sections.forEach((s) => {
-        const id = s.__component as string;
+        let id = s.__component as string;
+
+        if (id === 'sections.text') {
+            id = s.code as string;
+        }
 
         if (id) {
-            content[id] = s;
+            content[id] = s as never;
         }
     });
 

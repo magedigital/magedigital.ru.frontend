@@ -1,14 +1,12 @@
 import React from 'react';
 
 import Default from '@/src/components/default/Default.tsx';
-import Icon from '@/src/components/icon/Icon.tsx';
+import { getStrapiUrl } from '@/src/index.tsx';
 import Strings from '@/src/services/strings/Strings.service.ts';
 
 import init from './methods/init.ts';
 
 import StatsI from './types.ts';
-
-import { aboutStats } from './static/stats.ts';
 
 class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI {
     parent: StatsI['parent'];
@@ -24,6 +22,8 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
 
     render() {
         const { isAnimate } = this.state;
+        const { content } = this.props;
+        const stats = content['sections.mage']?.steps ?? [];
 
         return (
             <div
@@ -32,34 +32,26 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
                 data-theme
             >
                 <div className="aboutStats__cards">
-                    {[...aboutStats, ...aboutStats, ...aboutStats, ...aboutStats].map(
-                        (s, i, ar) => (
+                    {[...stats, ...stats, ...stats, ...stats].map((s, i, ar) => (
+                        <div className="aboutStats__card" key={i} style={{ zIndex: ar.length - i }}>
                             <div
-                                className="aboutStats__card"
-                                key={i}
-                                style={{ zIndex: ar.length - i }}
+                                className={this.getClass('aboutStats__stat _COL _FULL')}
+                                style={{ background: s.color }}
                             >
-                                <div
-                                    className={this.getClass('aboutStats__stat _COL _FULL')}
-                                    style={{ background: s.fill }}
-                                >
-                                    <Icon className="aboutStats__statIcon" name={s.icon} />
-                                    {i % 5 === 4 ? (
-                                        <Icon name="about-infinity" className="_infinity" />
-                                    ) : (
-                                        <p className="aboutStats__statTitle">{s.title}</p>
-                                    )}
-
-                                    <p
-                                        className="aboutStats__statText"
-                                        dangerouslySetInnerHTML={{
-                                            __html: new Strings().setSpaces(s.text),
-                                        }}
-                                    ></p>
-                                </div>
+                                <img
+                                    className="aboutStats__statIcon"
+                                    src={getStrapiUrl(s.icon?.svgFile?.url)}
+                                />
+                                <p className="aboutStats__statTitle">{s.title}</p>
+                                <p
+                                    className="aboutStats__statText"
+                                    dangerouslySetInnerHTML={{
+                                        __html: new Strings().setSpaces(s.text),
+                                    }}
+                                ></p>
                             </div>
-                        ),
-                    )}
+                        </div>
+                    ))}
                 </div>
                 <div className="aboutStats__logo">Mage</div>
                 <img src={require('@/src/media/about/arm.png')} className="aboutStats__arm" />

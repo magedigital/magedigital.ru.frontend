@@ -5,12 +5,11 @@ import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
 import Lazy from '@/src/components/lazy/Lazy.tsx';
 import Media from '@/src/components/media/Media.tsx';
+import { getStrapiUrl } from '@/src/index.tsx';
 
 import init from './methods/init.ts';
 
 import LayersI from './types.ts';
-
-import { layers } from './static/layers.ts';
 
 class Layers extends Default<LayersI['props'], LayersI['state']> implements LayersI {
     parent: LayersI['parent'];
@@ -26,6 +25,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
 
     render() {
         const { isAnimate } = this.state;
+        const { content } = this.props;
 
         return (
             <div
@@ -36,23 +36,19 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                 <div className="servicesLayers__top _FULL_W">
                     <div className="servicesLayers__topBack _FULL_W _COL _COL_CENTER">
                         <AnimateText className="servicesLayers__topTitle" delay={50}>
-                            {`Объединяем все слои промо в едином digital-решении`}
+                            {content['sections.services']?.subtitle}
                         </AnimateText>
-
                         <Icon className="servicesLayers__topButton" name="next-arrow" />
                     </div>
                 </div>
                 <div className="servicesLayers__content _FULL_W">
-                    {layers.map((s, i) => (
+                    {content['sections.services']?.services?.map((s, i) => (
                         <div
                             className="servicesLayers__contentCard _FULL_W"
                             key={i}
                             style={{ zIndex: i + 1 }}
                         >
-                            <div
-                                className="servicesLayers__card _FULL_W"
-                                style={{ background: s.fill }}
-                            >
+                            <div className="servicesLayers__card _FULL_W">
                                 <div className="servicesLayers__cardPreview">
                                     <Lazy
                                         getScrollNode={() =>
@@ -64,7 +60,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                         render={() => (
                                             <video
                                                 className="_FULL"
-                                                src={require(`@/src/media/${s.video}`)}
+                                                src={getStrapiUrl(s.video?.url)}
                                                 playsInline
                                                 muted
                                                 autoPlay
@@ -79,7 +75,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                     <div className="servicesLayers__cardCount">0{i + 1}</div>
                                     <h3 className="servicesLayers__cardTitle">{s.title}</h3>
                                     <AnimateText className="servicesLayers__cardOffer" delay={15}>
-                                        {s.offer}
+                                        {s.subtitle}
                                     </AnimateText>
                                     <AnimateText className="servicesLayers__cardText" delay={15}>
                                         {s.text}
@@ -89,7 +85,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                             <Icon name="next-arrow" />
                                         </div>
 
-                                        {s.services.map((ss, si) => (
+                                        {s.items?.map((ss, si) => (
                                             <div
                                                 className="servicesLayers__cardService _CLICK"
                                                 key={si}

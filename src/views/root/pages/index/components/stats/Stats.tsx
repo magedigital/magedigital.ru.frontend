@@ -6,8 +6,6 @@ import init from './methods/init.ts';
 
 import StatsI from './types.ts';
 
-import { stats } from './static/stats.ts';
-
 class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI {
     parent: StatsI['parent'];
 
@@ -24,14 +22,15 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
 
     render() {
         const { isInit } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className={this.getClass('indexStats', isInit && '_init')}>
                 <div className="indexStats__content">
-                    {stats.map((s, i) => (
+                    {content['sections.stats']?.stats?.map((s, i) => (
                         <div className="indexStats__stat _COL _COL_CENTER" key={i} data-key={i}>
                             <div className="indexStats__statTitle">
-                                {s.title.split('').map((c, ii) => (
+                                {(s.value ?? '').split('').map((c, ii) => (
                                     <div
                                         className="indexStats__statTitleChar _prev"
                                         key={ii}
@@ -41,7 +40,7 @@ class Stats extends Default<StatsI['props'], StatsI['state']> implements StatsI 
                                     </div>
                                 ))}
                             </div>
-                            <p className="indexStats__statText _prev">{s.text}</p>
+                            <p className="indexStats__statText _prev">{s.label}</p>
                         </div>
                     ))}
                     <div className="indexStats__progress">

@@ -85,7 +85,7 @@ declare global {
     };
 
     type GlobalContentT = Partial<{
-        contacts: Partial<{
+        contacts: StrapiBlockT<{
             agreementLabel: string;
             contactPlaceholder: string;
             contactsTitle: string;
@@ -96,12 +96,45 @@ declare global {
             subtitle: string;
             tagsTitle: string;
             title: string;
-            tags: { id: number; code: string; label: string }[];
+            tags: StrapiBlockT<{ code: string; label: string }>[];
         }>;
-        cookies: Partial<{
+        cookies: StrapiBlockT<{
             text: string;
             buttonLabel: string;
         }>;
+        learnMore: StrapiBlockT<{
+            title: string;
+            subtitle: string;
+            button: StrapiButtonT;
+        }>;
+        siteSettings: StrapiBlockT<{
+            email: string;
+            phone: string;
+            address: string;
+            copyright: string;
+            privacyPolicyUrl: string;
+            accreditationUrl: string;
+        }>;
+    }>;
+
+    type StrapiBlockT<T extends ObjT = ObjT> = { id: number } & Partial<T>;
+
+    type StrapiButtonT = StrapiBlockT<{
+        label: string;
+        url: string;
+        target: '_self' | '_blank';
+    }>;
+
+    type StrapiVideoT = StrapiBlockT<{
+        url: string;
+    }>;
+
+    type StrapiSvgT = StrapiBlockT<{ svgCode: string; svgFile: StrapiImageT }>;
+    type StrapiImageT = StrapiBlockT<{ url: string }>;
+    type StrapiTextT = StrapiBlockT<{
+        title: string;
+        subtitle: string;
+        button: StrapiButtonT;
     }>;
 }
 

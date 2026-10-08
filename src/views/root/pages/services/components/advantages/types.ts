@@ -1,11 +1,13 @@
 import DefaultI from '@/src/components/default/types';
 
-import { servicesAdvantagesTypes } from './static/types';
+import { ServicesPageContentT } from '../../types';
 
-type PropsT = {};
+type PropsT = {
+    content: ServicesPageContentT;
+};
 
 type StateT = {
-    currentType: keyof typeof servicesAdvantagesTypes;
+    currentType: number;
     hoverCard?: number;
     updatedKey?: string;
 };

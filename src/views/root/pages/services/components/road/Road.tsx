@@ -9,8 +9,6 @@ import init from './methods/init.ts';
 
 import RoadI from './types.ts';
 
-import { roadCards } from './static/cards.ts';
-
 class Road extends Default<RoadI['props'], RoadI['state']> implements RoadI {
     parent: RoadI['parent'];
 
@@ -25,6 +23,7 @@ class Road extends Default<RoadI['props'], RoadI['state']> implements RoadI {
 
     render() {
         const { hoverCard } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="servicesRoad _SECTION" data-theme>
@@ -49,18 +48,17 @@ class Road extends Default<RoadI['props'], RoadI['state']> implements RoadI {
                     <div className="servicesRoad__content">
                         <div className="servicesRoad__contentBlock _text">
                             <AnimateText className="servicesRoad__contentTitle" delay={50}>
-                                {'Один поток:<br/>от идеи до отчёта'}
+                                {content['sections.process']?.title}
                             </AnimateText>
                             <AnimateText className="servicesRoad__contentText" delay={20}>
-                                Прозрачный процесс в одних руках, один ответственный, без сборки из
-                                пяти подрядчиков.
+                                {content['sections.process']?.subtitle}
                             </AnimateText>
                         </div>
                         <div className="servicesRoad__contentBlock _cards">
-                            {roadCards.map((card, i) => (
+                            {content['sections.process']?.steps?.map((card, i) => (
                                 <div
                                     className={this.getClass(
-                                        'servicesRoad__contentCard _CLICK',
+                                        'servicesRoad__contentCard',
                                         hoverCard === i && '_current',
                                     )}
                                     key={i}

@@ -36,15 +36,23 @@ class ContactsForm
     sendForm = sendForm;
 
     renderLinks() {
+        const { contents } = this.props;
+
         return (
             <div className="contactsForm__links _COL">
-                <a href="mailto:hello@magedigital.ru" className="contactsForm__link">
+                <a
+                    href={`mailto:${contents.global?.siteSettings?.email}`}
+                    className="contactsForm__link"
+                >
                     <Icon name="mail" />
-                    hello@magedigital.ru
+                    {contents.global?.siteSettings?.email}
                 </a>
-                <a href="tel:+74996382469" className="contactsForm__link">
+                <a
+                    href={`tel:${contents.global?.siteSettings?.phone}`}
+                    className="contactsForm__link"
+                >
                     <Icon name="phone" />
-                    +7 499 638-24-69
+                    {contents.global?.siteSettings?.phone}
                 </a>
             </div>
         );
@@ -95,7 +103,7 @@ class ContactsForm
                                                     >
                                                         <input
                                                             type="checkbox"
-                                                            checked={form?.types?.includes(t.code)}
+                                                            checked={form?.types?.includes(t.code!)}
                                                             onChange={async () => {
                                                                 await this.setValue({
                                                                     data: { types: t.code },

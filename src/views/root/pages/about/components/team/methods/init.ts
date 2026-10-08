@@ -2,8 +2,6 @@ import { appStore } from '@/src/store/store.tsx';
 
 import I from '../types.ts';
 
-import { teamPersons } from '../static/persons.ts';
-
 const hexToRgb = (c: string): [number, number, number] => {
     const r = c.slice(0, 2);
     const g = c.slice(2, 4);
@@ -13,6 +11,8 @@ const hexToRgb = (c: string): [number, number, number] => {
 };
 
 const init: I['init'] = async function (this: I) {
+    const { content } = this.props;
+    const teamPersons = content['sections.team']?.members ?? [];
     const cardsNode = this.parent.current!.querySelector<HTMLElement>('.aboutTeam__cards');
     const descriptionsNodes = this.parent.current!.querySelectorAll<HTMLElement>(
         '.aboutTeam__cardDescription',

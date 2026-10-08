@@ -4,13 +4,11 @@ import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Lazy from '@/src/components/lazy/Lazy.tsx';
-import Media from '@/src/components/media/Media.tsx';
 
 import init from './methods/init.ts';
 
 import ServicesI from './types.ts';
-
-import { services } from './static/services.ts';
+import { getStrapiUrl } from '@/src/index.tsx';
 
 class Services extends Default<ServicesI['props'], ServicesI['state']> implements ServicesI {
     parent: ServicesI['parent'];
@@ -25,32 +23,27 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
     init = init;
 
     render() {
+        const { content } = this.props;
+
         return (
             <div ref={this.parent} className="indexServices" data-theme>
                 <div className="indexServices__top _FULL_W">
                     <div className="indexServices__topBack _FULL_W _COL _COL_CENTER">
-                        <Media check={(d) => d === 'desktop'}>
-                            <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
-                                {`Объединяем все слои промо<br/>в едином digital-решении`}
-                            </AnimateText>
-                        </Media>
-                        <Media check={(d) => d === 'mobile'}>
-                            <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
-                                {`Объединяем все слои\xa0промо в едином digital-решении`}
-                            </AnimateText>
-                        </Media>
+                        <AnimateText className="indexServices__topTitle" tag="h2" delay={50}>
+                            {content['sections.solutions']?.subtitle}
+                        </AnimateText>
                     </div>
                 </div>
                 <div className="indexServices__content _FULL_W">
-                    {services.map((s, i) => (
+                    {content['sections.solutions']?.solutions?.map((s, i) => (
                         <div
                             className="indexServices__contentService _FULL_W"
-                            key={s.key}
+                            key={s.id}
                             style={{ zIndex: i + 1 }}
                         >
                             <div
                                 className="indexServices__service _FULL_W"
-                                style={{ background: s.fill }}
+                                style={{ background: s.color }}
                             >
                                 <div className="indexServices__serviceContent _COL">
                                     <AnimateText
@@ -65,7 +58,7 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                     </AnimateText>
                                     <div className="indexServices__serviceButton">
                                         <Button className="_dark _whiteHover _minSize">
-                                            Подробнее
+                                            {s.button?.label}
                                         </Button>
                                     </div>
                                 </div>
@@ -77,7 +70,7 @@ class Services extends Default<ServicesI['props'], ServicesI['state']> implement
                                     render={() => (
                                         <video
                                             className="_FULL"
-                                            src={require(`@/src/media/${s.video}`)}
+                                            src={getStrapiUrl(s.video?.url)}
                                             playsInline
                                             muted
                                             autoPlay

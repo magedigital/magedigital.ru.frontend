@@ -7,7 +7,6 @@ import Icon from '@/src/components/icon/Icon.tsx';
 import init from './methods/init.ts';
 import setType from './methods/setType.ts';
 
-import { servicesAdvantagesTypes } from './static/types.ts';
 import AdvantagesI from './types.ts';
 
 import renderCard from './renders/renderCard.tsx';
@@ -21,7 +20,7 @@ class Advantages
     constructor(props: AdvantagesI['props']) {
         super(props);
         this.state = {
-            currentType: 'agency',
+            currentType: 0,
         };
 
         this.parent = React.createRef();
@@ -35,6 +34,7 @@ class Advantages
 
     render() {
         const { currentType } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="servicesAdvantages _SECTION">
@@ -44,7 +44,7 @@ class Advantages
                             <div
                                 className={this.getClass(
                                     'servicesAdvantages__buttonsArrow _COL _COL_CENTER',
-                                    currentType === 'brands' && '_bottom',
+                                    currentType > 0 && '_bottom',
                                 )}
                             >
                                 <Icon
@@ -54,34 +54,29 @@ class Advantages
                             </div>
 
                             <div className="servicesAdvantages__buttonsInner _COL">
-                                {(
-                                    Object.keys(
-                                        servicesAdvantagesTypes,
-                                    ) as (keyof typeof servicesAdvantagesTypes)[]
-                                ).map((t) => (
+                                {content['sections.collab']?.collabs?.map((t, i) => (
                                     <div
                                         className={this.getClass(
                                             'servicesAdvantages__button _CLICK',
-                                            currentType === t && '_current',
+                                            currentType === i && '_current',
                                         )}
-                                        key={t}
+                                        key={i}
                                         onClick={() => {
-                                            this.setType({ type: t });
+                                            this.setType({ type: i });
                                         }}
                                     >
                                         <AnimateText
                                             className="servicesAdvantages__buttonText"
                                             delay={20}
                                         >
-                                            {servicesAdvantagesTypes[t].title}
+                                            {t.title}
                                         </AnimateText>
                                     </div>
                                 ))}
                             </div>
                         </div>
                         <AnimateText className="servicesAdvantages__text" delay={20}>
-                            Мы стремимся предложить лучший сервис и удобные формы сотрудничества
-                            агентствам и брендам.
+                            {content['sections.collab']?.text}
                         </AnimateText>
                     </div>
                     <div className="servicesAdvantages__cards">

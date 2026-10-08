@@ -40,19 +40,19 @@ class About extends Page<AboutI['props'], AboutI['state']> implements AboutI {
                             <Header content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Stats />
+                            <Stats content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <History />
+                            <History content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Team />
+                            <Team content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Info />
+                            <Info content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Advantages />
+                            <Advantages content={contents.about} />
                         </div>
                         <div className="page__section _FULL_W">
                             <Footer />

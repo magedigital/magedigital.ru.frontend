@@ -63,7 +63,7 @@
 
             &._bottom {
                 top: 100%;
-                transform: translate(0, -100%);
+                transform: translate(0, calc(-100% - 12rem));
             }
 
             &Icon {
@@ -188,11 +188,11 @@
             padding: 26rem 24rem 32rem;
         }
 
-        &._agency._current {
+        &._0._current {
             background: #36c0f7;
         }
 
-        &._brands._current {
+        &._1._current {
             background: #f46eb8;
         }
 

@@ -5,7 +5,7 @@ import Button from '@/src/components/button/Button.tsx';
 import Default from '@/src/components/default/Default.tsx';
 import Icon from '@/src/components/icon/Icon.tsx';
 import { AppRouter } from '@/src/index.tsx';
-import { appStore } from '@/src/store/store.tsx';
+import { StoreT, WithStore, appStore } from '@/src/store/store.tsx';
 
 import init from './methods/init.ts';
 
@@ -26,17 +26,17 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
     init = init;
 
     render() {
+        const { contents } = this.props;
+
         return (
             <div ref={this.parent} className="footer">
                 <div className="footer__banner" data-theme>
                     <div className="footer__bannerContent _COL">
                         <AnimateText className="footer__bannerTitle" tag="h3" delay={50}>
-                            Узнать больше
+                            {contents.global?.learnMore?.title}
                         </AnimateText>
                         <AnimateText className="footer__bannerText" delay={15}>
-                            Есть бриф, тендер или пока только идея? Подключимся на раннем этапе:
-                            поможем оценить механику, риски, сроки и стоимость digital-части вашего
-                            проекта.
+                            {contents.global?.learnMore?.subtitle}
                         </AnimateText>
                         <div className="footer__button">
                             <Button
@@ -46,7 +46,7 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                     appStore.getState().setPopup({ name: 'contactsFormPopup' });
                                 }}
                             >
-                                Написать нам
+                                {contents.global?.learnMore?.button?.label}
                             </Button>
                         </div>
                     </div>
@@ -88,14 +88,20 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                             </div>
                             <div className="footer__block _links">
                                 <div className="footer__links _COL">
-                                    <a href="#" className="footer__link">
-                                        hello@magedigital.ru
+                                    <a
+                                        href={`mailto:${contents.global?.siteSettings?.email}`}
+                                        className="footer__link"
+                                    >
+                                        {contents.global?.siteSettings?.email}
+                                    </a>
+                                    <a
+                                        href={`tel:${contents.global?.siteSettings?.phone}`}
+                                        className="footer__link"
+                                    >
+                                        {contents.global?.siteSettings?.phone}
                                     </a>
                                     <a href="#" className="footer__link">
-                                        +7 499 638-24-69
-                                    </a>
-                                    <a href="#" className="footer__link">
-                                        Москва, Трубная, 32с4
+                                        {contents.global?.siteSettings?.address}
                                     </a>
                                 </div>
                             </div>
@@ -112,7 +118,12 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
                                 </span>
                             </div>
                             <div className="footer__block">
-                                <a href="#" className="footer__doc">
+                                <a
+                                    href={contents.global?.siteSettings?.privacyPolicyUrl}
+                                    rel="noreferrer"
+                                    target="_blank"
+                                    className="footer__doc"
+                                >
                                     Политика конфиденциальности
                                 </a>
                             </div>
@@ -141,4 +152,8 @@ class Footer extends Default<FooterI['props'], FooterI['state']> implements Foot
     }
 }
 
-export default Footer;
+const mapStore = (s: StoreT) => ({
+    contents: s.contents,
+});
+
+export default WithStore(Footer, mapStore);

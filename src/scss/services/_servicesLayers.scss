@@ -102,6 +102,18 @@
         }
     }
 
+    &__contentCard:nth-child(1) &__card {
+        background: #d049ff;
+    }
+
+    &__contentCard:nth-child(2) &__card {
+        background: #36c0f7;
+    }
+
+    &__contentCard:nth-child(3) &__card {
+        background: #886aff;
+    }
+
     &__card {
         position: relative;
         z-index: 1;

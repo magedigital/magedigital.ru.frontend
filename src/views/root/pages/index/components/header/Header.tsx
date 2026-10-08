@@ -43,7 +43,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         delay={50}
                         disabled={!titleIsAnimated}
                     >
-                        Mage Digital
+                        {content['sections.hero']?.title}
                     </AnimateText>
 
                     <AnimateText
@@ -51,7 +51,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                         delay={30}
                         disabled={!textIsAnimated}
                     >
-                        {content['sections.hero']?.title}
+                        {content['sections.hero']?.subtitle}
                     </AnimateText>
                     <div
                         className={this.getClass(
@@ -65,7 +65,7 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
                                 appStore.getState().setPopup({ name: 'contactsFormPopup' });
                             }}
                         >
-                            Обсудить проект
+                            {content['sections.hero']?.button?.label}
                         </Button>
                     </div>
                 </div>

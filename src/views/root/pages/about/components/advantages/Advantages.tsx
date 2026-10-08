@@ -2,14 +2,11 @@ import React from 'react';
 
 import AnimateText from '@/src/components/animateText/AnimateText.tsx';
 import Default from '@/src/components/default/Default.tsx';
-import Media from '@/src/components/media/Media.tsx';
 import Strings from '@/src/services/strings/Strings.service.ts';
 
 import init from './methods/init.ts';
 
 import AdvantagesI from './types.ts';
-
-import { advantagesCards } from './static/cards.ts';
 
 class Advantages
     extends Default<AdvantagesI['props'], AdvantagesI['state']>
@@ -27,35 +24,26 @@ class Advantages
     init = init;
 
     render() {
+        const { content } = this.props;
+
         return (
             <div ref={this.parent} className="aboutAdvantages _SECTION" data-theme>
                 <div className="aboutAdvantages__inner _INNER">
                     <div className="aboutAdvantages__content _COL">
                         <AnimateText className="aboutAdvantages__title" delay={100}>
-                            Наши принципы
+                            {content['sections.principles']?.title}
                         </AnimateText>
-                        <Media check={(d) => d === 'desktop'}>
-                            <AnimateText className="aboutAdvantages__text" delay={30}>
-                                {
-                                    'Мы не стремимся быть фабрикой production-<br/>задач. Нам важно включаться в проекты: понимать механику, видеть слабые места, держать визуальный уровень и не терять детали на стыке дизайна, разработки и поддержки.'
-                                }
-                            </AnimateText>
-                        </Media>
-                        <Media check={(d) => d === 'mobile'}>
-                            <AnimateText className="aboutAdvantages__text" delay={30}>
-                                {
-                                    'Мы не стремимся быть фабрикой production-задач. Нам важно включаться в проекты: понимать механику, видеть слабые места, держать визуальный уровень и не терять детали на стыке дизайна, разработки и поддержки.'
-                                }
-                            </AnimateText>
-                        </Media>
+                        <AnimateText className="aboutAdvantages__text" delay={30}>
+                            {content['sections.principles']?.subtitle}
+                        </AnimateText>
                     </div>
                     <div className="aboutAdvantages__cards">
-                        {advantagesCards.map((c, i) => (
+                        {content['sections.principles']?.principles?.map((c, i) => (
                             <div
                                 className="aboutAdvantages__card _COL"
                                 key={i}
                                 data-key={i}
-                                style={{ background: c.fill }}
+                                style={{ background: c.color }}
                             >
                                 <p className="aboutAdvantages__cardNumber">{i + 1}</p>
                                 <h4

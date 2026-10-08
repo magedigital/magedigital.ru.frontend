@@ -44,22 +44,22 @@ class Index extends Page<IndexI['props'], IndexI['state']> implements IndexI {
                             <Brands />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Stats />
+                            <Stats content={contents.home} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Services />
+                            <Services content={contents.home} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <ServicesInfo />
+                            <ServicesInfo content={contents.home} />
                         </div>
                         {/* <div className="page__section _FULL_W">
                         <Projects />
                     </div> */}
                         <div className="page__section _FULL_W">
-                            <Advantages />
+                            <Advantages content={contents.home} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Best />
+                            <Best content={contents.home} />
                         </div>
                         <div className="page__section _FULL_W">
                             <Footer />

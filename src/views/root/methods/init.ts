@@ -21,7 +21,7 @@ const init: I['init'] = async function () {
     const globalContent: GlobalContentT = {};
 
     await Promise.all(
-        (['contacts', 'cookies'] as const).map(async (name) => {
+        (['contacts', 'learn-more', 'cookies', 'site-setting'] as const).map(async (name) => {
             if (name === 'contacts') {
                 const data = await strapiClient.single('contacts-section').find({
                     populate: {
@@ -39,6 +39,26 @@ const init: I['init'] = async function () {
             if (name === 'cookies') {
                 const data = await strapiClient.single('cookie-banner').find({});
                 globalContent.cookies = data.data as never;
+            }
+
+            if (name === 'learn-more') {
+                const data = await strapiClient.single('learn-more').find({
+                    populate: {
+                        content: {
+                            populate: {
+                                button: true,
+                            },
+                        },
+                    },
+                });
+                globalContent.learnMore = data.data.content;
+            }
+
+            if (name === 'site-setting') {
+                const data = await strapiClient.single('site-setting').find({
+                    populate: {},
+                });
+                globalContent.siteSettings = data.data as never;
             }
         }),
     );

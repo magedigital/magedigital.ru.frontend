@@ -1,13 +1,14 @@
 import I from '../types.ts';
 
-import { stats } from '../static/stats.ts';
-
 const init: I['init'] = async function (this: I) {
+    const { content } = this.props;
     const pageNode = this.parent.current!.closest<HTMLElement>('.page__scroll');
 
     if (!pageNode) {
         return;
     }
+
+    const stats = content['sections.stats']?.stats ?? [];
 
     const progressNode =
         this.parent.current!.querySelector<SVGCircleElement>('.indexStats__progress');
@@ -25,6 +26,7 @@ const init: I['init'] = async function (this: I) {
             `.indexStats__stat[data-key="${this.currentStat}"]`,
         );
         const stat = stats[this.currentStat];
+        const statTitle = stat.value ?? '';
 
         if (!statNode) {
             return;
@@ -32,7 +34,7 @@ const init: I['init'] = async function (this: I) {
 
         const textNode = statNode.querySelector<HTMLElement>('.indexStats__statText');
 
-        let progressPercent = diff / (2_300 + stat.title.split('').length * 2 * 50);
+        let progressPercent = diff / (2_300 + statTitle.split('').length * 2 * 50);
 
         if (progressPercent > 1) {
             progressPercent = 1;
@@ -73,7 +75,7 @@ const init: I['init'] = async function (this: I) {
                     textNode.classList.remove('_prev');
                 }
 
-                if (curChar < stat.title.split('').length) {
+                if (curChar < statTitle.split('').length) {
                     const charNode = statNode.querySelector<HTMLElement>(
                         `.indexStats__statTitleChar[data-key="${curChar}"]`,
                     );
@@ -100,7 +102,7 @@ const init: I['init'] = async function (this: I) {
                     textNode.classList.add('_next');
                 }
 
-                if (curChar < stat.title.split('').length) {
+                if (curChar < statTitle.split('').length) {
                     const charNode = statNode.querySelector<HTMLElement>(
                         `.indexStats__statTitleChar[data-key="${curChar}"]`,
                     );

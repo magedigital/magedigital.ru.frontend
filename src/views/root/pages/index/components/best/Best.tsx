@@ -20,6 +20,8 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
     }
 
     render() {
+        const { content } = this.props;
+
         return (
             <div ref={this.parent} className="indexBest _FULL_W">
                 <div className="indexBest__inner _COL _COL_CENTER">
@@ -46,12 +48,10 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
                             )}
                         />
                         <AnimateText className="indexBest__bannerTitle" delay={50} tag="h3">
-                            Наши лучшие кейсы скрыты NDA
+                            {content.ndaCases?.title}
                         </AnimateText>
                         <AnimateText className="indexBest__bannerText" delay={15}>
-                            {
-                                'Мы не можем показать здесь наши\xa0самые масштабные высоконагруженные платформы для\xa0FMCG-гигантов. Но мы можем показать их на закрытой презентации и разобрать механику под ваши задачи'
-                            }
+                            {content.ndaCases?.subtitle}
                         </AnimateText>
                     </div>
                     <div className="indexBest__button">
@@ -62,7 +62,7 @@ class Best extends Default<BestI['props'], BestI['state']> implements BestI {
                                     appStore.getState().setPopup({ name: 'contactsFormPopup' });
                                 }}
                             >
-                                Увидеть всё на закрытой презентации
+                                {content.ndaCases?.button?.label}
                             </Button>
                         </Media>
                         <Media check={(d) => d === 'mobile'}>

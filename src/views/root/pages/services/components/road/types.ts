@@ -1,6 +1,10 @@
 import DefaultI from '@/src/components/default/types';
 
-type PropsT = {};
+import { ServicesPageContentT } from '../../types';
+
+type PropsT = {
+    content: ServicesPageContentT;
+};
 
 type StateT = {
     hoverCard?: number;

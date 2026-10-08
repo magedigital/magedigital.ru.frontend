@@ -38,13 +38,13 @@ class Services extends Page<ServicesI['props'], ServicesI['state']> implements S
                             <Header content={contents.services} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Layers />
+                            <Layers content={contents.services} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Advantages />
+                            <Advantages content={contents.services} />
                         </div>
                         <div className="page__section _FULL_W">
-                            <Road />
+                            <Road content={contents.services} />
                         </div>
                         <div className="page__section _FULL_W">
                             <Footer />

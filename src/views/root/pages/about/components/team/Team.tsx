@@ -7,8 +7,7 @@ import Lazy from '@/src/components/lazy/Lazy.tsx';
 import init from './methods/init.ts';
 
 import TeamI from './types.ts';
-
-import { teamPersons } from './static/persons.ts';
+import { getStrapiUrl } from '@/src/index.tsx';
 
 class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
     parent: TeamI['parent'];
@@ -26,22 +25,20 @@ class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
 
     render() {
         const { activePerson } = this.state;
+        const { content } = this.props;
 
         return (
             <div ref={this.parent} className="aboutTeam _SECTION" data-theme>
                 <div className="aboutTeam__head _FULL_W _COL">
                     <AnimateText className="aboutTeam__title" tag="h3" delay={100}>
-                        Команда
+                        {content['sections.team']?.title}
                     </AnimateText>
                     <AnimateText className="aboutTeam__text" delay={20}>
-                        Компактный продакшн сениор уровня с большой экспертизой в диджитал
-                        активациях. Ядро команды — четыре человека, каждый со своей зоной и не
-                        первой сотней проектов за спиной. Вокруг — команда и сеть проверенных
-                        подрядчиков: вёрстка, разработка, гейм-дев, поддержка.
+                        {content['sections.team']?.subtitle}
                     </AnimateText>
                 </div>
                 <div className="aboutTeam__cards _FULL_W">
-                    {teamPersons.map((p, i, ar) => (
+                    {content['sections.team']?.members?.map((p, i, ar) => (
                         <div
                             className={this.getClass(
                                 'aboutTeam__card _FULL_W _COL',
@@ -72,11 +69,11 @@ class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
                                 data-startColor="000000"
                                 data-endColor="1D0092"
                             />
-                            <h4 className="aboutTeam__cardTitle">{p.title}</h4>
-                            <p className="aboutTeam__cardRole">{p.role}</p>
+                            <h4 className="aboutTeam__cardTitle">{p.name}</h4>
+                            <p className="aboutTeam__cardRole">{p.position}</p>
                             <div className="aboutTeam__cardDescription">
                                 <div className="aboutTeam__cardDescriptionInner">
-                                    {p.description}&nbsp;{p.description}&nbsp;
+                                    {p.mission}&nbsp;{p.mission}&nbsp;
                                 </div>
                             </div>
                             <Lazy
@@ -87,7 +84,7 @@ class Team extends Default<TeamI['props'], TeamI['state']> implements TeamI {
                                 render={() => (
                                     <video
                                         className="_FULL"
-                                        src={require(`@/src/media/about/${p.preview}`)}
+                                        src={getStrapiUrl(p.video?.url)}
                                         loop
                                         muted
                                         autoPlay

@@ -17,6 +17,46 @@ const onPageInit: I['onPageInit'] = async function (this: I) {
                                 button: true,
                             },
                         },
+                        'sections.services': {
+                            populate: {
+                                button: true,
+                                services: {
+                                    populate: {
+                                        items: true,
+                                        video: true,
+                                    },
+                                },
+                            },
+                        },
+                        'sections.collab': {
+                            populate: {
+                                button: true,
+                                collabs: {
+                                    populate: {
+                                        cards: {
+                                            populate: {
+                                                logo: {
+                                                    populate: {
+                                                        svgFile: true,
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                        'sections.process': {
+                            populate: {
+                                button: true,
+                                steps: true,
+                            },
+                        },
+                        'sections.text': {
+                            populate: {
+                                button: true,
+                            },
+                        },
                     },
                 },
             },

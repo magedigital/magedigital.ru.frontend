@@ -17,6 +17,57 @@ const onPageInit: I['onPageInit'] = async function (this: I) {
                                 button: true,
                             },
                         },
+                        'sections.mage': {
+                            populate: {
+                                button: true,
+                                steps: {
+                                    populate: {
+                                        logo: true,
+                                        icon: {
+                                            populate: {
+                                                svgFile: true,
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                        'sections.history': {
+                            populate: {
+                                button: true,
+                                thenPhotos: {
+                                    populate: {
+                                        image: true,
+                                    },
+                                },
+                                nowPhotos: {
+                                    populate: {
+                                        image: true,
+                                    },
+                                },
+                            },
+                        },
+                        'sections.team': {
+                            populate: {
+                                button: true,
+                                members: {
+                                    populate: {
+                                        video: true,
+                                    },
+                                },
+                            },
+                        },
+                        'sections.principles': {
+                            populate: {
+                                button: true,
+                                principles: true,
+                            },
+                        },
+                        'sections.text': {
+                            populate: {
+                                button: true,
+                            },
+                        },
                     },
                 },
             },

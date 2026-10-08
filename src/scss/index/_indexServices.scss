@@ -42,6 +42,7 @@
         }
 
         &Title {
+            max-width: 80%;
             color: #fff;
             font-weight: 300;
             font-size: 64rem;
@@ -79,6 +80,18 @@
             // border-radius: 28rem;
         }
     }
+
+    // &__contentService:nth-child(1) &__service {
+    //     background: #d049ff;
+    // }
+
+    // &__contentService:nth-child(2) &__service {
+    //     background: #36c0f7;
+    // }
+
+    // &__contentService:nth-child(3) &__service {
+    //     background: #886aff;
+    // }
 
     &__service {
         position: relative;
