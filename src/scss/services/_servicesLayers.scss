@@ -91,7 +91,11 @@
     }
 
     &__contentCard:not(:last-child) &__card {
-        padding-bottom: 126rem;
+        padding-bottom: 266rem;
+
+        @include mob {
+            padding-bottom: 140rem;
+        }
     }
 
     &__contentCard:last-child &__card {
@@ -117,12 +121,12 @@
     &__card {
         position: relative;
         z-index: 1;
-        padding: 74rem 48rem;
+        padding: 74rem 48rem 210rem;
         overflow: hidden;
         border-radius: 32rem;
 
         @include mob {
-            padding: 35rem 16rem 52rem;
+            padding: 35rem 16rem 100rem;
             border-radius: 28rem;
         }
 
@@ -138,12 +142,12 @@
             will-change: transform;
 
             @include mob {
-                top: auto;
+                position: relative;
+                top: 0;
                 right: 0;
-                bottom: 100rem;
-                z-index: -1;
                 width: 100%;
                 height: 220rem;
+                margin-bottom: 36rem;
                 border-radius: 18rem;
 
                 &::after {
@@ -161,6 +165,73 @@
 
             &Thumb {
                 object-fit: cover;
+            }
+        }
+
+        &Decor {
+            position: absolute;
+            top: 440rem;
+            left: 150rem;
+            width: 430rem;
+            height: 430rem;
+
+            @include mob {
+                top: 554rem;
+                left: -42rem;
+                width: 160rem;
+                height: 160rem;
+            }
+
+            &Number {
+                position: absolute;
+                top: 50%;
+                left: -100rem;
+                height: 80rem;
+                margin-top: 8rem;
+                overflow: hidden;
+                transform: translate(0, -50%);
+
+                @include mob {
+                    display: none;
+                }
+
+                &Inner {
+                    transition: 0.1s ease-in-out;
+                    will-change: transform;
+
+                    & div {
+                        color: #000;
+                        font-weight: 300;
+                        font-size: 64rem;
+                        line-height: 1.3;
+                        letter-spacing: 2rem;
+                        text-align: center;
+                    }
+                }
+            }
+
+            &Inner {
+                width: 100%;
+                height: 100%;
+            }
+
+            &Shape {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+            }
+
+            &Figure {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+                width: 27%;
+                height: 27%;
+                transform: translate(-50%, -50%);
             }
         }
 
@@ -191,7 +262,7 @@
             font-size: 84rem;
 
             @include mob {
-                margin-bottom: 50rem;
+                margin-bottom: 28rem;
                 font-weight: 300;
                 font-size: 42rem;
                 line-height: 1.35;
@@ -219,12 +290,12 @@
 
         &Services {
             position: relative;
-            margin-top: 110rem;
-            padding-left: 24rem;
+            margin-top: 210rem;
+            padding-left: 640rem;
 
             @include mob {
                 margin: 50rem 0 0;
-                padding-left: 0;
+                padding-left: 60rem;
             }
 
             &Arrow {
@@ -256,11 +327,21 @@
             font-size: 48rem;
             line-height: 1.2;
             transform-origin: left center;
+            transition: 0.1s ease-in-out;
             will-change: transform;
 
             @include mob {
                 font-weight: 400;
                 font-size: 24rem;
+            }
+
+            &[data-current] {
+                color: #000;
+                transform: scale(1.3);
+
+                @include mob {
+                    transform: none;
+                }
             }
 
             & + & {

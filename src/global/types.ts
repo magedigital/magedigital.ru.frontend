@@ -23,6 +23,7 @@ declare global {
         escapeGoBack?: boolean;
         eventTimeSlot: number;
         eventVisibleTimeSlot: number;
+        gsap?: any;
     }
 
     namespace NodeJS {

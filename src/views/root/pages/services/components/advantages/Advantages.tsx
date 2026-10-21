@@ -41,18 +41,6 @@ class Advantages
                 <div className="servicesAdvantages__inner _INNER">
                     <div className="servicesAdvantages__content">
                         <div className="servicesAdvantages__buttons _FULL_W _NOSCROLL">
-                            <div
-                                className={this.getClass(
-                                    'servicesAdvantages__buttonsArrow _COL _COL_CENTER',
-                                    currentType > 0 && '_bottom',
-                                )}
-                            >
-                                <Icon
-                                    name="next-arrow"
-                                    className="servicesAdvantages__buttonsArrowIcon"
-                                />
-                            </div>
-
                             <div className="servicesAdvantages__buttonsInner _COL">
                                 {content['sections.collab']?.collabs?.map((t, i) => (
                                     <div
@@ -64,13 +52,31 @@ class Advantages
                                         onClick={() => {
                                             this.setType({ type: i });
                                         }}
+                                        data-id={i}
                                     >
-                                        <AnimateText
-                                            className="servicesAdvantages__buttonText"
-                                            delay={20}
+                                        <div
+                                            className={this.getClass(
+                                                'servicesAdvantages__buttonArrow _COL _COL_CENTER',
+                                            )}
                                         >
-                                            {t.title}
-                                        </AnimateText>
+                                            <div className="servicesAdvantages__buttonArrowProgress">
+                                                <svg>
+                                                    <circle />
+                                                </svg>
+                                            </div>
+                                            <Icon
+                                                name="next-arrow"
+                                                className="servicesAdvantages__buttonArrowIcon"
+                                            />
+                                        </div>
+                                        <div className="servicesAdvantages__buttonInner">
+                                            <AnimateText
+                                                className="servicesAdvantages__buttonText"
+                                                delay={20}
+                                            >
+                                                {t.title}
+                                            </AnimateText>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

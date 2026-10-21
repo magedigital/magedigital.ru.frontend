@@ -27,15 +27,23 @@ class Header extends Default<HeaderI['props'], HeaderI['state']> implements Head
         return (
             <div ref={this.parent} className="servicesHeader _SECTION">
                 <Media check={(d) => d === 'desktop'}>
-                    <img
-                        src={require('@/src/media/services/header.jpg')}
+                    <video
+                        src={require('@/src/media/services/services-loop_1.mp4')}
                         className="servicesHeader__back _FULL_ABS"
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
                     />
                 </Media>
                 <Media check={(d) => d === 'mobile'}>
-                    <img
-                        src={require('@/src/media/services/img-services-mob.jpg')}
+                    <video
+                        src={require('@/src/media/services/services-loop-mob.mp4')}
                         className="servicesHeader__back _FULL_ABS"
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
                     />
                 </Media>
                 <div

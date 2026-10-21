@@ -38,7 +38,7 @@ const renderPage: I['renderPage'] = function ({ render }) {
                     />
                 </Fade>
             </Media>
-            <div className="page__scroll _FULL _NOSCROLL">
+            <div className="page__scroll _FULL">
                 <Media check={(d) => d === 'desktop'}>
                     <div className="page__topBar _FULL_W">
                         <TopBar mode="default" device="desktop" />

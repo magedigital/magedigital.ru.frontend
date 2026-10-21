@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.fdcf3a57.css",
-    "main.js": "/static/js/main.2a266a35.js",
+    "main.css": "/static/css/main.9a25fec7.css",
+    "main.js": "/static/js/main.fc179478.js",
     "static/js/296.09395460.chunk.js": "/static/js/296.09395460.chunk.js",
     "static/js/181.3533b4ef.chunk.js": "/static/js/181.3533b4ef.chunk.js",
     "static/js/38.a896c244.chunk.js": "/static/js/38.a896c244.chunk.js",
@@ -30,13 +30,19 @@
     "static/js/894.b339fe56.chunk.js": "/static/js/894.b339fe56.chunk.js",
     "static/js/311.1d98d51b.chunk.js": "/static/js/311.1d98d51b.chunk.js",
     "static/js/85.631c39ea.chunk.js": "/static/js/85.631c39ea.chunk.js",
+    "static/js/975.26f50a98.chunk.js": "/static/js/975.26f50a98.chunk.js",
+    "static/js/468.d28d994b.chunk.js": "/static/js/468.d28d994b.chunk.js",
     "static/js/974.8798f5f7.chunk.js": "/static/js/974.8798f5f7.chunk.js",
     "static/media/main-reel.mp4": "/static/media/main-reel.87e575ac581628c1a05a.mp4",
     "static/media/hidden-reel.mp4": "/static/media/hidden-reel.83f4c51ed3c76bb96e1b.mp4",
     "static/media/mage-back-glass-logo.mp4": "/static/media/mage-back-glass-logo.ff61ca7664d062bb025d.mp4",
+    "static/media/about-loop_1.mp4": "/static/media/about-loop_1.f0dfb93758dce01f71fc.mp4",
     "static/media/Inter-Regular.ttf": "/static/media/Inter-Regular.991468dd4e43f260e6a4.ttf",
+    "static/media/services-loop_1.mp4": "/static/media/services-loop_1.987aabd744ba9ce14e4c.mp4",
+    "static/media/about-loop-mob.mp4": "/static/media/about-loop-mob.b81628164917bd8205d7.mp4",
+    "static/media/footer-glass.png": "/static/media/footer-glass.cc0a8dde127709041368.png",
     "static/media/footer-bubble.png": "/static/media/footer-bubble.31a35dc7f62a1d19691b.png",
-    "static/media/footer-glass.png": "/static/media/footer-glass.f5221e348ef09183e95d.png",
+    "static/media/services-loop-mob.mp4": "/static/media/services-loop-mob.c561050f321b5d41c661.mp4",
     "static/media/arm.png": "/static/media/arm.069611cea1ed712fa51b.png",
     "static/media/layer-2.png": "/static/media/layer-2.86e646078385af8a1f44.png",
     "static/media/layer-3.png": "/static/media/layer-3.bf60966a8b007682ec1b.png",
@@ -47,15 +53,12 @@
     "static/media/Onest-Thin.ttf": "/static/media/Onest-Thin.50b6d59d74ca1265e7be.ttf",
     "static/media/Onest-Regular.ttf": "/static/media/Onest-Regular.2f8180f95c9c4f66c68c.ttf",
     "static/media/hands-connected.png": "/static/media/hands-connected.6451a4c90a7c97d4adad.png",
-    "static/media/header.jpg": "/static/media/header.d6f1c05981871520035d.jpg",
     "static/media/guinness.svg": "/static/media/guinness.80fdc6caa272beddc55c.svg",
     "static/media/ahmad.svg": "/static/media/ahmad.f8dd8484dca232a661a9.svg",
     "static/media/ms.svg": "/static/media/ms.5340a088c6a4d2736b64.svg",
     "static/media/detski_mir.svg": "/static/media/detski_mir.33bd8003f24977ba65e4.svg",
     "static/media/danisimo.svg": "/static/media/danisimo.ff069c99a4e617054686.svg",
-    "static/media/img-services-mob.jpg": "/static/media/img-services-mob.0f0c9b447aef531c9b2d.jpg",
     "static/media/michelin.svg": "/static/media/michelin.e249dd374236597b0dca.svg",
-    "static/media/img-about-mob.jpg": "/static/media/img-about-mob.56aa5b306f41f83008d5.jpg",
     "static/media/whiskas.svg": "/static/media/whiskas.fb0ce20a1efd8131d5e7.svg",
     "static/media/dobry.svg": "/static/media/dobry.55b0d2c0e4886dd1d656.svg",
     "static/media/diksi.svg": "/static/media/diksi.77eb88483f9f19297d1a.svg",
@@ -81,7 +84,7 @@
     "static/media/magnit.svg": "/static/media/magnit.6c09cdfa068fc0cf7d44.svg"
   },
   "entrypoints": [
-    "static/css/main.fdcf3a57.css",
-    "static/js/main.2a266a35.js"
+    "static/css/main.9a25fec7.css",
+    "static/js/main.fc179478.js"
   ]
 }

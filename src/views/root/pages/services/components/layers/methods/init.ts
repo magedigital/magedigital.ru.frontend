@@ -3,6 +3,8 @@ import { appStore } from '@/src/store/store.tsx';
 import I from '../types.ts';
 
 const init: I['init'] = async function (this: I) {
+    await this.loadPlugins();
+
     const pageNode = this.parent.current!.closest<HTMLElement>('.page__scroll');
     const topNode = this.parent.current!.querySelector<HTMLElement>('.servicesLayers__top');
     const topBackNode = this.parent.current!.querySelector<HTMLElement>('.servicesLayers__topBack');
@@ -76,11 +78,20 @@ const init: I['init'] = async function (this: I) {
 
         cards.forEach((s, i) => {
             const cardContentNode = s.querySelector<HTMLElement>('.servicesLayers__cardContent');
-            const arrowNode = s.querySelector<HTMLElement>('.servicesLayers__cardServicesArrow');
-            const cardThumbNode = s.querySelector<HTMLElement>('.servicesLayers__cardPreview');
             const cardServicesNode = s.querySelector<HTMLElement>('.servicesLayers__cardServices');
-            const cardServicesNodes = cardContentNode!.querySelectorAll<HTMLElement>(
+            const cardServicesNodes = s!.querySelectorAll<HTMLElement>(
                 '.servicesLayers__cardService',
+            );
+            const cardDecorNode = s.querySelector<HTMLElement>('.servicesLayers__cardDecor');
+            const cardDecorFigureNode = cardDecorNode?.querySelector<HTMLElement>(
+                '.servicesLayers__cardDecorFigure',
+            );
+            const cardNumberNode = s.querySelector<HTMLElement>('.servicesLayers__cardDecorNumber');
+            const cardNumberInnerNode = s.querySelector<HTMLElement>(
+                '.servicesLayers__cardDecorNumberInner',
+            );
+            const cardNumberFirstNode = s.querySelector<HTMLElement>(
+                '.servicesLayers__cardDecorNumberInner div',
             );
             const thisOffset = offset * (cards.length - i);
 
@@ -120,66 +131,40 @@ const init: I['init'] = async function (this: I) {
                 servicesArrowProgress = 1;
             }
 
-            const thumbOffset = cardThumbNode!.offsetHeight + thisMargin + offset;
-            let thumbProgress =
-                (-cardTop - thumbOffset) / (s.offsetHeight - thumbOffset - offset - thisMargin);
-
-            if (appStore.getState().device === 'mobile' && 1) {
-                thumbProgress =
-                    (-cardTop - thumbOffset) / (s.offsetHeight - thumbOffset - offset - thisMargin);
-            }
-
-            if (thumbProgress < 0) {
-                thumbProgress = 0;
-            }
-            if (thumbProgress > 1) {
-                thumbProgress = 1;
-            }
-
-            const servicesArrowTop =
-                servicesArrowProgress * (cardServicesNode!.offsetHeight - arrowNode!.offsetHeight);
+            const cardDecorTop =
+                servicesArrowProgress *
+                (cardServicesNode!.offsetHeight -
+                    cardDecorFigureNode!.getBoundingClientRect().height * 0.5);
 
             const servicesStep = 1 / cardServicesNodes.length;
-            // const k = appStore.getState().device === 'desktop' ? 0.3 : 0.5;
 
             cardServicesNodes.forEach((n, ni) => {
-                const optionArrowNode = n.querySelector<HTMLElement>(
-                    '.servicesLayers__cardServiceArrow',
-                );
-                let thisProgress = servicesArrowProgress;
-                thisProgress -= ni * servicesStep;
-                thisProgress /= servicesStep;
+                const isCurrent =
+                    servicesArrowProgress >= servicesStep * ni &&
+                    servicesArrowProgress <= servicesStep * (ni + 1);
 
-                if (thisProgress > 0.5) {
-                    thisProgress = 1 - thisProgress;
-                }
-                if (thisProgress < 0) {
-                    thisProgress = 0;
-                }
-                if (thisProgress > 1) {
-                    thisProgress = 1;
-                }
+                if (isCurrent) {
+                    this.cardAnimates[i]!.animate({ index: ni });
+                    n.setAttribute('data-current', 't');
 
-                let colorProgress = servicesArrowProgress;
-                colorProgress -= ni * servicesStep;
-                colorProgress /= servicesStep;
-
-                const color = colorProgress < 0 || colorProgress > 1 ? '#fff' : '#000';
-
-                if (appStore.getState().device === 'desktop') {
-                    n.style.color = color;
-                }
-
-                const optionLeft = appStore.getState().device === 'desktop' ? 0 : thisProgress * 50;
-
-                n.style.transform = `translate(${optionLeft}px,0px) scale(${1 + thisProgress * 0.5})`;
-
-                if (optionArrowNode) {
-                    optionArrowNode.style.transform = `translate(${(1 - thisProgress * 2) * -30}px,-50%)`;
+                    if (cardNumberNode && cardNumberInnerNode && cardNumberFirstNode) {
+                        cardNumberNode.style.height = `${cardNumberFirstNode.offsetHeight / window.sizeK}rem`;
+                        cardNumberInnerNode.style.transform = `translate(0,${-cardNumberFirstNode.offsetHeight * ni}px)`;
+                    }
+                } else {
+                    n.removeAttribute('data-current');
                 }
             });
 
-            arrowNode!.style.transform = `translate(0,${servicesArrowTop}px)`;
+            if (cardDecorNode) {
+                const thisTop =
+                    appStore.getState().device === 'desktop'
+                        ? cardContentNode!.offsetHeight + 96
+                        : cardContentNode!.offsetHeight + 10;
+
+                cardDecorNode.style.top = `${thisTop}px`;
+                cardDecorNode.style.transform = `translate(0,${cardDecorTop}px)`;
+            }
 
             if (cardTop < 0) {
                 cardTop = 0;
@@ -187,24 +172,6 @@ const init: I['init'] = async function (this: I) {
 
             cardContentNode!.style.transform = `translate(0,${-contentTopPercent * cardContentTop * window.sizeK}px)`;
             s.style.transform = `translate(0,${-cardTop}px)`;
-
-            if (appStore.getState().device === 'mobile') {
-                let thumbTop = s.offsetHeight * (1 - thumbProgress);
-
-                if (
-                    thumbTop >=
-                    cardServicesNode!.offsetHeight - cardThumbNode!.offsetHeight + 48 * window.sizeK
-                ) {
-                    thumbTop =
-                        cardServicesNode!.offsetHeight -
-                        cardThumbNode!.offsetHeight +
-                        48 * window.sizeK;
-                }
-
-                cardThumbNode!.style.transform = `translate(0,${-thumbTop}px)`;
-            } else {
-                cardThumbNode!.style.transform = `translate(0,${(s.offsetHeight - thumbOffset) * thumbProgress}px)`;
-            }
         });
     };
 
