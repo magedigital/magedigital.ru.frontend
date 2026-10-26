@@ -44,7 +44,10 @@ const renderCard: I['renderCard'] = function ({ index }) {
                             )}
                             onMouseEnter={() =>
                                 this.addStack(async () => {
-                                    await this.asyncSetState({ hoverCard: index });
+                                    await this.asyncSetState({
+                                        stopAutoChange: true,
+                                        hoverCard: index,
+                                    });
                                 })
                             }
                             onMouseLeave={() =>

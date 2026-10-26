@@ -74,6 +74,7 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                             className="servicesLayers__contentCard _FULL_W"
                             key={i}
                             style={{ zIndex: i + 1 }}
+                            data-id={i}
                         >
                             <div className="servicesLayers__card _FULL_W">
                                 <Media check={(d) => d === 'desktop'}>
@@ -112,7 +113,6 @@ class Layers extends Default<LayersI['props'], LayersI['state']> implements Laye
                                     </div>
                                 </div>
                                 <div className="servicesLayers__cardContent _COL">
-                                    <div className="servicesLayers__cardCount">0{i + 1}</div>
                                     <h3 className="servicesLayers__cardTitle">{s.title}</h3>
                                     <Media check={(d) => d === 'mobile'}>
                                         {this.renderPreview(s.video?.url)}

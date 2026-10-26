@@ -1,14 +1,18 @@
+import { appStore } from '@/src/store/store.tsx';
+
 import I from '../types.ts';
 
 const setType: I['setType'] = async function ({ type, card }) {
-    // if (type === this.state.currentType) {
-    //     return;
-    // }
-
-    await this.asyncSetState({ currentType: type, hoverCard: card });
+    const { stopAutoChange } = this.state;
 
     if (this.animateId) {
         cancelAnimationFrame(this.animateId);
+    }
+
+    await this.asyncSetState({ currentType: type, hoverCard: card });
+
+    if (stopAutoChange || appStore.getState().device === 'mobile') {
+        return;
     }
 
     const { content } = this.props;
@@ -16,6 +20,10 @@ const setType: I['setType'] = async function ({ type, card }) {
     let time = new Date().getTime();
 
     const animate = async () => {
+        if (this.state.stopAutoChange) {
+            return;
+        }
+
         const { currentType } = this.state;
         const buttonNode = this.parent.current!.querySelector<HTMLElement>(
             `.servicesAdvantages__button[data-id="${currentType}"]`,
@@ -37,7 +45,10 @@ const setType: I['setType'] = async function ({ type, card }) {
                 }
 
                 await this.setType({ type: nextType });
-            } else if (progressCircleNode) {
+                return;
+            }
+
+            if (progressCircleNode) {
                 const progressWidth = progressCircleNode.getBoundingClientRect().width / 2;
                 const progressLen = 2 * Math.PI * progressWidth;
 

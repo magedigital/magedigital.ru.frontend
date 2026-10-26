@@ -13,7 +13,7 @@ const renderPage: I['renderPage'] = function ({ render }) {
     const { currentPopup } = this.props;
 
     return (
-        <div ref={this.parent} className="page">
+        <div ref={this.parent} className={this.getClass('page', currentPopup && '_withPopup')}>
             <Media check={(d) => d === 'desktop'}>
                 <div className="page__topBar _FULL_W _fix">
                     <TopBar mode="fix" device="desktop" />

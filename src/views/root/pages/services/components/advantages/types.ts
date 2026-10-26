@@ -10,6 +10,7 @@ type StateT = {
     currentType: number;
     hoverCard?: number;
     updatedKey?: string;
+    stopAutoChange?: boolean;
 };
 
 interface AdvantagesI extends DefaultI<PropsT, StateT> {

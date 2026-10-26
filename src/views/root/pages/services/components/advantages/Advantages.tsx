@@ -33,7 +33,7 @@ class Advantages
     renderCard = renderCard;
 
     render() {
-        const { currentType } = this.state;
+        const { currentType, stopAutoChange } = this.state;
         const { content } = this.props;
 
         return (
@@ -47,10 +47,12 @@ class Advantages
                                         className={this.getClass(
                                             'servicesAdvantages__button _CLICK',
                                             currentType === i && '_current',
+                                            stopAutoChange && '_hideProgress',
                                         )}
                                         key={i}
-                                        onClick={() => {
-                                            this.setType({ type: i });
+                                        onClick={async () => {
+                                            await this.asyncSetState({ stopAutoChange: true });
+                                            await this.setType({ type: i });
                                         }}
                                         data-id={i}
                                     >

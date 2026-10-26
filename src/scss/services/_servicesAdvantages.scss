@@ -109,6 +109,10 @@
             }
         }
 
+        &._hideProgress &ArrowProgress {
+            opacity: 0;
+        }
+
         &Arrow {
             position: absolute;
             top: 50%;
@@ -132,6 +136,7 @@
                 width: 64rem;
                 height: 64rem;
                 transform: translate(-50%, -50%) rotate(-90deg);
+                transition: $trans;
                 pointer-events: none;
 
                 &::before {

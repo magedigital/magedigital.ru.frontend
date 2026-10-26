@@ -59,12 +59,12 @@ const init: I['init'] = async function (this: I) {
             '.servicesLayers__contentCard',
         );
 
-        let offset = 88 * window.sizeK;
-        let cardContentTop = 156;
+        let offset = 0 * window.sizeK;
+        let cardContentTop = 0;
 
         if (appStore.getState().device === 'mobile') {
-            offset = 64 * window.sizeK;
-            cardContentTop = 70;
+            offset = 0 * window.sizeK;
+            cardContentTop = 0;
         }
 
         const contentTop = contentNode.getBoundingClientRect().y;
@@ -157,10 +157,8 @@ const init: I['init'] = async function (this: I) {
             });
 
             if (cardDecorNode) {
-                const thisTop =
-                    appStore.getState().device === 'desktop'
-                        ? cardContentNode!.offsetHeight + 96
-                        : cardContentNode!.offsetHeight + 10;
+                // console.log(cardServicesNode!.offsetTop)
+                const thisTop = cardServicesNode!.offsetTop - cardDecorNode.offsetHeight / 2 + 32 * window.sizeK
 
                 cardDecorNode.style.top = `${thisTop}px`;
                 cardDecorNode.style.transform = `translate(0,${cardDecorTop}px)`;
@@ -171,7 +169,7 @@ const init: I['init'] = async function (this: I) {
             }
 
             cardContentNode!.style.transform = `translate(0,${-contentTopPercent * cardContentTop * window.sizeK}px)`;
-            s.style.transform = `translate(0,${-cardTop}px)`;
+            // s.style.transform = `translate(0,${-cardTop}px)`;
         });
     };
 
