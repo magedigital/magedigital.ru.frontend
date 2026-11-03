@@ -157,8 +157,11 @@ const init: I['init'] = async function (this: I) {
             });
 
             if (cardDecorNode) {
-                // console.log(cardServicesNode!.offsetTop)
-                const thisTop = cardServicesNode!.offsetTop - cardDecorNode.offsetHeight / 2 + 32 * window.sizeK
+                const decorOffset = appStore.getState().device === 'desktop' ? 32 : 8;
+                const thisTop =
+                    cardServicesNode!.offsetTop -
+                    cardDecorNode.offsetHeight / 2 +
+                    decorOffset * window.sizeK;
 
                 cardDecorNode.style.top = `${thisTop}px`;
                 cardDecorNode.style.transform = `translate(0,${cardDecorTop}px)`;
